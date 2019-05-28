@@ -9,7 +9,7 @@
   "dependencies": {
     "react": "16.8.3",
     "react-native": "0.59.8",
-    "ost-wallet-sdk-react-native": "git@github.com:ostdotcom/ost-wallet-sdk-react-native.git#android-sdk-code",
+    "ost-wallet-sdk-react-native": "git@github.com:ostdotcom/ost-wallet-sdk-react-native.git",
     "@react-native-community/async-storage": "^1.3.4",
     "bignumber.js": "^8.1.1",
     "form-data": "^2.3.3",
