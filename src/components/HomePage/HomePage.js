@@ -185,7 +185,7 @@ class HomePage extends Component {
                 amountsList,
                 ruleName,
                 {"type":"user_to_user","name":"Sent to amulya1","details":"Received from preshita"},
-                new OstWalletWorkflowCallback(),
+                new OstWalletWorkflowCallback()
             );
           });
         }

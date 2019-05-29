@@ -97,6 +97,21 @@ class OstWalletSdkCallbackImplementation extends OstWalletWorkFlowCallback {
             Actions.popTo("HomePage");
           }
         store.dispatch(setLoading(false));
+      console.log("getApiError",ostError.getApiError());
+      console.log("getApiInternalId",ostError.getApiInternalId());
+      console.log("getApiErrorCode",ostError.getApiErrorCode());
+      console.log("getApiErrorData",ostError.getApiErrorData());
+      console.log("getApiErrorMessage",ostError.getApiErrorMessage());
+      console.log("isBadRequest",ostError.isBadRequest());
+      console.log("isNotFound",ostError.isNotFound());
+      console.log("isDeviceTimeOutOfSync",ostError.isDeviceTimeOutOfSync());
+      console.log("isApiSignerUnauthorized",ostError.isApiSignerUnauthorized());
+      console.log("isErrorParameterKey",ostError.isErrorParameterKey("new_recovery_owner_address"));
+      console.log("getErrorCode",ostError.getErrorCode());
+      console.log("getInternalErrorCode",ostError.getInternalErrorCode());
+      console.log("getErrorMessage",ostError.getErrorMessage());
+      console.log("getErrorInfo",ostError.getErrorInfo());
+      console.log("isApiError",ostError.isApiError());
     }
 
     requestAcknowledged(ostWorkflowContext, ostContextEntity) {
