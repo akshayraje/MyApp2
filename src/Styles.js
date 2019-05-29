@@ -44,7 +44,7 @@ export default styles = StyleSheet.create({
     padding: 10
   },
   title: {
-    fontSize: 30,
+    fontSize: 24,
     margin: 10,
     textAlign: 'center'
   },
