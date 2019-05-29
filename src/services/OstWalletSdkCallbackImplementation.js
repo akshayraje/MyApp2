@@ -85,10 +85,10 @@ class OstWalletSdkCallbackImplementation extends OstWalletWorkFlowCallback {
     flowInterrupt(ostWorkflowContext , ostError) {
         console.log('flowInterrupt ostWorkflowContext', ostWorkflowContext , "ostError" , ostError );
         if (ostError) {
-              let displayError = ostError.error_message,
+              let displayError = ostError.getErrorMessage(),
               apiError;
-            if(ostError.is_api_error){
-                apiError = ostError.api_error && ostError.api_error.error_data[0].msg;
+            if(ostError.isApiError()){
+                apiError = ostError.getApiErrorData()[0] && ostError.getApiErrorData()[0].msg;
                 displayError = displayError+apiError;
             }
             Alert.alert('Error!', displayError);
