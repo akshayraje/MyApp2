@@ -11,9 +11,9 @@ class DeviceMnemonicsCallbackImplementation extends OstWalletSdkCallbackImplemen
         super();
     }
 
-    flowComplete(res) {
+    flowComplete(ostWorkflowContext , ostContextEntity) {
         console.log('flowComplete', arguments);
-        Alert.alert('Device Mnemonics', arguments[0].ostContextEntity.entity);
+        Alert.alert('Device Mnemonics', ostContextEntity.entity);
         if(Actions.currentScene !== "HomePage"){
           Actions.popTo("HomePage");
         }

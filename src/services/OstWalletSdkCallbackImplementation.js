@@ -17,7 +17,6 @@ class OstWalletSdkCallbackImplementation extends OstWalletWorkFlowCallback {
 
     registerDevice(apiParams, ostDeviceRegistered) {
         console.log('registerDevice apiParams', apiParams, ostDeviceRegistered);
-        apiParams = apiParams.apiParams;
         formData.append('address', apiParams.address || apiParams.device.address);
         formData.append('api_signer_address', apiParams.api_signer_address || apiParams.device.api_signer_address);
         fetch(`${apiRoot}/devices`, {
@@ -41,7 +40,7 @@ class OstWalletSdkCallbackImplementation extends OstWalletWorkFlowCallback {
             .done();
     }
 
-    getPin(res, ostPinAcceptInterface) {
+    getPin(ostWorkflowContext, userId,  ostPinAcceptInterface) {
         AsyncStorage.getItem('user', (err, user) => {
             user = JSON.parse(user);
             Actions.GetPin({
@@ -53,7 +52,7 @@ class OstWalletSdkCallbackImplementation extends OstWalletWorkFlowCallback {
         });
     }
 
-    invalidPin(res, ostPinAcceptInterface) {
+    invalidPin(ostWorkflowContext, userId, ostPinAcceptInterface) {
         AsyncStorage.getItem('user', (err, user) => {
             user = JSON.parse(user);
             Actions.GetPin({
@@ -65,17 +64,17 @@ class OstWalletSdkCallbackImplementation extends OstWalletWorkFlowCallback {
         });
     }
 
-    pinValidated(res) {
-        console.log('pinValidated', res);
+    pinValidated(ostWorkflowContext, userId ) {
+        console.log('pinValidated', ostWorkflowContext ,"userid--" ,  userId );
     }
 
-    flowComplete(res) {
-        console.log('flowComplete', res);
+    flowComplete(ostWorkflowContext , ostContextEntity) {
+        console.log('flowComplete ostWorkflowContext', ostWorkflowContext,  "ostContextEntity- ", ostContextEntity);
           if(Actions.currentScene !== "HomePage"){
             Actions.popTo("HomePage");
           }
-        if(res.ostWorkflowContext){
-            let wfType = res.ostWorkflowContext.WORKFLOW_TYPE;
+        if(ostWorkflowContext){
+            let wfType = ostWorkflowContext.WORKFLOW_TYPE;
             if( wfType !== "SETUP_DEVICE") {
                 Alert.alert(`${wfType} Complete!`);
             }
@@ -83,13 +82,13 @@ class OstWalletSdkCallbackImplementation extends OstWalletWorkFlowCallback {
         store.dispatch(setLoading(false));
     }
 
-    flowInterrupt(res) {
-        console.log('flowInterrupt', res);
-        if (res.ostError) {
-              let displayError = res.ostError.error_message,
+    flowInterrupt(ostWorkflowContext , ostError) {
+        console.log('flowInterrupt ostWorkflowContext', ostWorkflowContext , "ostError" , ostError );
+        if (ostError) {
+              let displayError = ostError.error_message,
               apiError;
-            if(res.ostError.is_api_error){
-                apiError = res.ostError.api_error && res.ostError.api_error.error_data[0].msg;
+            if(ostError.is_api_error){
+                apiError = ostError.api_error && ostError.api_error.error_data[0].msg;
                 displayError = displayError+apiError;
             }
             Alert.alert('Error!', displayError);
@@ -101,11 +100,11 @@ class OstWalletSdkCallbackImplementation extends OstWalletWorkFlowCallback {
     }
 
     requestAcknowledged(ostWorkflowContext, ostContextEntity) {
-        console.log('requestAcknowledged', arguments);
+        console.log('requestAcknowledged ostWorkflowContext', ostWorkflowContext , "ostContextEntity- ", ostContextEntity );
     }
 
-    verifyData(params, ostVerifyDataInterface) {
-        console.log('verifyData', arguments);
+    verifyData(ostWorkflowContext , ostContextEntity , ostVerifyDataInterface) {
+        console.log('verifyData ostWorkflowContext', ostWorkflowContext , "ostContextEntity" , ostContextEntity );
         ostVerifyDataInterface.dataVerified();
     }
 }
