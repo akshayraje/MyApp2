@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from "../../Styles";
-import { Text, TouchableOpacity, ScrollView, Picker } from 'react-native';
+import { Text, TouchableOpacity, ScrollView, Picker, View } from 'react-native';
 import {apiRoot} from "../../helpers";
 
 export default class RevokeDevice extends Component {
@@ -45,21 +45,23 @@ export default class RevokeDevice extends Component {
   render () {
     return (
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <Picker
-          selectedValue={this.props.deviceAddress}
-          style={styles.selectBox}
-          onValueChange={(itemValue, itemIndex) =>
-            this.setState({deviceAddress: itemValue})
-          }>
-          {this.state.deviceAddresses.map((device, index) => {
-            return <Picker.Item key={index} label={device.address} value={device.address} />
-          })}
-        </Picker>
-        <TouchableOpacity style={styles.buttonWrapper}
-                          onPress={() => {this.props.revokeDevice( this.state.deviceAddress )}}
-        >
-          <Text style={styles.buttonText}>{this.props.isLoading ? 'Revoking...' : 'Revoke Device'}</Text>
-        </TouchableOpacity>
+        <View style={styles.form} pointerEvents={this.props.isLoading ? 'none' : 'auto'}>
+          <Picker
+            selectedValue={this.props.deviceAddress}
+            style={styles.selectBox}
+            onValueChange={(itemValue, itemIndex) =>
+              this.setState({deviceAddress: itemValue})
+            }>
+            {this.state.deviceAddresses.map((device, index) => {
+              return <Picker.Item key={index} label={device.address} value={device.address} />
+            })}
+          </Picker>
+          <TouchableOpacity style={styles.buttonWrapper}
+                            onPress={() => {this.props.revokeDevice( this.state.deviceAddress )}}
+          >
+            <Text style={styles.buttonText}>{this.props.isLoading ? 'Revoking...' : 'Revoke Device'}</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     )
   }

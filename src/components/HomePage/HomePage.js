@@ -39,7 +39,7 @@ class HomePage extends Component {
       this.props.dispatchLoadingState(true);
       AsyncStorage.getItem('user').then((user) => {
         user = JSON.parse(user);
-          OstWalletSdk.revokeDevice(user.user_id, deviceAddress, new OstWalletWorkflowCallback(), console.warn);
+        OstWalletSdk.revokeDevice(user.user_id, deviceAddress, new OstWalletWorkflowCallback(), console.warn);
       });
     }
 
@@ -49,7 +49,7 @@ class HomePage extends Component {
       });
       AsyncStorage.getItem('user').then((user) => {
         user = JSON.parse(user);
-          OstWalletSdk.updateBiometricPreference(user.user_id, value, new OstWalletWorkflowCallback(), console.warn);
+        OstWalletSdk.updateBiometricPreference(user.user_id, value, new OstWalletWorkflowCallback(), console.warn);
       });
     }
 
@@ -179,12 +179,12 @@ class HomePage extends Component {
         if(addressesList && amountsList && addressesList.length === amountsList.length){
           AsyncStorage.getItem('user').then((user) => {
             user = JSON.parse(user);
-              OstWalletSdk.executeTransaction(
+            OstWalletSdk.executeTransaction(
                 user.user_id,
                 addressesList,
                 amountsList,
                 ruleName,
-                '{"type":"user_to_user","name":"Sent to amulya1","details":"Received from preshita"}',
+                {"type":"user_to_user","name":"Sent to amulya1","details":"Received from preshita"},
                 new OstWalletWorkflowCallback(),
             );
           });

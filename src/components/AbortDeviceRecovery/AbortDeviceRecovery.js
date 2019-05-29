@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from "../../Styles";
-import { Text, TextInput, TouchableOpacity, ScrollView, Picker } from 'react-native';
+import { Text, TextInput, TouchableOpacity, ScrollView, Picker, View } from 'react-native';
 import {apiRoot} from "../../helpers";
 
 export default class AbortDeviceRecovery extends Component {
@@ -46,27 +46,29 @@ export default class AbortDeviceRecovery extends Component {
   render () {
     return (
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <Picker
-          selectedValue={this.props.deviceAddress}
-          style={styles.selectBox}
-          onValueChange={(itemValue, itemIndex) =>
-            this.setState({deviceAddress: itemValue})
-          }>
-          {this.state.deviceAddresses.map((device, index) => {
-            return <Picker.Item key={index} label={device.address} value={device.address} />
-          })}
-        </Picker>
-        <TextInput
-          style={styles.inputBox}
-          onChangeText={(pin) => this.setState({pin})}
-          value={this.state.pin}
-          placeholder="Enter pin"
-        />
-        <TouchableOpacity style={styles.buttonWrapper}
-                          onPress={() => {this.props.onAbortDeviceRecovery( this.state.pin  )}}
-        >
-          <Text style={styles.buttonText}>{this.props.isLoading ? 'Aborting...' : 'Abort Device Recovery'}</Text>
-        </TouchableOpacity>
+        <View style={styles.form} pointerEvents={this.props.isLoading ? 'none' : 'auto'}>
+          <Picker
+            selectedValue={this.props.deviceAddress}
+            style={styles.selectBox}
+            onValueChange={(itemValue, itemIndex) =>
+              this.setState({deviceAddress: itemValue})
+            }>
+            {this.state.deviceAddresses.map((device, index) => {
+              return <Picker.Item key={index} label={device.address} value={device.address} />
+            })}
+          </Picker>
+          <TextInput
+            style={styles.inputBox}
+            onChangeText={(pin) => this.setState({pin})}
+            value={this.state.pin}
+            placeholder="Enter pin"
+          />
+          <TouchableOpacity style={styles.buttonWrapper}
+                            onPress={() => {this.props.onAbortDeviceRecovery( this.state.pin  )}}
+          >
+            <Text style={styles.buttonText}>{this.props.isLoading ? 'Aborting...' : 'Abort Device Recovery'}</Text>
+          </TouchableOpacity>
+          </View>
       </ScrollView>
     )
   }

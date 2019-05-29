@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from '../../Styles';
-import { Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, TextInput, TouchableOpacity, ScrollView, View } from 'react-native';
 
 export default class GetPin extends Component {
     constructor(props) {
@@ -14,6 +14,7 @@ export default class GetPin extends Component {
     render() {
         return (
             <ScrollView contentContainerStyle={styles.scrollContainer}>
+              <View style={styles.form} pointerEvents={this.props.isLoading ? 'none' : 'auto'}>
                 <TextInput
                     style={styles.inputBox}
                     onChangeText={(pin) => this.setState({ pin })}
@@ -34,6 +35,7 @@ export default class GetPin extends Component {
                 >
                     <Text style={styles.buttonText}>{this.props.isLoading ? 'Authenticating...' : 'Authenticate'}</Text>
                 </TouchableOpacity>
+              </View>
             </ScrollView>
         );
     }

@@ -16,7 +16,7 @@ export default styles = StyleSheet.create({
   buttonWrapper: {
     backgroundColor:'#9accd7',
     marginBottom: 10,
-    width: 300,
+    width: '100%',
     borderRadius: 10
   },
   container: {
@@ -55,14 +55,14 @@ export default styles = StyleSheet.create({
     paddingRight: 10
   },
   inputBox:{
-    width: '80%',
+    width: '100%',
     borderColor: '#D3D3D3',
     borderWidth: 1,
     marginBottom: 30,
     padding: 10
   },
   selectBox:{
-    width: '80%',
+    width: '100%',
     borderColor: '#D3D3D3',
     borderWidth: 1,
     marginBottom: 30,
