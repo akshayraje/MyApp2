@@ -69,7 +69,7 @@ class Authentication extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>React Native {'\n'}OST Wallet SDK ({${AppData.TOKEN_ID}})</Text>
+                <Text style={styles.title}>React Native {'\n'}OST Wallet SDK ({AppData.TOKEN_ID})</Text>
                 <View style={styles.form}>
                     {this.state.signup && (
                         <TextInput
