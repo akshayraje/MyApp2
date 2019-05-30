@@ -176,19 +176,17 @@ class HomePage extends Component {
           amountsList;
         addressesList = addresses && addresses.split(",").map((item)=> item.trim());
         amountsList = amounts && amounts.split(",").map((item)=> item.trim());
-        if(addressesList && amountsList && addressesList.length === amountsList.length){
-          AsyncStorage.getItem('user').then((user) => {
-            user = JSON.parse(user);
-            OstWalletSdk.executeTransaction(
-                user.user_id,
-                addressesList,
-                amountsList,
-                ruleName,
-                {"type":"user_to_user","name":"Sent to amulya1","details":"Received from preshita"},
-                new OstWalletWorkflowCallback()
-            );
-          });
-        }
+        AsyncStorage.getItem('user').then((user) => {
+          user = JSON.parse(user);
+          OstWalletSdk.executeTransaction(
+              user.user_id,
+              addressesList,
+              amountsList,
+              ruleName,
+              {"type":"user_to_user","name":"Sent to amulya1","details":"Received from preshita"},
+              new OstWalletWorkflowCallback()
+          );
+        });
     }
 
     onAddSession(spendingLimit, expiryInDays) {

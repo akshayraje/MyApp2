@@ -48,7 +48,7 @@ export default class DeviceRecovery extends Component {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.form} pointerEvents={this.props.isLoading ? 'none' : 'auto'}>
           <Picker
-            selectedValue={this.props.deviceAddress}
+            selectedValue={this.state.deviceAddress}
             style={styles.selectBox}
             onValueChange={(itemValue, itemIndex) =>
               this.setState({deviceAddress: itemValue})
