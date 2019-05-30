@@ -89,11 +89,11 @@ class OstWalletSdkCallbackImplementation extends OstWalletWorkFlowCallback {
               apiError, errorData;
             if(ostError.isApiError()){
                 apiError = ostError.getApiErrorMessage();
-                if(apiError.includes('err.error_data')){
+                if(apiError && apiError.includes('err.error_data')){
                   apiError = '';
                 }
                 errorData = ostError.getApiErrorData();
-                if(errorData.length > 0){
+                if(errorData && errorData.length > 0){
                   for(let i=0; i<errorData.length;i++){
                     apiError = apiError + errorData[i].msg;
                   }
