@@ -19,7 +19,7 @@ export default class CreateSession extends Component {
             style={styles.inputBox}
             onChangeText={(spendingLimit) => this.setState({spendingLimit})}
             value={this.state.spendingLimit}
-            placeholder="Enter Spending Limit(in ETH)"
+            placeholder="Enter Spending Limit(in atto)"
           />
           <TextInput
             style={styles.inputBox}

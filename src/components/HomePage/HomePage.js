@@ -197,7 +197,7 @@ class HomePage extends Component {
             OstWalletSdk.addSession(
                 user.user_id,
                 Number(expiryInDays) * 86400,
-              (new BigNumber(spendingLimit)).times((new BigNumber(10)).pow(new BigNumber(18))).toString(),
+              spendingLimit,
                 new OstWalletWorkflowCallback(),
                 console.warn
             );
