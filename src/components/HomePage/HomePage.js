@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Text, TouchableOpacity, View, ScrollView, ActivityIndicator, Image, Switch} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Actions } from 'react-native-router-flux';
-import BigNumber from 'bignumber.js';
 import {OstWalletSdk} from 'ost-wallet-sdk-react-native';
 
 import styles from '../../Styles';
@@ -31,7 +30,7 @@ class HomePage extends Component {
         this.props.dispatchLoadingState(true);
         AsyncStorage.getItem('user').then((user) => {
             user = JSON.parse(user);
-            OstWalletSdk.setupDevice(user.user_id, AppData.TOKEN_ID, new OstWalletWorkflowCallback(), console.warn);
+            OstWalletSdk.setupDevice(user.user_details.user_id, AppData.TOKEN_ID, new OstWalletWorkflowCallback(), console.warn);
         });
     }
 
@@ -39,7 +38,7 @@ class HomePage extends Component {
       this.props.dispatchLoadingState(true);
       AsyncStorage.getItem('user').then((user) => {
         user = JSON.parse(user);
-        OstWalletSdk.revokeDevice(user.user_id, deviceAddress, new OstWalletWorkflowCallback(), console.warn);
+        OstWalletSdk.revokeDevice(user.user_details.user_id, deviceAddress, new OstWalletWorkflowCallback(), console.warn);
       });
     }
 
@@ -49,7 +48,7 @@ class HomePage extends Component {
       });
       AsyncStorage.getItem('user').then((user) => {
         user = JSON.parse(user);
-        OstWalletSdk.updateBiometricPreference(user.user_id, value, new OstWalletWorkflowCallback(), console.warn);
+        OstWalletSdk.updateBiometricPreference(user.user_details.user_id, value, new OstWalletWorkflowCallback(), console.warn);
       });
     }
 
@@ -58,7 +57,7 @@ class HomePage extends Component {
         AsyncStorage.getItem('user').then((user) => {
             user = JSON.parse(user);
             OstWalletSdk.activateUser(
-                user.user_id,
+                user.user_details.user_id,
                 pin,
                 user.user_pin_salt,
                 86400,
@@ -72,14 +71,14 @@ class HomePage extends Component {
     onGetDeviceMnemonics() {
         AsyncStorage.getItem('user').then((user) => {
             user = JSON.parse(user);
-            OstWalletSdk.getDeviceMnemonics(user.user_id, new DeviceMnemonicsCallbackImplementation(), console.warn);
+            OstWalletSdk.getDeviceMnemonics(user.user_details.user_id, new DeviceMnemonicsCallbackImplementation(), console.warn);
         });
     }
 
     onGetAddDeviceQRCode() {
         AsyncStorage.getItem('user').then((user) => {
             user = JSON.parse(user);
-            OstWalletSdk.getAddDeviceQRCode(user.user_id, this.onGetAddDeviceQRCodeSuccess , console.warn);
+            OstWalletSdk.getAddDeviceQRCode(user.user_details.user_id, this.onGetAddDeviceQRCodeSuccess , console.warn);
         });
     }
 
@@ -99,7 +98,7 @@ class HomePage extends Component {
         AsyncStorage.getItem('user').then((user) => {
             user = JSON.parse(user);
             OstWalletSdk.performQRAction(
-                user.user_id,
+                user.user_details.user_id,
                 data,
                 new OstWalletWorkflowCallback(),
                 console.warn
@@ -112,7 +111,7 @@ class HomePage extends Component {
         AsyncStorage.getItem('user').then((user) => {
             user = JSON.parse(user);
             OstWalletSdk.abortDeviceRecovery(
-                user.user_id,
+                user.user_details.user_id,
                 pin,
                 user.user_pin_salt,
                 new OstWalletWorkflowCallback(),
@@ -124,7 +123,7 @@ class HomePage extends Component {
     onLogoutAllSessions() {
         AsyncStorage.getItem('user').then((user) => {
             user = JSON.parse(user);
-            OstWalletSdk.logoutAllSessions(user.user_id, new OstWalletWorkflowCallback(), console.warn);
+            OstWalletSdk.logoutAllSessions(user.user_details.user_id, new OstWalletWorkflowCallback(), console.warn);
         });
     }
 
@@ -133,7 +132,7 @@ class HomePage extends Component {
         AsyncStorage.getItem('user').then((user) => {
             user = JSON.parse(user);
             OstWalletSdk.initiateDeviceRecovery(
-                user.user_id,
+                user.user_details.user_id,
                 pin,
                 user.user_pin_salt,
                 deviceAddr,
@@ -148,7 +147,7 @@ class HomePage extends Component {
         AsyncStorage.getItem('user').then((user) => {
             user = JSON.parse(user);
             OstWalletSdk.resetPin(
-                user.user_id,
+                user.user_details.user_id,
                 user.user_pin_salt,
                 oldPin,
                 newPin,
@@ -162,7 +161,7 @@ class HomePage extends Component {
         AsyncStorage.getItem('user').then((user) => {
             user = JSON.parse(user);
             OstWalletSdk.authorizeCurrentDeviceWithMnemonics(
-                user.user_id,
+                user.user_details.user_id,
                 passphrase,
                 new OstWalletWorkflowCallback(),
                 console.warn
@@ -183,7 +182,7 @@ class HomePage extends Component {
           AsyncStorage.getItem('user').then((user) => {
             user = JSON.parse(user);
             OstWalletSdk.executeTransaction(
-                user.user_id,
+                user.user_details.user_id,
                 addressesList,
                 amountsList,
                 ruleName,
@@ -198,7 +197,7 @@ class HomePage extends Component {
         AsyncStorage.getItem('user').then((user) => {
             user = JSON.parse(user);
             OstWalletSdk.addSession(
-                user.user_id,
+                user.user_details.user_id,
                 Number(expiryInDays) * 86400,
               spendingLimit,
                 new OstWalletWorkflowCallback(),

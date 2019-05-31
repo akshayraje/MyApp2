@@ -45,7 +45,7 @@ class OstWalletSdkCallbackImplementation extends OstWalletWorkFlowCallback {
             user = JSON.parse(user);
             Actions.GetPin({
                 onGetPin: ostPinAcceptInterface.pinEntered.bind(ostPinAcceptInterface),
-                userId: user.user_id,
+                userId: user.user_details.user_id,
                 userPinSalt: user.user_pin_salt,
                 errorHandler: console.warn
             });
@@ -57,7 +57,7 @@ class OstWalletSdkCallbackImplementation extends OstWalletWorkFlowCallback {
             user = JSON.parse(user);
             Actions.GetPin({
                 onGetPin: ostPinAcceptInterface.pinEntered.bind(ostPinAcceptInterface),
-                userId: user.user_id,
+                userId: user.user_details.user_id,
                 userPinSalt: user.user_pin_salt,
                 errorHandler: console.warn
             });

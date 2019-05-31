@@ -16,7 +16,7 @@ class ActivateUserCallbackImplementation extends OstWalletSdkCallbackImplementat
     console.log('flowComplete ostWorkflowContext', ostWorkflowContext , "ostContextEntity" , ostContextEntity);
     AsyncStorage.getItem('user').then((user) => {
       user = JSON.parse(user);
-      if(user.status === 'CREATED'){
+      if(user.user_details.status === 'CREATED'){
         fetch(
           `${apiRoot}/notify/user-activate`,
           {

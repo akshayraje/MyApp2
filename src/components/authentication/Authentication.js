@@ -41,7 +41,13 @@ class Authentication extends Component {
         formData.append('username', this.state.username);
         formData.append('password', this.state.password);
         this.state.signup && formData.append('fullname', this.state.fullname);
-        fetch(
+
+        let getUserSaltPromise = fetch(`${apiRoot}/users/current-user-salt`,
+          {
+            method: 'GET',
+            credentials: 'include'
+          });
+        let authPromise = fetch(
             `${apiRoot}/${this.state.signup ? 'signup' : 'login'}`,
             {
                 method: 'POST',
@@ -50,20 +56,25 @@ class Authentication extends Component {
                     'Content-Type': 'multipart/form-data'
                 },
                 body: formData
+            });
+        Promise.all([getUserSaltPromise, authPromise])
+          .then((responses) => Promise.all(responses.map(res => res.json())))
+          .then((responseData) => {
+            console.log('current_user_salt:', responseData[0]);
+            console.log('Signin responseData:', responseData[1]);
+            if (responseData[1].success && responseData[1].data && responseData[0].success && responseData[0].data) {
+              this.saveItem('user', JSON.stringify({
+                'user_details':responseData[1].data[responseData[1].data.result_type],
+                'user_pin_salt': responseData[0].data.current_user_salt && responseData[0].data.current_user_salt.recovery_pin_salt
+              }));
+              Actions.HomePage();
+            } else {
+              Alert.alert(responseData[1].msg, responseData[0].msg);
             }
-        )
-            .then((response) => response.json())
-            .then((responseData) => {
-                console.log('Signin responseData:', responseData);
-                if (responseData.success && responseData.data) {
-                    this.saveItem('user', JSON.stringify(responseData.data[responseData.data.result_type]));
-                    Actions.HomePage();
-                } else {
-                    Alert.alert(responseData.msg);
-                }
-            })
-            .catch(console.warn)
-            .done();
+          })
+          .catch(console.warn)
+          .done();
+
     }
 
     render() {
