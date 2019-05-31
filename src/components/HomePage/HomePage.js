@@ -172,7 +172,7 @@ class HomePage extends Component {
 
     onExecuteTransaction( addresses, amounts, ruleName) {
         if( ruleName ){
-          ruleName =  ruleName.toString().trim();
+          ruleName =  ruleName.toLowerCase().trim();
         }
         this.props.dispatchLoadingState(true);
         let addressesList,
