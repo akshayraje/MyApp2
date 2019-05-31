@@ -171,6 +171,9 @@ class HomePage extends Component {
     }
 
     onExecuteTransaction( addresses, amounts, ruleName) {
+        if( ruleName ){
+          ruleName =  ruleName.toString().trim();
+        }
         this.props.dispatchLoadingState(true);
         let addressesList,
           amountsList;
