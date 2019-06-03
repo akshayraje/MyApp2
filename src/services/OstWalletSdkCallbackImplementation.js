@@ -40,11 +40,13 @@ class OstWalletSdkCallbackImplementation extends OstWalletWorkFlowCallback {
             .done();
     }
 
-    getPin(ostWorkflowContext, userId,  ostPinAcceptInterface) {
+    getPin(ostWorkflowContext, userId,  ostPinAccept) {
         AsyncStorage.getItem('user', (err, user) => {
             user = JSON.parse(user);
             Actions.GetPin({
-                onGetPin: ostPinAcceptInterface.pinEntered.bind(ostPinAcceptInterface),
+                onGetPin: ostPinAccept.pinEntered.bind(ostPinAccept),
+                onCancel: ostPinAccept.cancelFlow.bind(ostPinAccept), //custom handler to handle hardware back press
+                onBack: ostPinAccept.cancelFlow.bind(ostPinAccept), //handler given by router api to handle back arrow
                 userId: user.user_details.user_id,
                 userPinSalt: user.user_pin_salt,
                 errorHandler: console.warn
@@ -52,11 +54,13 @@ class OstWalletSdkCallbackImplementation extends OstWalletWorkFlowCallback {
         });
     }
 
-    invalidPin(ostWorkflowContext, userId, ostPinAcceptInterface) {
+    invalidPin(ostWorkflowContext, userId, ostPinAccept) {
         AsyncStorage.getItem('user', (err, user) => {
             user = JSON.parse(user);
             Actions.GetPin({
-                onGetPin: ostPinAcceptInterface.pinEntered.bind(ostPinAcceptInterface),
+                onGetPin: ostPinAccept.pinEntered.bind(ostPinAccept),
+                onCancel: ostPinAccept.cancelFlow.bind(ostPinAccept), //custom handler to handle hardware back press
+                onBack: ostPinAccept.cancelFlow.bind(ostPinAccept), //handler given by router api to handle back arrow
                 userId: user.user_details.user_id,
                 userPinSalt: user.user_pin_salt,
                 errorHandler: console.warn
@@ -129,9 +133,9 @@ class OstWalletSdkCallbackImplementation extends OstWalletWorkFlowCallback {
         console.log('requestAcknowledged ostWorkflowContext', ostWorkflowContext , "ostContextEntity- ", ostContextEntity );
     }
 
-    verifyData(ostWorkflowContext , ostContextEntity , ostVerifyDataInterface) {
+    verifyData(ostWorkflowContext , ostContextEntity , ostVerifyData) {
         console.log('verifyData ostWorkflowContext', ostWorkflowContext , "ostContextEntity" , ostContextEntity );
-        ostVerifyDataInterface.dataVerified();
+        ostVerifyData.dataVerified();
     }
 }
 

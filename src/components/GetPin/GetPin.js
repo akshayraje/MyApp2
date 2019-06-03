@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from '../../Styles';
-import { Text, TextInput, TouchableOpacity, ScrollView, View } from 'react-native';
+import { Text, TextInput, TouchableOpacity, ScrollView, View, BackHandler } from 'react-native';
 
 export default class GetPin extends Component {
     constructor(props) {
@@ -9,6 +9,14 @@ export default class GetPin extends Component {
             pin: null
         };
         this.props.dispatchLoadingState(false);
+    }
+
+    componentDidMount() {
+      this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.props.onCancel);
+    }
+
+    componentWillUnmount() {
+      this.backHandler.remove();
     }
 
     render() {

@@ -64,7 +64,7 @@ class App extends Component {
             <Scene component={ResetPin} key="ResetPin" title="Reset Pin" />
             <Scene component={DeviceRecovery} key="DeviceRecovery" title="Device Recovery" />
             <Scene component={AbortDeviceRecovery} key="AbortDeviceRecovery" title="Abort Device Recovery" />
-            <Scene component={GetPin} key="GetPin" title="Enter Pin" />
+            <Scene component={GetPin} key="GetPin" title="Enter Pin" backTitle="temp"/>
             <Scene component={ExecuteTransaction} key="ExecuteTransaction" title="Execute Transaction" />
             <Scene component={PerformQRAction} key="PerformQRAction" title="Perform QR Action" />
             <Scene component={AuthorizeDevice} key="AuthorizeDevice" title="Authorize Device with Mneumonics" />
