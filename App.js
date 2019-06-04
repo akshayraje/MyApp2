@@ -29,9 +29,6 @@ class App extends Component {
   constructor() {
     super();
     this.state = { hasUserId: false };
-    OstWalletSdk.initialize('https://api.stagingost.com/testnet/v2', function(err) {
-      console.warn(err);
-    });
   }
 
   componentDidMount() {
