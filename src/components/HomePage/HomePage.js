@@ -18,12 +18,21 @@ class HomePage extends Component {
           'onPerformQRAction', 'onGetAddDeviceQRCode', 'onGetAddDeviceQRCodeSuccess','revokeDevice'].forEach(
             (key) => (this[key] = this[key].bind(this))
         );
+        this.initializeDevice();
         this.setupDevice();
         this.state = {
           qrCode : null,
           showQR : false,
           enableBiometric : false
         }
+    }
+
+    initializeDevice() {
+        this.props.dispatchLoadingState(true);
+        OstWalletSdk.initialize('https://api.stagingost.com/testnet/v2', function(err) {
+            console.warn(err);
+        });
+        this.props.dispatchLoadingState(false);
     }
 
     setupDevice() {
