@@ -104,7 +104,7 @@ class OstWalletSdkCallbackImplementation extends OstWalletWorkFlowCallback {
                 }
                 displayError = displayError+apiError;
             }
-            Alert.alert('Error!', displayError);
+            Alert.alert('Error', displayError + "\nError Code : "+ostError.getErrorCode());
         }
           if(Actions.currentScene !== "HomePage"){
             Actions.popTo("HomePage");
