@@ -1,7 +1,7 @@
 import FormData from 'form-data';
 import { Alert } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import {OstWalletWorkFlowCallback} from 'ost-wallet-sdk-react-native';
+import {OstWalletWorkFlowCallback} from '@ostdotcom/ost-wallet-sdk-react-native';
 
 import { apiRoot } from '../helpers';
 import AsyncStorage from '@react-native-community/async-storage';

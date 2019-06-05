@@ -10,7 +10,7 @@ import React, { Component } from 'react';
 import { ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Router, Scene, ActionConst } from 'react-native-router-flux';
-import {OstWalletSdkEvents, OstWalletSdk} from 'ost-wallet-sdk-react-native';
+import {OstWalletSdkEvents, OstWalletSdk} from '@ostdotcom/ost-wallet-sdk-react-native';
 
 import Authentication from './src/components/authentication/Authentication';
 import HomePage from './src/components/HomePage';

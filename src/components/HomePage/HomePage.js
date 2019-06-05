@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, TouchableOpacity, View, ScrollView, ActivityIndicator, Image, Switch} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Actions } from 'react-native-router-flux';
-import {OstWalletSdk} from 'ost-wallet-sdk-react-native';
+import {OstWalletSdk} from '@ostdotcom/ost-wallet-sdk-react-native';
 
 import styles from '../../Styles';
 import AppData from '../../../app.json';
