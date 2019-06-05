@@ -10,8 +10,6 @@ import OstWalletWorkflowCallback from '../../services/OstWalletSdkCallbackImplem
 import DeviceMnemonicsCallbackImplementation from '../../services/DeviceMnemonicsCallbackImplementation';
 import ActivateUserCallback from "../../services/ActivateUserCallbackImplementation";
 
-let isInit = false;
-
 class HomePage extends Component {
     constructor(props) {
         super(props);
@@ -20,25 +18,21 @@ class HomePage extends Component {
           'onPerformQRAction', 'onGetAddDeviceQRCode', 'onGetAddDeviceQRCodeSuccess','revokeDevice'].forEach(
             (key) => (this[key] = this[key].bind(this))
         );
-  
-        
-        if( !isInit ){
-          isInit =  true ;
-          this.initializeSetupDevice();
-        }
-        
+
+        this.initializeSetupDevice();
+
         this.state = {
           qrCode : null,
           showQR : false,
           enableBiometric : false
         }
     }
-  
+
    initializeSetupDevice() {
         this.props.dispatchLoadingState(true);
         OstWalletSdk.initialize('https://api.stagingost.com/testnet/v2', (err , success ) => {
+            console.log(err , success);
             if( success ){
-              console.warn("init success !");
               this.setupDevice();
             }
         });
