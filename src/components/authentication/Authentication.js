@@ -26,6 +26,7 @@ class Authentication extends Component {
             await AsyncStorage.removeItem(item );
             await AsyncStorage.setItem(item, selectedValue);
         } catch (error) {
+            Alert.alert('AsyncStorage error ' +  error.message );
             console.warn('AsyncStorage error: ' + error.message);
         }
     }
