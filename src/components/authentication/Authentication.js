@@ -44,16 +44,10 @@ class Authentication extends Component {
         formData.append('username', this.state.username);
         formData.append('password', this.state.password);
         this.state.signup && formData.append('fullname', this.state.fullname);
-
-        let getUserSaltPromise = fetch(`${apiRoot}/users/current-user-salt`,
-          {
-            method: 'GET',
-            credentials: 'include'
-          });
   
         await AsyncStorage.clear();
         
-        let authPromise = fetch(
+        fetch(
             `${apiRoot}/${this.state.signup ? 'signup' : 'login'}`,
             {
                 method: 'POST',
@@ -62,25 +56,40 @@ class Authentication extends Component {
                     'Content-Type': 'multipart/form-data'
                 },
                 body: formData
-            });
-        Promise.all([getUserSaltPromise, authPromise])
-          .then((responses) => Promise.all(responses.map(res => res.json())))
-          .then((responseData) => {
-            console.log('current_user_salt:', responseData[0]);
-            console.log('Signin responseData:', responseData[1]);
-            if (responseData[1].success && responseData[1].data && responseData[0].success && responseData[0].data) {
-              this.saveItem('user', JSON.stringify({
-                'user_details':responseData[1].data[responseData[1].data.result_type],
-                'user_pin_salt': responseData[0].data.current_user_salt && responseData[0].data.current_user_salt.recovery_pin_salt
-              }));
-              Actions.HomePage();
-            } else {
-              Alert.alert(responseData[1].msg, responseData[0].msg);
+            })
+          .then( res => res.json())
+          .then( responseData => {
+            let userData = responseData.data && responseData.data[responseData.data.result_type];
+            
+            if( !userData ){
+              Alert.alert("User not found");
+              return ;
             }
-          })
-          .catch(console.warn)
-          .done();
-
+  
+            fetch(`${apiRoot}/users/current-user-salt`,
+              {
+                method: 'GET',
+                credentials: 'include'
+              }).then( res => res.json() )
+              .then( responseData => {
+                let userSalt = responseData.data && responseData.data.current_user_salt && responseData.data.current_user_salt.recovery_pin_salt ;
+                
+                if( !userSalt ){
+                  Alert.alert("User slat not found");
+                  return;
+                }
+                
+                this.saveItem('user', JSON.stringify({
+                  'user_details':userData,
+                  'user_pin_salt': userSalt
+                }));
+                
+                Actions.HomePage();
+              });
+            
+          }).catch( e => {
+          Alert.alert("Something went wrong" + JSON.stringify( e ));
+        });
     }
 
     render() {
