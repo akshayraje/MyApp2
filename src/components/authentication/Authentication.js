@@ -23,12 +23,13 @@ class Authentication extends Component {
 
     async saveItem(item, selectedValue) {
         try {
+            await AsyncStorage.removeItem(item );
             await AsyncStorage.setItem(item, selectedValue);
         } catch (error) {
             console.warn('AsyncStorage error: ' + error.message);
         }
     }
-
+    
     userSignin() {
         if (!this.state.username || !this.state.password) {
             Alert.alert('All fields are mandatory');
