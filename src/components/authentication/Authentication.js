@@ -23,15 +23,16 @@ class Authentication extends Component {
 
     async saveItem(item, selectedValue) {
         try {
-            await AsyncStorage.removeItem(item );
+            await AsyncStorage.clear();
             await AsyncStorage.setItem(item, selectedValue);
         } catch (error) {
             Alert.alert('AsyncStorage error ' +  error.message );
             console.warn('AsyncStorage error: ' + error.message);
         }
     }
-    
-    userSignin() {
+  
+  
+  async userSignin() {
         if (!this.state.username || !this.state.password) {
             Alert.alert('All fields are mandatory');
             return;
@@ -49,6 +50,9 @@ class Authentication extends Component {
             method: 'GET',
             credentials: 'include'
           });
+  
+        await AsyncStorage.clear();
+        
         let authPromise = fetch(
             `${apiRoot}/${this.state.signup ? 'signup' : 'login'}`,
             {

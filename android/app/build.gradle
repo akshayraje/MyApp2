@@ -149,7 +149,7 @@ android {
 }
 
 dependencies {
-    implementation project(':ost-wallet-sdk-react-native')
+    implementation project(':@ostdotcom_ost-wallet-sdk-react-native')
     implementation project(':@react-native-community_async-storage')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
