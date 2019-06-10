@@ -35,7 +35,7 @@ cd ../../../
 - Remove refrence of the `ostwalletrnsdk` inside MyApp2 group(floder with yellow color icon).
 - Add refrence of `ostwalletrnsdk` folder to MyApp2 group by navigating to `node_modules/@ostdotcom/ost-wallet-sdk-react-native/ios`.
 
-## To Update the sdk branch
+## To Update the native sdk branch:
 - Edit the cartfile:
 ```
 github "ostdotcom/ost-wallet-sdk-ios" "[SDK_BRANCH_NAME]"
@@ -46,6 +46,8 @@ cd ios
 carthage update --cache-builds --platform ios
 ```
 
+# Android
+- No steps needed. Just open MyApp2/android as project.
 
-
-# Follow react-native setup steps.
+## To Update the native sdk branch:
+- Do Something. [TBD]
