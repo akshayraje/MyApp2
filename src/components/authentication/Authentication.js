@@ -26,13 +26,13 @@ class Authentication extends Component {
             await AsyncStorage.clear();
             await AsyncStorage.setItem(item, selectedValue);
         } catch (error) {
-            Alert.alert('AsyncStorage error ' +  error.message );
+            Alert.alert('in try catch : AsyncStorage error ' +  error.message );
             console.warn('AsyncStorage error: ' + error.message);
         }
     }
   
   
-  async userSignin() {
+  userSignin() {
         if (!this.state.username || !this.state.password) {
             Alert.alert('All fields are mandatory');
             return;
@@ -45,18 +45,27 @@ class Authentication extends Component {
         formData.append('password', this.state.password);
         this.state.signup && formData.append('fullname', this.state.fullname);
   
-        await AsyncStorage.clear();
-        
-        fetch(
-            `${apiRoot}/${this.state.signup ? 'signup' : 'login'}`,
-            {
-                method: 'POST',
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                },
-                body: formData
-            })
+        // AsyncStorage.clear().catch(() => {
+        //     Alert.alert("caught AsyncStorage.clear");
+        //    //Dont care. 
+        // }).finally(() => {
+
+        // })
+        this.userSignInFetchCall();
+
+    }
+
+    userSignInFetchCall() {
+        let urlToFetch = `${apiRoot}/${this.state.signup ? 'signup' : 'login'}`
+        let requestOptions = {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            body: formData
+        };
+        return fetch(urlToFetch, requestOptions)
           .then( res => res.json())
           .then( responseData => {
             let userData = responseData.data && responseData.data[responseData.data.result_type];
