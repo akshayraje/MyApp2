@@ -49,10 +49,15 @@ class HomePage extends Component {
 
     revokeDevice( deviceAddress ) {
       this.props.dispatchLoadingState(true);
-      AsyncStorage.getItem('user').then((user) => {
-        user = JSON.parse(user);
-        OstWalletSdk.revokeDevice(user.user_details.user_id, deviceAddress, new OstWalletWorkflowCallback(), console.warn);
-      });
+      // AsyncStorage.getItem('user').then((user) => {
+      //   user = JSON.parse(user);
+      //   OstWalletSdk.revokeDevice(user.user_details.user_id, deviceAddress, new OstWalletWorkflowCallback(), console.warn);
+      // });
+
+        AsyncStorage.getItem('user').then((user) => {
+            user = JSON.parse(user);
+
+        });
     }
 
     updateBiometricPreference( value ) {

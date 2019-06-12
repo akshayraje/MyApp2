@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from "../../Styles";
+import BalanceAndPricePoints from "./BalanceAndPricePoints";
 import { Text, TextInput, TouchableOpacity, ScrollView, View } from 'react-native';
 
 export default class ExecuteTransaction extends Component {
@@ -40,6 +41,7 @@ export default class ExecuteTransaction extends Component {
             <Text style={styles.buttonText}>{this.props.isLoading ? 'Executing...' : 'Execute Transactions'}</Text>
           </TouchableOpacity>
         </View>
+          <BalanceAndPricePoints />
       </ScrollView>
     )
   }
