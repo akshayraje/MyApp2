@@ -202,7 +202,8 @@ class HomePage extends Component {
                 {"type":"user_to_user","name":"Sent to amulya1","details":"Received from preshita"},
                 new OstWalletWorkflowCallback(),
                 {
-                    waitForFinalization: false
+                    wait_for_finalization: false,
+                    currency_code: "USD"
                 }
             );
           });
