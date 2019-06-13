@@ -33,7 +33,8 @@ export default class ExecuteTransaction extends Component {
 
   fetchDetails(userId) {
 
-    var oThis = this
+    var oThis = this;
+
     OstJsonApi.getBalanceWithPricePointForUserId(userId, function (data) {
       console.log("data of getBalanceWithPricePointForUserId\n", data);
 
@@ -50,25 +51,16 @@ export default class ExecuteTransaction extends Component {
     })
   }
 
-
   render () {
     let requestData = this.state.requestData;
-    let balance = null;
-    if (requestData) {
-      balance = requestData.balance;
-    }
     let userBalance = "fetching";
-    if (balance) {
-      userBalance = balance.available_balance
+    if (requestData) {
+      userBalance = requestData
     }
 
     return (
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.form} pointerEvents={this.props.isLoading ? 'none' : 'auto'}>
-
-          <View style = {styles.container}>
-            <Text> User Balance: {userBalance}</Text>
-          </View>
 
           <TextInput
             style={styles.inputBox}
@@ -112,6 +104,11 @@ export default class ExecuteTransaction extends Component {
           >
             <Text style={styles.buttonText}>{this.props.isLoading ? 'Executing...' : 'Execute Transactions'}</Text>
           </TouchableOpacity>
+
+          <View style = {styles.container}>
+            <Text> User Balance: {JSON.stringify(userBalance)}</Text>
+          </View>
+
         </View>
       </ScrollView>
     )
