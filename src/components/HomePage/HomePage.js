@@ -187,7 +187,7 @@ class HomePage extends Component {
         });
     }
 
-    onExecuteTransaction( addresses, amounts, ruleName) {
+    onExecuteTransaction( addresses, amounts, ruleName, currencyCode) {
         if( ruleName ){
           ruleName =  ruleName.toLowerCase().trim();
         }
@@ -207,8 +207,8 @@ class HomePage extends Component {
                 {"type":"user_to_user","name":"Sent to amulya1","details":"Received from preshita"},
                 new OstWalletWorkflowCallback(),
                 {
-                    wait_for_finalization: false,
-                    currency_code: "USD"
+                    wait_for_finalization: true,
+                    currency_code: currencyCode
                 }
             );
           });
