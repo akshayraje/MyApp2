@@ -99,6 +99,12 @@ export default class ExecuteTransaction extends Component {
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.buttonWrapper}
+                            onPress={() => this.setState({currencyCode: "GBP"})}
+          >
+            <Text style={styles.buttonText}>{"GBP"}</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.buttonWrapper}
                             onPress={() => {this.onExecuteTransaction( this.state.addresses,
                               this.state.amounts, this.state.ruleName, this.state.currencyCode )}}
           >
