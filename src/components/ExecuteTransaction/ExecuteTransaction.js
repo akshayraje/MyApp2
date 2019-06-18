@@ -46,7 +46,8 @@ export default class ExecuteTransaction extends Component {
       console.log("ostError of getBalanceWithPricePointForUserId\n", ostError);
 
       oThis.setState({
-        requsetError: ostError
+        requsetError: ostError,
+        requestData: apiErrObj
       });
     })
   }
