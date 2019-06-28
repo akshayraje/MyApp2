@@ -47,7 +47,9 @@ export default class RevokeDevice extends Component {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.form} pointerEvents={this.props.isLoading ? 'none' : 'auto'}>
           <Picker
-            selectedValue={this.props.deviceAddress}
+            selectedValue={
+              this.state.deviceAddress
+            }
             style={styles.selectBox}
             onValueChange={(itemValue, itemIndex) =>
               this.setState({deviceAddress: itemValue})
@@ -57,7 +59,10 @@ export default class RevokeDevice extends Component {
             })}
           </Picker>
           <TouchableOpacity style={styles.buttonWrapper}
-                            onPress={() => {this.props.revokeDevice( this.state.deviceAddress )}}
+                            onPress={() => {
+                              this.props.revokeDevice( this.state.deviceAddress )
+                            }
+                            }
           >
             <Text style={styles.buttonText}>{this.props.isLoading ? 'Revoking...' : 'Revoke Device'}</Text>
           </TouchableOpacity>

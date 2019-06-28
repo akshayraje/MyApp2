@@ -55,9 +55,9 @@ class HomePage extends Component {
       // });
 
         AsyncStorage.getItem('user').then((user) => {
-            user = JSON.parse(user);
-
-        });
+          user = JSON.parse(user);
+          OstWalletSdk.revokeDevice(user.user_details.user_id, deviceAddress, new OstWalletWorkflowCallback(), console.warn);
+       });
     }
 
     updateBiometricPreference( value ) {
