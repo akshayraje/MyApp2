@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Text, TouchableOpacity, View, ScrollView, ActivityIndicator, Image, Switch} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Actions } from 'react-native-router-flux';
-import {OstWalletSdk} from '@ostdotcom/ost-wallet-sdk-react-native';
+import {OstWalletSdk, OstWalletSdkUI} from '@ostdotcom/ost-wallet-sdk-react-native';
 
 import styles from '../../Styles';
 import AppData from '../../../app.json';
 import OstWalletWorkflowCallback from '../../services/OstWalletSdkCallbackImplementation';
+import OstWalletSdkUICallbackImplementation from '../../services/OstWalletSdkUICallbackImplementation';
 import DeviceMnemonicsCallbackImplementation from '../../services/DeviceMnemonicsCallbackImplementation';
 import ActivateUserCallback from "../../services/ActivateUserCallbackImplementation";
 
@@ -67,6 +68,20 @@ class HomePage extends Component {
       AsyncStorage.getItem('user').then((user) => {
         user = JSON.parse(user);
         OstWalletSdk.updateBiometricPreference(user.user_details.user_id, value, new OstWalletWorkflowCallback(), console.warn);
+      });
+    }
+
+    OnActivateUserPress() {
+      // this.props.dispatchLoadingState(true);
+      AsyncStorage.getItem('user').then((user) => {
+        user = JSON.parse(user);
+
+        OstWalletSdkUI.activateUser(
+          user.user_details.user_id,
+          86400,
+          '1000000000000000000',
+          new OstWalletSdkUICallbackImplementation()
+        );
       });
     }
 
@@ -258,7 +273,10 @@ class HomePage extends Component {
                 <View style={styles.form}>
                     <TouchableOpacity
                         style={styles.buttonWrapper}
-                        onPress={() => Actions.ActivateUser({ onActivateUser: this.onActivateUser })}
+                        onPress={() =>
+                          this.OnActivateUserPress()
+                          //Actions.ActivateUser({ onActivateUser: this.onActivateUser })
+                        }
                     >
                         <Text style={styles.buttonText}>Activate User</Text>
                     </TouchableOpacity>
