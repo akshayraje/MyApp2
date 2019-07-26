@@ -26,7 +26,7 @@
 		4B7B891422E9B62B00251B62 /* OstWalletSdkUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7B891322E9B62B00251B62 /* OstWalletSdkUI.framework */; };
 		4B7B891A22E9CB6000251B62 /* OstUICallbackImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7B891922E9CB6000251B62 /* OstUICallbackImpl.m */; };
 		4B7B891D22E9E87500251B62 /* OstRNSdkUICallbackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7B891C22E9E87500251B62 /* OstRNSdkUICallbackManager.m */; };
-		4B7B892022E9E99600251B62 /* OstSetPassphrasePrefixAcceptWrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7B891F22E9E99600251B62 /* OstSetPassphrasePrefixAcceptWrap.m */; };
+		4B7B892022E9E99600251B62 /* OstPassphrasePrefixAcceptWrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7B891F22E9E99600251B62 /* OstPassphrasePrefixAcceptWrap.m */; };
 		4BEEBF7D22B76DA400D3C39B /* BaseSdkInteract.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEBF6822B76DA400D3C39B /* BaseSdkInteract.m */; };
 		4BEEBF7E22B76DA400D3C39B /* OstPinAcceptWrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEBF6922B76DA400D3C39B /* OstPinAcceptWrap.m */; };
 		4BEEBF7F22B76DA400D3C39B /* OstJsonApiCallbackImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEBF6A22B76DA400D3C39B /* OstJsonApiCallbackImpl.m */; };
@@ -342,8 +342,8 @@
 		4B7B891922E9CB6000251B62 /* OstUICallbackImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OstUICallbackImpl.m; sourceTree = "<group>"; };
 		4B7B891B22E9E87500251B62 /* OstRNSdkUICallbackManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OstRNSdkUICallbackManager.h; sourceTree = "<group>"; };
 		4B7B891C22E9E87500251B62 /* OstRNSdkUICallbackManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OstRNSdkUICallbackManager.m; sourceTree = "<group>"; };
-		4B7B891E22E9E99600251B62 /* OstSetPassphrasePrefixAcceptWrap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OstSetPassphrasePrefixAcceptWrap.h; sourceTree = "<group>"; };
-		4B7B891F22E9E99600251B62 /* OstSetPassphrasePrefixAcceptWrap.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OstSetPassphrasePrefixAcceptWrap.m; sourceTree = "<group>"; };
+		4B7B891E22E9E99600251B62 /* OstPassphrasePrefixAcceptWrap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OstPassphrasePrefixAcceptWrap.h; sourceTree = "<group>"; };
+		4B7B891F22E9E99600251B62 /* OstPassphrasePrefixAcceptWrap.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OstPassphrasePrefixAcceptWrap.m; sourceTree = "<group>"; };
 		4BEEBF6722B76DA400D3C39B /* OstDeviceRegisteredWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstDeviceRegisteredWrap.h; sourceTree = "<group>"; };
 		4BEEBF6822B76DA400D3C39B /* BaseSdkInteract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSdkInteract.m; sourceTree = "<group>"; };
 		4BEEBF6922B76DA400D3C39B /* OstPinAcceptWrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstPinAcceptWrap.m; sourceTree = "<group>"; };
@@ -582,8 +582,8 @@
 				4BEEBF6A22B76DA400D3C39B /* OstJsonApiCallbackImpl.m */,
 				4BEEBF7022B76DA400D3C39B /* OstVerifyDataWrap.h */,
 				4BEEBF6B22B76DA400D3C39B /* OstVerifyDataWrap.m */,
-				4B7B891E22E9E99600251B62 /* OstSetPassphrasePrefixAcceptWrap.h */,
-				4B7B891F22E9E99600251B62 /* OstSetPassphrasePrefixAcceptWrap.m */,
+				4B7B891E22E9E99600251B62 /* OstPassphrasePrefixAcceptWrap.h */,
+				4B7B891F22E9E99600251B62 /* OstPassphrasePrefixAcceptWrap.m */,
 			);
 			path = sdkInteracts;
 			sourceTree = "<group>";
@@ -1123,7 +1123,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B7B892022E9E99600251B62 /* OstSetPassphrasePrefixAcceptWrap.m in Sources */,
+				4B7B892022E9E99600251B62 /* OstPassphrasePrefixAcceptWrap.m in Sources */,
 				4BEEBF7E22B76DA400D3C39B /* OstPinAcceptWrap.m in Sources */,
 				4BEEBF8522B76DA400D3C39B /* OstWalletRnSdk.m in Sources */,
 				4BEEBF7D22B76DA400D3C39B /* BaseSdkInteract.m in Sources */,
