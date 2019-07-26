@@ -69,7 +69,7 @@ class OstWalletSdkUICallbackImplementation extends OstWalletUIWorkflowCallback {
         displayError = displayError+apiError;
       }
       // Alert.alert('Error', displayError + "\nError Code : "+ostError.getErrorCode());
-      Alert.alert('Error',JSON.stringify(ostError, null, 2));
+      setTimeout(function(){ Alert.alert('Error',JSON.stringify(ostError, null, 2)); }, 500);
     }
     if(Actions.currentScene !== "HomePage"){
       Actions.popTo("HomePage");
