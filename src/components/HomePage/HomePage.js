@@ -156,19 +156,47 @@ class HomePage extends Component {
         });
     }
 
-    onAbortDeviceRecovery( pin ) {
-      this.props.dispatchLoadingState(true);
-        AsyncStorage.getItem('user').then((user) => {
-            user = JSON.parse(user);
-            OstWalletSdk.abortDeviceRecovery(
-                user.user_details.user_id,
-                pin,
-                user.user_pin_salt,
-                new OstWalletWorkflowCallback(),
-                console.warn
-            );
-        });
-    }
+  onAbortDeviceRecovery() {
+    AsyncStorage.getItem('user').then((user) => {
+      user = JSON.parse(user);
+
+      let workflowId = OstWalletSdkUI.abortDeviceRecovery(
+        user.user_details.user_id,
+        new OstWalletSdkUICallbackImplementation()
+      );
+
+      console.log("OstWalletSdkUI.abortDeviceRecovery workflowId:", workflowId, OstWalletSdkUI, OstWalletSdkUI.EVENTS);
+
+      OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.requestAcknowledged, (...args) => {
+        console.log("requestAcknowledged received for workflowId", workflowId);
+        console.log("args", args);
+      });
+      OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.flowComplete, (...args) => {
+        console.log("flowComplete received for workflowId", workflowId);
+        console.log("args", args);
+      });
+      OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.flowInterrupt, (...args) => {
+        console.log("flowInterrupt received for workflowId", workflowId);
+        console.log("args", args);
+      });
+    });
+
+
+  }
+
+    // onAbortDeviceRecovery( pin ) {
+    //   this.props.dispatchLoadingState(true);
+    //     AsyncStorage.getItem('user').then((user) => {
+    //         user = JSON.parse(user);
+    //         OstWalletSdk.abortDeviceRecovery(
+    //             user.user_details.user_id,
+    //             pin,
+    //             user.user_pin_salt,
+    //             new OstWalletWorkflowCallback(),
+    //             console.warn
+    //         );
+    //     });
+    // }
 
     onLogoutAllSessions() {
         AsyncStorage.getItem('user').then((user) => {
@@ -177,20 +205,49 @@ class HomePage extends Component {
         });
     }
 
-    onInitiateDeviceRecovery(deviceAddr, pin) {
-        this.props.dispatchLoadingState(true);
-        AsyncStorage.getItem('user').then((user) => {
-            user = JSON.parse(user);
-            OstWalletSdk.initiateDeviceRecovery(
-                user.user_details.user_id,
-                pin,
-                user.user_pin_salt,
-                deviceAddr,
-                new OstWalletWorkflowCallback(),
-                console.warn
-            );
+    onInitiateDeviceRecovery() {
+      AsyncStorage.getItem('user').then((user) => {
+        user = JSON.parse(user);
+
+        let workflowId = OstWalletSdkUI.initiateDeviceRecovery(
+          user.user_details.user_id,
+          null,
+          new OstWalletSdkUICallbackImplementation()
+        );
+
+        console.log("OstWalletSdkUI.initiateDeviceRecovery workflowId:", workflowId, OstWalletSdkUI, OstWalletSdkUI.EVENTS);
+
+        OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.requestAcknowledged, (...args) => {
+          console.log("requestAcknowledged received for workflowId", workflowId);
+          console.log("args", args);
         });
+        OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.flowComplete, (...args) => {
+          console.log("flowComplete received for workflowId", workflowId);
+          console.log("args", args);
+        });
+        OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.flowInterrupt, (...args) => {
+          console.log("flowInterrupt received for workflowId", workflowId);
+          console.log("args", args);
+        });
+      });
+
+
     }
+
+    // onInitiateDeviceRecovery(deviceAddr, pin) {
+    //     this.props.dispatchLoadingState(true);
+    //     AsyncStorage.getItem('user').then((user) => {
+    //         user = JSON.parse(user);
+    //         OstWalletSdk.initiateDeviceRecovery(
+    //             user.user_details.user_id,
+    //             pin,
+    //             user.user_pin_salt,
+    //             deviceAddr,
+    //             new OstWalletWorkflowCallback(),
+    //             console.warn
+    //         );
+    //     });
+    // }
 
     onResetPin(oldPin, newPin) {
         this.props.dispatchLoadingState(true);
@@ -330,7 +387,7 @@ class HomePage extends Component {
                     <TouchableOpacity
                         style={styles.buttonWrapper}
                         onPress={() =>
-                            Actions.DeviceRecovery({ onInitiateDeviceRecovery: this.onInitiateDeviceRecovery })
+                            this.onInitiateDeviceRecovery()
                         }
                     >
                         <Text style={styles.buttonText}>Device recovery</Text>
@@ -339,7 +396,7 @@ class HomePage extends Component {
                   <TouchableOpacity
                     style={styles.buttonWrapper}
                     onPress={() =>
-                      Actions.AbortDeviceRecovery({ onAbortDeviceRecovery: this.onAbortDeviceRecovery })
+                       this.onAbortDeviceRecovery()
                     }
                   >
                     <Text style={styles.buttonText}>Abort Device recovery</Text>
