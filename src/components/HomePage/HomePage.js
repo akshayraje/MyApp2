@@ -14,7 +14,7 @@ import ActivateUserCallback from "../../services/ActivateUserCallbackImplementat
 class HomePage extends Component {
     constructor(props) {
         super(props);
-        ['onActivateUser', 'onAddSession', 'onResetPin', 'onInitiateDeviceRecovery',
+        ['onAddSession', 'onResetPin', 'onInitiateDeviceRecovery',
           'onExecuteTransaction', 'onAuthorizeCurrentDeviceWithMnemonics', 'onAbortDeviceRecovery',
           'onPerformQRAction', 'onGetAddDeviceQRCode', 'onGetAddDeviceQRCodeSuccess','revokeDevice'].forEach(
             (key) => (this[key] = this[key].bind(this))
@@ -76,30 +76,47 @@ class HomePage extends Component {
       AsyncStorage.getItem('user').then((user) => {
         user = JSON.parse(user);
 
-        OstWalletSdkUI.activateUser(
+        let workflowId = OstWalletSdkUI.activateUser(
           user.user_details.user_id,
           86400,
           '1000000000000000000',
           new OstWalletSdkUICallbackImplementation()
         );
+
+        console.log("OstWalletSdkUI.activateUser workflowId:", workflowId, OstWalletSdkUI, OstWalletSdkUI.EVENTS);
+
+        OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.requestAcknowledged, (...args) => {
+            console.log("requestAcknowledged received for workflowId", workflowId);
+            console.log("args", args);
+        });
+        OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.flowComplete, (...args) => {
+            console.log("flowComplete received for workflowId", workflowId);
+            console.log("args", args);
+        });
+        OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.flowInterrupt, (...args) => {
+            console.log("flowInterrupt received for workflowId", workflowId);
+            console.log("args", args);
+        });
       });
+
+
     }
 
-    onActivateUser(pin) {
-        this.props.dispatchLoadingState(true);
-        AsyncStorage.getItem('user').then((user) => {
-            user = JSON.parse(user);
-            OstWalletSdk.activateUser(
-                user.user_details.user_id,
-                pin,
-                user.user_pin_salt,
-                86400,
-                '1000000000000000000',
-                new ActivateUserCallback(),
-                console.warn
-            );
-        });
-    }
+    // onActivateUser(pin) {
+    //     this.props.dispatchLoadingState(true);
+    //     AsyncStorage.getItem('user').then((user) => {
+    //         user = JSON.parse(user);
+    //         OstWalletSdk.activateUser(
+    //             user.user_details.user_id,
+    //             pin,
+    //             user.user_pin_salt,
+    //             86400,
+    //             '1000000000000000000',
+    //             new ActivateUserCallback(),
+    //             console.warn
+    //         );
+    //     });
+    // }
 
     onGetDeviceMnemonics() {
         AsyncStorage.getItem('user').then((user) => {
@@ -275,7 +292,6 @@ class HomePage extends Component {
                         style={styles.buttonWrapper}
                         onPress={() =>
                           this.OnActivateUserPress()
-                          //Actions.ActivateUser({ onActivateUser: this.onActivateUser })
                         }
                     >
                         <Text style={styles.buttonText}>Activate User</Text>

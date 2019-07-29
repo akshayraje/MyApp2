@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00487D3D22EEEE5F004051C3 /* BaseSdkInteract.m in Sources */ = {isa = PBXBuildFile; fileRef = 00487D1F22EEEE5E004051C3 /* BaseSdkInteract.m */; };
+		00487D3E22EEEE5F004051C3 /* OstPinAcceptWrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 00487D2122EEEE5E004051C3 /* OstPinAcceptWrap.m */; };
+		00487D3F22EEEE5F004051C3 /* OstJsonApiCallbackImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 00487D2222EEEE5E004051C3 /* OstJsonApiCallbackImpl.m */; };
+		00487D4022EEEE5F004051C3 /* OstVerifyDataWrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 00487D2322EEEE5E004051C3 /* OstVerifyDataWrap.m */; };
+		00487D4122EEEE5F004051C3 /* OstDeviceRegisteredWrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 00487D2422EEEE5E004051C3 /* OstDeviceRegisteredWrap.m */; };
+		00487D4222EEEE5F004051C3 /* OstPassphrasePrefixAcceptWrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 00487D2822EEEE5E004051C3 /* OstPassphrasePrefixAcceptWrap.m */; };
+		00487D4322EEEE5F004051C3 /* OstRNErrorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 00487D2A22EEEE5E004051C3 /* OstRNErrorUtils.m */; };
+		00487D4422EEEE5F004051C3 /* OstRNSdkCallbackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00487D2C22EEEE5E004051C3 /* OstRNSdkCallbackManager.m */; };
+		00487D4522EEEE5F004051C3 /* OstMessageBus.m in Sources */ = {isa = PBXBuildFile; fileRef = 00487D2D22EEEE5E004051C3 /* OstMessageBus.m */; };
+		00487D4622EEEE5F004051C3 /* OstWalletRnSdk.m in Sources */ = {isa = PBXBuildFile; fileRef = 00487D3122EEEE5E004051C3 /* OstWalletRnSdk.m */; };
+		00487D4722EEEE5F004051C3 /* OstRNSdkUICallbackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00487D3322EEEE5E004051C3 /* OstRNSdkUICallbackManager.m */; };
+		00487D4822EEEE5F004051C3 /* OstWalletRnSdkUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 00487D3422EEEE5E004051C3 /* OstWalletRnSdkUI.m */; };
+		00487D4922EEEE5F004051C3 /* OstUICallbackImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 00487D3822EEEE5E004051C3 /* OstUICallbackImpl.m */; };
+		00487D4A22EEEE5F004051C3 /* OstWorkFlowCallbackImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 00487D3A22EEEE5F004051C3 /* OstWorkFlowCallbackImpl.m */; };
+		00487D4B22EEEE5F004051C3 /* OstWalletRnSdkApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 00487D3C22EEEE5F004051C3 /* OstWalletRnSdkApi.m */; };
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
 		00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302C01ABCB91800DB3ED1 /* libRCTImage.a */; };
@@ -22,22 +37,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		4B70E90822AFFAB3009A2CDE /* OstWalletSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7793075B229C46B900CBE47F /* OstWalletSdk.framework */; };
-		4B7B891222E9B5E900251B62 /* OstWalletRnSdkUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7B891122E9B5E900251B62 /* OstWalletRnSdkUI.m */; };
 		4B7B891422E9B62B00251B62 /* OstWalletSdkUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7B891322E9B62B00251B62 /* OstWalletSdkUI.framework */; };
-		4B7B891A22E9CB6000251B62 /* OstUICallbackImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7B891922E9CB6000251B62 /* OstUICallbackImpl.m */; };
-		4B7B891D22E9E87500251B62 /* OstRNSdkUICallbackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7B891C22E9E87500251B62 /* OstRNSdkUICallbackManager.m */; };
-		4B7B892022E9E99600251B62 /* OstPassphrasePrefixAcceptWrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7B891F22E9E99600251B62 /* OstPassphrasePrefixAcceptWrap.m */; };
-		4BEEBF7D22B76DA400D3C39B /* BaseSdkInteract.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEBF6822B76DA400D3C39B /* BaseSdkInteract.m */; };
-		4BEEBF7E22B76DA400D3C39B /* OstPinAcceptWrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEBF6922B76DA400D3C39B /* OstPinAcceptWrap.m */; };
-		4BEEBF7F22B76DA400D3C39B /* OstJsonApiCallbackImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEBF6A22B76DA400D3C39B /* OstJsonApiCallbackImpl.m */; };
-		4BEEBF8022B76DA400D3C39B /* OstVerifyDataWrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEBF6B22B76DA400D3C39B /* OstVerifyDataWrap.m */; };
-		4BEEBF8122B76DA400D3C39B /* OstDeviceRegisteredWrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEBF6C22B76DA400D3C39B /* OstDeviceRegisteredWrap.m */; };
-		4BEEBF8222B76DA400D3C39B /* OstRNErrorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEBF7122B76DA400D3C39B /* OstRNErrorUtils.m */; };
-		4BEEBF8322B76DA400D3C39B /* OstRNSdkCallbackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEBF7322B76DA400D3C39B /* OstRNSdkCallbackManager.m */; };
-		4BEEBF8422B76DA400D3C39B /* OstMessageBus.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEBF7422B76DA400D3C39B /* OstMessageBus.m */; };
-		4BEEBF8522B76DA400D3C39B /* OstWalletRnSdk.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEBF7822B76DA400D3C39B /* OstWalletRnSdk.m */; };
-		4BEEBF8622B76DA400D3C39B /* OstWorkFlowCallbackImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEBF7A22B76DA400D3C39B /* OstWorkFlowCallbackImpl.m */; };
-		4BEEBF8722B76DA400D3C39B /* OstWalletRnSdkApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEBF7C22B76DA400D3C39B /* OstWalletRnSdkApi.m */; };
 		7793075A229C446F00CBE47F /* OstWalletSdk.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77930759229C446F00CBE47F /* OstWalletSdk.plist */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		90BC5EF8307C4627947A2056 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC420AD7DF8448499707DDDB /* libRNCAsyncStorage.a */; };
@@ -315,6 +315,36 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00487D1E22EEEE5E004051C3 /* OstDeviceRegisteredWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstDeviceRegisteredWrap.h; sourceTree = "<group>"; };
+		00487D1F22EEEE5E004051C3 /* BaseSdkInteract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSdkInteract.m; sourceTree = "<group>"; };
+		00487D2022EEEE5E004051C3 /* OstPassphrasePrefixAcceptWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstPassphrasePrefixAcceptWrap.h; sourceTree = "<group>"; };
+		00487D2122EEEE5E004051C3 /* OstPinAcceptWrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstPinAcceptWrap.m; sourceTree = "<group>"; };
+		00487D2222EEEE5E004051C3 /* OstJsonApiCallbackImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstJsonApiCallbackImpl.m; sourceTree = "<group>"; };
+		00487D2322EEEE5E004051C3 /* OstVerifyDataWrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstVerifyDataWrap.m; sourceTree = "<group>"; };
+		00487D2422EEEE5E004051C3 /* OstDeviceRegisteredWrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstDeviceRegisteredWrap.m; sourceTree = "<group>"; };
+		00487D2522EEEE5E004051C3 /* BaseSdkInteract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSdkInteract.h; sourceTree = "<group>"; };
+		00487D2622EEEE5E004051C3 /* OstJsonApiCallbackImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstJsonApiCallbackImpl.h; sourceTree = "<group>"; };
+		00487D2722EEEE5E004051C3 /* OstPinAcceptWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstPinAcceptWrap.h; sourceTree = "<group>"; };
+		00487D2822EEEE5E004051C3 /* OstPassphrasePrefixAcceptWrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstPassphrasePrefixAcceptWrap.m; sourceTree = "<group>"; };
+		00487D2922EEEE5E004051C3 /* OstVerifyDataWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstVerifyDataWrap.h; sourceTree = "<group>"; };
+		00487D2A22EEEE5E004051C3 /* OstRNErrorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstRNErrorUtils.m; sourceTree = "<group>"; };
+		00487D2B22EEEE5E004051C3 /* OstWalletRnSdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstWalletRnSdk.h; sourceTree = "<group>"; };
+		00487D2C22EEEE5E004051C3 /* OstRNSdkCallbackManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstRNSdkCallbackManager.m; sourceTree = "<group>"; };
+		00487D2D22EEEE5E004051C3 /* OstMessageBus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstMessageBus.m; sourceTree = "<group>"; };
+		00487D2E22EEEE5E004051C3 /* OstWorkFlowCallbackImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstWorkFlowCallbackImpl.h; sourceTree = "<group>"; };
+		00487D2F22EEEE5E004051C3 /* OstWalletRnSdkApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstWalletRnSdkApi.h; sourceTree = "<group>"; };
+		00487D3022EEEE5E004051C3 /* OstRNSdkCallbackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstRNSdkCallbackManager.h; sourceTree = "<group>"; };
+		00487D3122EEEE5E004051C3 /* OstWalletRnSdk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstWalletRnSdk.m; sourceTree = "<group>"; };
+		00487D3322EEEE5E004051C3 /* OstRNSdkUICallbackManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstRNSdkUICallbackManager.m; sourceTree = "<group>"; };
+		00487D3422EEEE5E004051C3 /* OstWalletRnSdkUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstWalletRnSdkUI.m; sourceTree = "<group>"; };
+		00487D3522EEEE5E004051C3 /* OstUICallbackImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstUICallbackImpl.h; sourceTree = "<group>"; };
+		00487D3622EEEE5E004051C3 /* OstWalletRnSdkUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstWalletRnSdkUI.h; sourceTree = "<group>"; };
+		00487D3722EEEE5E004051C3 /* OstRNSdkUICallbackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstRNSdkUICallbackManager.h; sourceTree = "<group>"; };
+		00487D3822EEEE5E004051C3 /* OstUICallbackImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstUICallbackImpl.m; sourceTree = "<group>"; };
+		00487D3922EEEE5F004051C3 /* OstRNErrorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstRNErrorUtils.h; sourceTree = "<group>"; };
+		00487D3A22EEEE5F004051C3 /* OstWorkFlowCallbackImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstWorkFlowCallbackImpl.m; sourceTree = "<group>"; };
+		00487D3B22EEEE5F004051C3 /* OstMessageBus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstMessageBus.h; sourceTree = "<group>"; };
+		00487D3C22EEEE5F004051C3 /* OstWalletRnSdkApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstWalletRnSdkApi.m; sourceTree = "<group>"; };
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
 		00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTGeolocation.xcodeproj; path = "../node_modules/react-native/Libraries/Geolocation/RCTGeolocation.xcodeproj"; sourceTree = "<group>"; };
@@ -335,37 +365,7 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		231131F822F141FAADC05A23 /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCAsyncStorage.xcodeproj; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B7B891022E9B5E900251B62 /* OstWalletRnSdkUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OstWalletRnSdkUI.h; sourceTree = "<group>"; };
-		4B7B891122E9B5E900251B62 /* OstWalletRnSdkUI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OstWalletRnSdkUI.m; sourceTree = "<group>"; };
 		4B7B891322E9B62B00251B62 /* OstWalletSdkUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OstWalletSdkUI.framework; path = Carthage/Build/iOS/OstWalletSdkUI.framework; sourceTree = "<group>"; };
-		4B7B891822E9CB6000251B62 /* OstUICallbackImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OstUICallbackImpl.h; sourceTree = "<group>"; };
-		4B7B891922E9CB6000251B62 /* OstUICallbackImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OstUICallbackImpl.m; sourceTree = "<group>"; };
-		4B7B891B22E9E87500251B62 /* OstRNSdkUICallbackManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OstRNSdkUICallbackManager.h; sourceTree = "<group>"; };
-		4B7B891C22E9E87500251B62 /* OstRNSdkUICallbackManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OstRNSdkUICallbackManager.m; sourceTree = "<group>"; };
-		4B7B891E22E9E99600251B62 /* OstPassphrasePrefixAcceptWrap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OstPassphrasePrefixAcceptWrap.h; sourceTree = "<group>"; };
-		4B7B891F22E9E99600251B62 /* OstPassphrasePrefixAcceptWrap.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OstPassphrasePrefixAcceptWrap.m; sourceTree = "<group>"; };
-		4BEEBF6722B76DA400D3C39B /* OstDeviceRegisteredWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstDeviceRegisteredWrap.h; sourceTree = "<group>"; };
-		4BEEBF6822B76DA400D3C39B /* BaseSdkInteract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSdkInteract.m; sourceTree = "<group>"; };
-		4BEEBF6922B76DA400D3C39B /* OstPinAcceptWrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstPinAcceptWrap.m; sourceTree = "<group>"; };
-		4BEEBF6A22B76DA400D3C39B /* OstJsonApiCallbackImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstJsonApiCallbackImpl.m; sourceTree = "<group>"; };
-		4BEEBF6B22B76DA400D3C39B /* OstVerifyDataWrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstVerifyDataWrap.m; sourceTree = "<group>"; };
-		4BEEBF6C22B76DA400D3C39B /* OstDeviceRegisteredWrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstDeviceRegisteredWrap.m; sourceTree = "<group>"; };
-		4BEEBF6D22B76DA400D3C39B /* BaseSdkInteract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSdkInteract.h; sourceTree = "<group>"; };
-		4BEEBF6E22B76DA400D3C39B /* OstJsonApiCallbackImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstJsonApiCallbackImpl.h; sourceTree = "<group>"; };
-		4BEEBF6F22B76DA400D3C39B /* OstPinAcceptWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstPinAcceptWrap.h; sourceTree = "<group>"; };
-		4BEEBF7022B76DA400D3C39B /* OstVerifyDataWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstVerifyDataWrap.h; sourceTree = "<group>"; };
-		4BEEBF7122B76DA400D3C39B /* OstRNErrorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstRNErrorUtils.m; sourceTree = "<group>"; };
-		4BEEBF7222B76DA400D3C39B /* OstWalletRnSdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstWalletRnSdk.h; sourceTree = "<group>"; };
-		4BEEBF7322B76DA400D3C39B /* OstRNSdkCallbackManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstRNSdkCallbackManager.m; sourceTree = "<group>"; };
-		4BEEBF7422B76DA400D3C39B /* OstMessageBus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstMessageBus.m; sourceTree = "<group>"; };
-		4BEEBF7522B76DA400D3C39B /* OstWorkFlowCallbackImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstWorkFlowCallbackImpl.h; sourceTree = "<group>"; };
-		4BEEBF7622B76DA400D3C39B /* OstWalletRnSdkApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstWalletRnSdkApi.h; sourceTree = "<group>"; };
-		4BEEBF7722B76DA400D3C39B /* OstRNSdkCallbackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstRNSdkCallbackManager.h; sourceTree = "<group>"; };
-		4BEEBF7822B76DA400D3C39B /* OstWalletRnSdk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstWalletRnSdk.m; sourceTree = "<group>"; };
-		4BEEBF7922B76DA400D3C39B /* OstRNErrorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstRNErrorUtils.h; sourceTree = "<group>"; };
-		4BEEBF7A22B76DA400D3C39B /* OstWorkFlowCallbackImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstWorkFlowCallbackImpl.m; sourceTree = "<group>"; };
-		4BEEBF7B22B76DA400D3C39B /* OstMessageBus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstMessageBus.h; sourceTree = "<group>"; };
-		4BEEBF7C22B76DA400D3C39B /* OstWalletRnSdkApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OstWalletRnSdkApi.m; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		77930759229C446F00CBE47F /* OstWalletSdk.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = OstWalletSdk.plist; sourceTree = "<group>"; };
 		7793075B229C46B900CBE47F /* OstWalletSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OstWalletSdk.framework; path = Carthage/Build/iOS/OstWalletSdk.framework; sourceTree = "<group>"; };
@@ -404,6 +404,60 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00487D1C22EEEE5E004051C3 /* ostwalletrnsdk */ = {
+			isa = PBXGroup;
+			children = (
+				00487D1D22EEEE5E004051C3 /* sdkInteracts */,
+				00487D2A22EEEE5E004051C3 /* OstRNErrorUtils.m */,
+				00487D2B22EEEE5E004051C3 /* OstWalletRnSdk.h */,
+				00487D2C22EEEE5E004051C3 /* OstRNSdkCallbackManager.m */,
+				00487D2D22EEEE5E004051C3 /* OstMessageBus.m */,
+				00487D2E22EEEE5E004051C3 /* OstWorkFlowCallbackImpl.h */,
+				00487D2F22EEEE5E004051C3 /* OstWalletRnSdkApi.h */,
+				00487D3022EEEE5E004051C3 /* OstRNSdkCallbackManager.h */,
+				00487D3122EEEE5E004051C3 /* OstWalletRnSdk.m */,
+				00487D3222EEEE5E004051C3 /* sdkWithUI */,
+				00487D3922EEEE5F004051C3 /* OstRNErrorUtils.h */,
+				00487D3A22EEEE5F004051C3 /* OstWorkFlowCallbackImpl.m */,
+				00487D3B22EEEE5F004051C3 /* OstMessageBus.h */,
+				00487D3C22EEEE5F004051C3 /* OstWalletRnSdkApi.m */,
+			);
+			name = ostwalletrnsdk;
+			path = "../node_modules/@ostdotcom/ost-wallet-sdk-react-native/ios/ostwalletrnsdk";
+			sourceTree = "<group>";
+		};
+		00487D1D22EEEE5E004051C3 /* sdkInteracts */ = {
+			isa = PBXGroup;
+			children = (
+				00487D1E22EEEE5E004051C3 /* OstDeviceRegisteredWrap.h */,
+				00487D1F22EEEE5E004051C3 /* BaseSdkInteract.m */,
+				00487D2022EEEE5E004051C3 /* OstPassphrasePrefixAcceptWrap.h */,
+				00487D2122EEEE5E004051C3 /* OstPinAcceptWrap.m */,
+				00487D2222EEEE5E004051C3 /* OstJsonApiCallbackImpl.m */,
+				00487D2322EEEE5E004051C3 /* OstVerifyDataWrap.m */,
+				00487D2422EEEE5E004051C3 /* OstDeviceRegisteredWrap.m */,
+				00487D2522EEEE5E004051C3 /* BaseSdkInteract.h */,
+				00487D2622EEEE5E004051C3 /* OstJsonApiCallbackImpl.h */,
+				00487D2722EEEE5E004051C3 /* OstPinAcceptWrap.h */,
+				00487D2822EEEE5E004051C3 /* OstPassphrasePrefixAcceptWrap.m */,
+				00487D2922EEEE5E004051C3 /* OstVerifyDataWrap.h */,
+			);
+			path = sdkInteracts;
+			sourceTree = "<group>";
+		};
+		00487D3222EEEE5E004051C3 /* sdkWithUI */ = {
+			isa = PBXGroup;
+			children = (
+				00487D3322EEEE5E004051C3 /* OstRNSdkUICallbackManager.m */,
+				00487D3422EEEE5E004051C3 /* OstWalletRnSdkUI.m */,
+				00487D3522EEEE5E004051C3 /* OstUICallbackImpl.h */,
+				00487D3622EEEE5E004051C3 /* OstWalletRnSdkUI.h */,
+				00487D3722EEEE5E004051C3 /* OstRNSdkUICallbackManager.h */,
+				00487D3822EEEE5E004051C3 /* OstUICallbackImpl.m */,
+			);
+			path = sdkWithUI;
+			sourceTree = "<group>";
+		};
 		00C302A81ABCB8CE00DB3ED1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -486,7 +540,7 @@
 		13B07FAE1A68108700A75B9A /* MyApp2 */ = {
 			isa = PBXGroup;
 			children = (
-				4BEEBF6522B76DA400D3C39B /* ostwalletrnsdk */,
+				00487D1C22EEEE5E004051C3 /* ostwalletrnsdk */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -532,60 +586,6 @@
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		4B7B88E922E9B2F100251B62 /* sdkWithUI */ = {
-			isa = PBXGroup;
-			children = (
-				4B7B891022E9B5E900251B62 /* OstWalletRnSdkUI.h */,
-				4B7B891122E9B5E900251B62 /* OstWalletRnSdkUI.m */,
-				4B7B891822E9CB6000251B62 /* OstUICallbackImpl.h */,
-				4B7B891922E9CB6000251B62 /* OstUICallbackImpl.m */,
-				4B7B891B22E9E87500251B62 /* OstRNSdkUICallbackManager.h */,
-				4B7B891C22E9E87500251B62 /* OstRNSdkUICallbackManager.m */,
-			);
-			path = sdkWithUI;
-			sourceTree = "<group>";
-		};
-		4BEEBF6522B76DA400D3C39B /* ostwalletrnsdk */ = {
-			isa = PBXGroup;
-			children = (
-				4B7B88E922E9B2F100251B62 /* sdkWithUI */,
-				4BEEBF6622B76DA400D3C39B /* sdkInteracts */,
-				4BEEBF7222B76DA400D3C39B /* OstWalletRnSdk.h */,
-				4BEEBF7822B76DA400D3C39B /* OstWalletRnSdk.m */,
-				4BEEBF7922B76DA400D3C39B /* OstRNErrorUtils.h */,
-				4BEEBF7122B76DA400D3C39B /* OstRNErrorUtils.m */,
-				4BEEBF7722B76DA400D3C39B /* OstRNSdkCallbackManager.h */,
-				4BEEBF7322B76DA400D3C39B /* OstRNSdkCallbackManager.m */,
-				4BEEBF7B22B76DA400D3C39B /* OstMessageBus.h */,
-				4BEEBF7422B76DA400D3C39B /* OstMessageBus.m */,
-				4BEEBF7522B76DA400D3C39B /* OstWorkFlowCallbackImpl.h */,
-				4BEEBF7A22B76DA400D3C39B /* OstWorkFlowCallbackImpl.m */,
-				4BEEBF7622B76DA400D3C39B /* OstWalletRnSdkApi.h */,
-				4BEEBF7C22B76DA400D3C39B /* OstWalletRnSdkApi.m */,
-			);
-			name = ostwalletrnsdk;
-			path = "../node_modules/@ostdotcom/ost-wallet-sdk-react-native/ios/ostwalletrnsdk";
-			sourceTree = "<group>";
-		};
-		4BEEBF6622B76DA400D3C39B /* sdkInteracts */ = {
-			isa = PBXGroup;
-			children = (
-				4BEEBF6722B76DA400D3C39B /* OstDeviceRegisteredWrap.h */,
-				4BEEBF6C22B76DA400D3C39B /* OstDeviceRegisteredWrap.m */,
-				4BEEBF6D22B76DA400D3C39B /* BaseSdkInteract.h */,
-				4BEEBF6822B76DA400D3C39B /* BaseSdkInteract.m */,
-				4BEEBF6F22B76DA400D3C39B /* OstPinAcceptWrap.h */,
-				4BEEBF6922B76DA400D3C39B /* OstPinAcceptWrap.m */,
-				4BEEBF6E22B76DA400D3C39B /* OstJsonApiCallbackImpl.h */,
-				4BEEBF6A22B76DA400D3C39B /* OstJsonApiCallbackImpl.m */,
-				4BEEBF7022B76DA400D3C39B /* OstVerifyDataWrap.h */,
-				4BEEBF6B22B76DA400D3C39B /* OstVerifyDataWrap.m */,
-				4B7B891E22E9E99600251B62 /* OstPassphrasePrefixAcceptWrap.h */,
-				4B7B891F22E9E99600251B62 /* OstPassphrasePrefixAcceptWrap.m */,
-			);
-			path = sdkInteracts;
 			sourceTree = "<group>";
 		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
@@ -1123,23 +1123,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B7B892022E9E99600251B62 /* OstPassphrasePrefixAcceptWrap.m in Sources */,
-				4BEEBF7E22B76DA400D3C39B /* OstPinAcceptWrap.m in Sources */,
-				4BEEBF8522B76DA400D3C39B /* OstWalletRnSdk.m in Sources */,
-				4BEEBF7D22B76DA400D3C39B /* BaseSdkInteract.m in Sources */,
+				00487D3E22EEEE5F004051C3 /* OstPinAcceptWrap.m in Sources */,
+				00487D3D22EEEE5F004051C3 /* BaseSdkInteract.m in Sources */,
+				00487D4222EEEE5F004051C3 /* OstPassphrasePrefixAcceptWrap.m in Sources */,
+				00487D4322EEEE5F004051C3 /* OstRNErrorUtils.m in Sources */,
+				00487D4A22EEEE5F004051C3 /* OstWorkFlowCallbackImpl.m in Sources */,
+				00487D4622EEEE5F004051C3 /* OstWalletRnSdk.m in Sources */,
+				00487D4422EEEE5F004051C3 /* OstRNSdkCallbackManager.m in Sources */,
+				00487D4922EEEE5F004051C3 /* OstUICallbackImpl.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
-				4B7B891D22E9E87500251B62 /* OstRNSdkUICallbackManager.m in Sources */,
-				4BEEBF8322B76DA400D3C39B /* OstRNSdkCallbackManager.m in Sources */,
-				4BEEBF8722B76DA400D3C39B /* OstWalletRnSdkApi.m in Sources */,
-				4B7B891A22E9CB6000251B62 /* OstUICallbackImpl.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
-				4BEEBF8122B76DA400D3C39B /* OstDeviceRegisteredWrap.m in Sources */,
-				4BEEBF8222B76DA400D3C39B /* OstRNErrorUtils.m in Sources */,
-				4BEEBF8622B76DA400D3C39B /* OstWorkFlowCallbackImpl.m in Sources */,
-				4B7B891222E9B5E900251B62 /* OstWalletRnSdkUI.m in Sources */,
-				4BEEBF7F22B76DA400D3C39B /* OstJsonApiCallbackImpl.m in Sources */,
-				4BEEBF8022B76DA400D3C39B /* OstVerifyDataWrap.m in Sources */,
-				4BEEBF8422B76DA400D3C39B /* OstMessageBus.m in Sources */,
+				00487D4122EEEE5F004051C3 /* OstDeviceRegisteredWrap.m in Sources */,
+				00487D3F22EEEE5F004051C3 /* OstJsonApiCallbackImpl.m in Sources */,
+				00487D4822EEEE5F004051C3 /* OstWalletRnSdkUI.m in Sources */,
+				00487D4522EEEE5F004051C3 /* OstMessageBus.m in Sources */,
+				00487D4022EEEE5F004051C3 /* OstVerifyDataWrap.m in Sources */,
+				00487D4722EEEE5F004051C3 /* OstRNSdkUICallbackManager.m in Sources */,
+				00487D4B22EEEE5F004051C3 /* OstWalletRnSdkApi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
