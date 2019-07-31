@@ -10,6 +10,7 @@ import OstWalletWorkflowCallback from '../../services/OstWalletSdkCallbackImplem
 import OstWalletSdkUICallbackImplementation from '../../services/OstWalletSdkUICallbackImplementation';
 import DeviceMnemonicsCallbackImplementation from '../../services/DeviceMnemonicsCallbackImplementation';
 import ActivateUserCallback from "../../services/ActivateUserCallbackImplementation";
+import WorkflowStatusModel from "../WorkflowStatus";
 
 class HomePage extends Component {
     constructor(props) {
@@ -26,7 +27,8 @@ class HomePage extends Component {
           qrCode : null,
           showQR : false,
           enableBiometric : false
-        }
+        };
+        this.wsModel = null;
     }
 
    initializeSetupDevice() {
@@ -73,6 +75,7 @@ class HomePage extends Component {
 
     OnActivateUserPress() {
       // this.props.dispatchLoadingState(true);
+      let delegate = new OstWalletSdkUICallbackImplementation( this.wsModel );
       AsyncStorage.getItem('user').then((user) => {
         user = JSON.parse(user);
 
@@ -80,24 +83,12 @@ class HomePage extends Component {
           user.user_details.user_id,
           86400,
           '1000000000000000000',
-          new OstWalletSdkUICallbackImplementation()
+          delegate
         );
-
-        console.log("OstWalletSdkUI.activateUser workflowId:", workflowId, OstWalletSdkUI, OstWalletSdkUI.EVENTS);
-
-        OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.requestAcknowledged, (...args) => {
-            console.log("requestAcknowledged received for workflowId", workflowId);
-            console.log("args", args);
-        });
-        OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.flowComplete, (...args) => {
-            console.log("flowComplete received for workflowId", workflowId);
-            console.log("args", args);
-        });
-        OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.flowInterrupt, (...args) => {
-            console.log("flowInterrupt received for workflowId", workflowId);
-            console.log("args", args);
-        });
+        delegate.setWorkflowInfo(workflowId, "Activate User");
+        console.log("OstWalletSdkUI.activateUser workflowId:", workflowId);
       });
+
 
 
     }
@@ -160,28 +151,13 @@ class HomePage extends Component {
     AsyncStorage.getItem('user').then((user) => {
       user = JSON.parse(user);
 
+      let delegate = new OstWalletSdkUICallbackImplementation( this.wsModel );
       let workflowId = OstWalletSdkUI.abortDeviceRecovery(
         user.user_details.user_id,
-        new OstWalletSdkUICallbackImplementation()
+        delegate
       );
-
-      console.log("OstWalletSdkUI.abortDeviceRecovery workflowId:", workflowId, OstWalletSdkUI, OstWalletSdkUI.EVENTS);
-
-      OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.requestAcknowledged, (...args) => {
-        console.log("requestAcknowledged received for workflowId", workflowId);
-        console.log("args", args);
-      });
-      OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.flowComplete, (...args) => {
-        console.log("flowComplete received for workflowId", workflowId);
-        console.log("args", args);
-      });
-      OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.flowInterrupt, (...args) => {
-        console.log("flowInterrupt received for workflowId", workflowId);
-        console.log("args", args);
-      });
-    });
-
-
+      delegate.setWorkflowInfo(workflowId, "Abort Recovery");
+      console.log("OstWalletSdkUI.abortDeviceRecovery workflowId:", workflowId);
   }
 
     // onAbortDeviceRecovery( pin ) {
@@ -209,28 +185,14 @@ class HomePage extends Component {
       AsyncStorage.getItem('user').then((user) => {
         user = JSON.parse(user);
 
+        let delegate = new OstWalletSdkUICallbackImplementation( this.wsModel );
         let workflowId = OstWalletSdkUI.initiateDeviceRecovery(
           user.user_details.user_id,
           null,
-          new OstWalletSdkUICallbackImplementation()
+          delegate
         );
-
-        console.log("OstWalletSdkUI.initiateDeviceRecovery workflowId:", workflowId, OstWalletSdkUI, OstWalletSdkUI.EVENTS);
-
-        OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.requestAcknowledged, (...args) => {
-          console.log("requestAcknowledged received for workflowId", workflowId);
-          console.log("args", args);
-        });
-        OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.flowComplete, (...args) => {
-          console.log("flowComplete received for workflowId", workflowId);
-          console.log("args", args);
-        });
-        OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.flowInterrupt, (...args) => {
-          console.log("flowInterrupt received for workflowId", workflowId);
-          console.log("args", args);
-        });
-      });
-
+        delegate.setWorkflowInfo(workflowId, "Initiate Device Recovery");
+        console.log("OstWalletSdkUI.initiateDeviceRecovery workflowId:", workflowId);
 
     }
 
@@ -452,6 +414,9 @@ class HomePage extends Component {
                     />
                   </View>
                 </View>
+              <WorkflowStatusModel ref={(wsModel) => {
+                this.wsModel = wsModel;
+              }}></WorkflowStatusModel>
             </ScrollView>
         );
     }
