@@ -20,7 +20,7 @@ console.log(Logo);
 const Theme_Config = {
 
   "nav_bar_logo_image": {
-    "asset_name": "ostLogoBlue"
+    "asset_name": "dummy_logo"
   },
 
 "h1": {
@@ -94,10 +94,10 @@ const Theme_Config = {
 const content_config = {
   "activate_user": {
     "create_pin": {
-      "terms_and_condition_url": "https://ost.com/terms"
+      "terms_and_condition_url": "https://google.com"
     },
     "confirm_pin": {
-      "terms_and_condition_url": "https://ost.com/terms"
+      "terms_and_condition_url": "https://view.ost.com"
     }
   }
 };
