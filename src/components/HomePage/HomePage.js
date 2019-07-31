@@ -12,6 +12,97 @@ import DeviceMnemonicsCallbackImplementation from '../../services/DeviceMnemonic
 import ActivateUserCallback from "../../services/ActivateUserCallbackImplementation";
 import WorkflowStatusModel from "../WorkflowStatus";
 
+const Logo = require("../../assets/ostLogoBlue.png");
+
+
+console.log(Logo);
+
+const Theme_Config = {
+
+  "nav_bar_logo_image": {
+    "asset_name": "ostLogoBlue"
+  },
+
+"h1": {
+  "size": 20,
+  "font": "SFProDisplay",
+  "color": "#438bad",
+  "font_style": "semi_bold"
+},
+
+"h2": {
+  "size": 17,
+  "font": "SFProDisplay",
+  "color": "#666666",
+  "font_style": "medium"
+},
+
+"h3": {"size": 15,
+  "font": "SFProDisplay",
+  "color": "#888888",
+  "font_style": "regular"
+},
+
+"h4": {"size": 12,
+  "font": "SFProDisplay",
+  "color": "#888888",
+  "font_style": "regular"
+},
+
+"c1": {"size": 14,
+  "font": "SFProDisplay",
+  "color": "#484848",
+  "font_style": "bold"
+},
+
+"c2": {"size": 12,
+  "font": "SFProDisplay",
+  "color": "#6F6F6F",
+  "font_style": "regular"
+},
+
+"b1": {
+  "size": 17,
+  "color": "#ffffff",
+  "background_color": "#438bad",
+  "font_style": "medium"
+},
+
+"b2": {
+  "size": 17,
+  "color": "#438bad",
+  "background_color": "#ffffff",
+  "font_style": "semi_bold"
+},
+
+"b3": {
+  "size": 12,
+  "color": "#ffffff",
+  "background_color": "#438bad",
+  "font_style": "medium"
+},
+
+"b4": {
+  "size": 12,
+  "color": "#438bad",
+  "background_color": "#ffffff",
+  "font_style": "medium"
+}
+}
+
+
+const content_config = {
+  "activate_user": {
+    "create_pin": {
+      "terms_and_condition_url": "https://ost.com/terms"
+    },
+    "confirm_pin": {
+      "terms_and_condition_url": "https://ost.com/terms"
+    }
+  }
+}
+
+
 class HomePage extends Component {
     constructor(props) {
         super(props);
@@ -33,6 +124,8 @@ class HomePage extends Component {
 
    initializeSetupDevice() {
         this.props.dispatchLoadingState(true);
+        OstWalletSdkUI.setThemeConfig(Theme_Config);
+        OstWalletSdkUI.setContentConfig(content_config);
         OstWalletSdk.initialize('https://api.stagingost.com/testnet/v2', (err , success ) => {
             console.log(err , success);
             if( success ){

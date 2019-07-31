@@ -37,7 +37,6 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		4B70E90822AFFAB3009A2CDE /* OstWalletSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7793075B229C46B900CBE47F /* OstWalletSdk.framework */; };
-		4B7B891422E9B62B00251B62 /* OstWalletSdkUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7B891322E9B62B00251B62 /* OstWalletSdkUI.framework */; };
 		7793075A229C446F00CBE47F /* OstWalletSdk.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77930759229C446F00CBE47F /* OstWalletSdk.plist */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		90BC5EF8307C4627947A2056 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC420AD7DF8448499707DDDB /* libRNCAsyncStorage.a */; };
@@ -382,7 +381,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B7B891422E9B62B00251B62 /* OstWalletSdkUI.framework in Frameworks */,
 				4B70E90822AFFAB3009A2CDE /* OstWalletSdk.framework in Frameworks */,
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
@@ -1105,7 +1103,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/FMDB.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SipHash.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/OstWalletSdk.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/OstWalletSdkUI.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TrustKit.framework",
 			);
 			outputFileListPaths = (
