@@ -88,7 +88,7 @@ const Theme_Config = {
   "background_color": "#ffffff",
   "font_style": "medium"
 }
-}
+};
 
 
 const content_config = {
@@ -100,7 +100,7 @@ const content_config = {
       "terms_and_condition_url": "https://ost.com/terms"
     }
   }
-}
+};
 
 
 class HomePage extends Component {
@@ -251,6 +251,7 @@ class HomePage extends Component {
       );
       delegate.setWorkflowInfo(workflowId, "Abort Recovery");
       console.log("OstWalletSdkUI.abortDeviceRecovery workflowId:", workflowId);
+    });
   }
 
     // onAbortDeviceRecovery( pin ) {
@@ -286,7 +287,7 @@ class HomePage extends Component {
         );
         delegate.setWorkflowInfo(workflowId, "Initiate Device Recovery");
         console.log("OstWalletSdkUI.initiateDeviceRecovery workflowId:", workflowId);
-
+      });
     }
 
     // onInitiateDeviceRecovery(deviceAddr, pin) {
