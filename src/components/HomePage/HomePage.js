@@ -133,6 +133,8 @@ class HomePage extends Component {
             }
         });
         this.props.dispatchLoadingState(false);
+
+
     }
 
     setupDevice() {

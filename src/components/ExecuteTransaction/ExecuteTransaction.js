@@ -35,6 +35,36 @@ export default class ExecuteTransaction extends Component {
 
     var oThis = this;
 
+    OstJsonApi.getPendingRecoveryForUserId(userId,function (data) {
+      console.log("data of getPendingRecoveryForUserId\n", data);
+
+      oThis.setState({
+        requestData: data
+      });
+    }, function (ostError, apiErrObj) {
+      console.log("apiErrObj of getPendingRecoveryForUserId\n", apiErrObj);
+      console.log("ostError of getPendingRecoveryForUserId\n", ostError);
+
+      oThis.setState({
+        requsetError: ostError
+      });
+    });
+
+    OstJsonApi.getDeviceListForUserId(userId, null, function (data) {
+      console.log("data of getDeviceListForUserId\n", data);
+
+      oThis.setState({
+        requestData: data
+      });
+    }, function (ostError, apiErrObj) {
+      console.log("apiErrObj of getDeviceListForUserId\n", apiErrObj);
+      console.log("ostError of getDeviceListForUserId\n", ostError);
+
+      oThis.setState({
+        requsetError: ostError
+      });
+    });
+
     OstJsonApi.getBalanceWithPricePointForUserId(userId, function (data) {
       console.log("data of getBalanceWithPricePointForUserId\n", data);
 
