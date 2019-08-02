@@ -164,7 +164,12 @@ class HomePage extends Component {
       });
       AsyncStorage.getItem('user').then((user) => {
         user = JSON.parse(user);
-        OstWalletSdk.updateBiometricPreference(user.user_details.user_id, value, new OstWalletWorkflowCallback(), console.warn);
+        let delegate = new OstWalletSdkUICallbackImplementation( this.wsModel );
+        let workflowId =  OstWalletSdkUI.updateBiometricPreference(user.user_details.user_id, value, delegate);
+        delegate.setWorkflowInfo(workflowId, "update Biometric Preference");
+        console.log("OstWalletSdkUI.updateBiometricPreference workflowId:", workflowId);
+
+        // OstWalletSdk.updateBiometricPreference(user.user_details.user_id, value, new OstWalletWorkflowCallback(), console.warn);
       });
     }
 
@@ -365,13 +370,23 @@ class HomePage extends Component {
         this.props.dispatchLoadingState(true);
         AsyncStorage.getItem('user').then((user) => {
             user = JSON.parse(user);
-            OstWalletSdk.addSession(
-                user.user_details.user_id,
-                Number(expiryInDays) * 86400,
-              spendingLimit,
-                new OstWalletWorkflowCallback(),
-                console.warn
-            );
+            // OstWalletSdk.addSession(
+          //     user.user_details.user_id,
+          //     Number(expiryInDays) * 86400,
+          //   spendingLimit,
+          //     new OstWalletWorkflowCallback(),
+          //     console.warn
+          // );
+
+          let delegate = new OstWalletSdkUICallbackImplementation( this.wsModel );
+          let workflowId = OstWalletSdkUI.addSession(
+            user.user_details.user_id,
+            Number(expiryInDays) * 86400,
+            spendingLimit,
+            delegate
+          );
+          delegate.setWorkflowInfo(workflowId, "Add session");
+          console.log("OstWalletSdkUI.addSession workflowId:", workflowId);
         });
     }
 
