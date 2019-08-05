@@ -87,7 +87,20 @@ const Theme_Config = {
   "color": "#438bad",
   "background_color": "#ffffff",
   "font_style": "medium"
-}
+},
+
+  "navigation_bar": {
+    "tint_color": "#ffffff"
+  },
+
+  "icons": {
+    "close": {
+      "tint_color": "#438bad"
+    },
+    "back": {
+      "tint_color": "#438bad"
+    }
+  }
 };
 
 
@@ -407,6 +420,11 @@ class HomePage extends Component {
         });
     }
 
+    OnCompoentSheetPress() {
+      OstWalletSdkUI.setThemeConfig(Theme_Config);
+      OstWalletSdkUI.showComponentSheet();
+    }
+
     render() {
         if (this.props.isLoading)
             return (
@@ -418,6 +436,15 @@ class HomePage extends Component {
         return (
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 <View style={styles.form}>
+                    <TouchableOpacity
+                      style={styles.buttonWrapper}
+                      onPress={() =>
+                        this.OnCompoentSheetPress()
+                      }
+                    >
+                      <Text style={styles.buttonText}>Component Sheet</Text>
+                    </TouchableOpacity>
+
                     <TouchableOpacity
                         style={styles.buttonWrapper}
                         onPress={() =>
