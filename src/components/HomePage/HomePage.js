@@ -25,7 +25,7 @@ const Theme_Config = {
 
 "h1": {
   "size": 20,
-  "font": "Lato-Hairline",
+  "font": "SFProDisplay",
   "color": "#438bad",
   "font_style": "semi_bold"
 },
