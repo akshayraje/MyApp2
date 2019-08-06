@@ -25,7 +25,7 @@ const Theme_Config = {
 
 "h1": {
   "size": 20,
-  "font": "SFProDisplay",
+  "font": "Lato-Hairline",
   "color": "#438bad",
   "font_style": "semi_bold"
 },
@@ -325,20 +325,34 @@ class HomePage extends Component {
     //     });
     // }
 
-    onResetPin(oldPin, newPin) {
-        this.props.dispatchLoadingState(true);
-        AsyncStorage.getItem('user').then((user) => {
-            user = JSON.parse(user);
-            OstWalletSdk.resetPin(
-                user.user_details.user_id,
-                user.user_pin_salt,
-                oldPin,
-                newPin,
-                new OstWalletWorkflowCallback(),
-                console.warn
-            );
-        });
-    }
+
+  onResetPin() {
+    AsyncStorage.getItem('user').then((user) => {
+      user = JSON.parse(user);
+
+      let delegate = new OstWalletSdkUICallbackImplementation( this.wsModel );
+      let workflowId = OstWalletSdkUI.resetPin(
+        user.user_details.user_id,
+        delegate
+      );
+      delegate.setWorkflowInfo(workflowId, "resetPin");
+      console.log("OstWalletSdkUI.resetPin workflowId:", workflowId);
+    });
+  }
+    // onResetPin(oldPin, newPin) {
+    //     this.props.dispatchLoadingState(true);
+    //     AsyncStorage.getItem('user').then((user) => {
+    //         user = JSON.parse(user);
+    //         OstWalletSdk.resetPin(
+    //             user.user_details.user_id,
+    //             user.user_pin_salt,
+    //             oldPin,
+    //             newPin,
+    //             new OstWalletWorkflowCallback(),
+    //             console.warn
+    //         );
+    //     });
+    // }
 
     onAuthorizeCurrentDeviceWithMnemonics( passphrase ) {
         AsyncStorage.getItem('user').then((user) => {
@@ -380,16 +394,8 @@ class HomePage extends Component {
     }
 
     onAddSession(spendingLimit, expiryInDays) {
-        this.props.dispatchLoadingState(true);
         AsyncStorage.getItem('user').then((user) => {
             user = JSON.parse(user);
-            // OstWalletSdk.addSession(
-          //     user.user_details.user_id,
-          //     Number(expiryInDays) * 86400,
-          //   spendingLimit,
-          //     new OstWalletWorkflowCallback(),
-          //     console.warn
-          // );
 
           let delegate = new OstWalletSdkUICallbackImplementation( this.wsModel );
           let workflowId = OstWalletSdkUI.addSession(
@@ -479,7 +485,9 @@ class HomePage extends Component {
 
                     <TouchableOpacity
                         style={styles.buttonWrapper}
-                        onPress={() => Actions.ResetPin({ onResetPin: this.onResetPin })}
+                        onPress={() =>
+                          this.onResetPin()
+                        }
                     >
                         <Text style={styles.buttonText}>Reset Pin</Text>
                     </TouchableOpacity>
