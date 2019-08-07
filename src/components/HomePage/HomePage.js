@@ -103,8 +103,8 @@ const Theme_Config = {
   },
 
   "pin_input": {
-    "empty_color": "#c7c7cc",
-    "filled_color": "#438bad"
+    "empty_color": "#0007cc",
+    "filled_color": "#438000"
   }
 };
 
