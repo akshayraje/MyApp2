@@ -104,7 +104,7 @@ const Theme_Config = {
 
   "pin_input": {
     "empty_color": "#c7c7cc",
-    "filled_color": "#ff004c"
+    "filled_color": "#438bad"
   }
 };
 
