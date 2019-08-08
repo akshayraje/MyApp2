@@ -163,17 +163,25 @@ class HomePage extends Component {
         });
     }
 
-    revokeDevice( deviceAddress ) {
-      this.props.dispatchLoadingState(true);
+    revokeDevice(  ) {
+      // this.props.dispatchLoadingState(true);
       // AsyncStorage.getItem('user').then((user) => {
       //   user = JSON.parse(user);
       //   OstWalletSdk.revokeDevice(user.user_details.user_id, deviceAddress, new OstWalletWorkflowCallback(), console.warn);
       // });
 
-        AsyncStorage.getItem('user').then((user) => {
-            user = JSON.parse(user);
+      let delegate = new OstWalletSdkUICallbackImplementation( this.wsModel );
+      AsyncStorage.getItem('user').then((user) => {
+        user = JSON.parse(user);
 
-        });
+        let workflowId = OstWalletSdkUI.revokeDevice(
+          user.user_details.user_id,
+          null,
+          delegate
+        );
+        delegate.setWorkflowInfo(workflowId, "revokeDevice User");
+        console.log("OstWalletSdkUI.revokeDevice workflowId:", workflowId);
+      });
     }
 
     updateBiometricPreference( value ) {
@@ -518,7 +526,7 @@ class HomePage extends Component {
                   <TouchableOpacity
                     style={styles.buttonWrapper}
                     onPress={() =>
-                      Actions.RevokeDevice({ revokeDevice: this.revokeDevice })
+                      this.revokeDevice()
                     }
                   >
                     <Text style={styles.buttonText}>Revoke Device</Text>
