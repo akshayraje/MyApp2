@@ -103,8 +103,8 @@ const Theme_Config = {
   },
 
   "pin_input": {
-    "empty_color": "#0007cc",
-    "filled_color": "#438000"
+    "empty_color": "##c7c7cc",
+    "filled_color": "#438bad"
   }
 };
 
@@ -236,10 +236,17 @@ class HomePage extends Component {
     // }
 
     onGetDeviceMnemonics() {
-        AsyncStorage.getItem('user').then((user) => {
-            user = JSON.parse(user);
-            OstWalletSdk.getDeviceMnemonics(user.user_details.user_id, new DeviceMnemonicsCallbackImplementation(), console.warn);
-        });
+      let delegate = new OstWalletSdkUICallbackImplementation( this.wsModel );
+      AsyncStorage.getItem('user').then((user) => {
+        user = JSON.parse(user);
+
+        let workflowId = OstWalletSdkUI.getDeviceMnemonics(
+          user.user_details.user_id,
+          delegate
+        );
+        delegate.setWorkflowInfo(workflowId, "Activate User");
+        console.log("OstWalletSdkUI.activateUser workflowId:", workflowId);
+      });
     }
 
     onGetAddDeviceQRCode() {
