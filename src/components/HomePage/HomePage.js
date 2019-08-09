@@ -103,7 +103,7 @@ const Theme_Config = {
   },
 
   "pin_input": {
-    "empty_color": "##c7c7cc",
+    "empty_color": "#c7c7cc",
     "filled_color": "#438bad"
   }
 };
@@ -374,17 +374,31 @@ class HomePage extends Component {
     //     });
     // }
 
-    onAuthorizeCurrentDeviceWithMnemonics( passphrase ) {
-        AsyncStorage.getItem('user').then((user) => {
-            user = JSON.parse(user);
-            OstWalletSdk.authorizeCurrentDeviceWithMnemonics(
-                user.user_details.user_id,
-                passphrase,
-                new OstWalletWorkflowCallback(),
-                console.warn
-            );
-        });
-    }
+    onAuthorizeCurrentDeviceWithMnemonics() {
+      AsyncStorage.getItem('user').then((user) => {
+        user = JSON.parse(user);
+
+        let delegate = new OstWalletSdkUICallbackImplementation( this.wsModel );
+        let workflowId = OstWalletSdkUI.authorizeCurrentDeviceWithMnemonics(
+          user.user_details.user_id,
+          delegate
+        );
+        delegate.setWorkflowInfo(workflowId, "onAuthorizeCurrentDeviceWithMnemonics");
+        console.log("OstWalletSdkUI.onAuthorizeCurrentDeviceWithMnemonics workflowId:", workflowId);
+      });
+}
+
+    // onAuthorizeCurrentDeviceWithMnemonics( passphrase ) {
+    //     AsyncStorage.getItem('user').then((user) => {
+    //         user = JSON.parse(user);
+    //         OstWalletSdk.authorizeCurrentDeviceWithMnemonics(
+    //             user.user_details.user_id,
+    //             passphrase,
+    //             new OstWalletWorkflowCallback(),
+    //             console.warn
+    //         );
+    //     });
+    // }
 
     onExecuteTransaction( addresses, amounts, ruleName, currencyCode) {
         if( ruleName ){
@@ -498,7 +512,8 @@ class HomePage extends Component {
 
                     <TouchableOpacity
                         style={styles.buttonWrapper}
-                        onPress={() => Actions.AuthorizeDevice({ onAuthorizeCurrentDeviceWithMnemonics: this.onAuthorizeCurrentDeviceWithMnemonics })}
+                        onPress={() =>
+                          this.onAuthorizeCurrentDeviceWithMnemonics() }
                     >
                         <Text style={styles.buttonText}>Authorize Device With Mnemonics</Text>
                     </TouchableOpacity>
