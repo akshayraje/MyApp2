@@ -40,11 +40,11 @@ class HomePage extends Component {
    initializeSetupDevice() {
     
         this.props.dispatchLoadingState(true);
+        useCustomThemeConfig && OstWalletSdkUI.setThemeConfig(theme_config);
+        useCustomContentConfig && OstWalletSdkUI.setContentConfig(content_config);
         OstWalletSdk.initialize('https://api.stagingost.com/testnet/v2', (err , success ) => {
             console.log(err , success);
             if( success ){
-              useCustomThemeConfig && OstWalletSdkUI.setThemeConfig(theme_config);
-              useCustomContentConfig && OstWalletSdkUI.setContentConfig(content_config);
               this.setupDevice();
             }
         });
