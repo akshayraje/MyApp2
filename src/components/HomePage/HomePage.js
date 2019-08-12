@@ -142,8 +142,8 @@ class HomePage extends Component {
 
    initializeSetupDevice() {
         this.props.dispatchLoadingState(true);
-        OstWalletSdkUI.setThemeConfig(Theme_Config);
-        OstWalletSdkUI.setContentConfig(content_config);
+        // OstWalletSdkUI.setThemeConfig(Theme_Config);
+        // OstWalletSdkUI.setContentConfig(content_config);
         OstWalletSdk.initialize('https://api.stagingost.com/testnet/v2', (err , success ) => {
             console.log(err , success);
             if( success ){
@@ -461,7 +461,7 @@ class HomePage extends Component {
     }
 
     OnCompoentSheetPress() {
-      OstWalletSdkUI.setThemeConfig(Theme_Config);
+      // OstWalletSdkUI.setThemeConfig(Theme_Config);
       OstWalletSdkUI.showComponentSheet();
     }
 
