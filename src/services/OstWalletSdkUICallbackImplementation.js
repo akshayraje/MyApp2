@@ -168,7 +168,7 @@ class OstWalletSdkUICallbackImplementation extends OstWalletUIWorkflowCallback {
       }
       displayError = displayError+apiError;
     }
-    return displayError;
+    return displayError + "\n OstError Object: \n" + JSON.stringify(ostError, null, 2);
   }
 
 
