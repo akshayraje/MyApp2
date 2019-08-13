@@ -11,7 +11,7 @@ export default {
         "text": "ac_us.cr_pi.in_la.text"
       },
       "terms_and_condition_label": {
-        "text": "ac_us.cr_pi.te_an_co_la{{first_link}} and {{second_link}}"
+        "text": "ac_us.cr_pi.te_an_co_la {{first_link}} and {{second_link}}"
       },
       "placeholders": {
         "first_link": {
@@ -37,7 +37,7 @@ export default {
         "text": "ac_us.co_pi.in_la.text"
       },
       "terms_and_condition_label": {
-        "text": "ac_us.co_pi.te_an_co_la{{first_link}} and {{second_link}}"
+        "text": "ac_us.co_pi.te_an_co_la {{first_link}} and {{second_link}}"
       },
       "placeholders": {
         "first_link": {
@@ -65,7 +65,7 @@ export default {
         "text": "ad_se.ge_pi.in_la.text"
       },
       "terms_and_condition_label": {
-        "text": "ad_se.ge_pi.te_an_co_la{{first_link}} and {{second_link}}"
+        "text": "ad_se.ge_pi.te_an_co_la {{first_link}} and {{second_link}}"
       },
       "placeholders": {
         "first_link": {
@@ -106,7 +106,7 @@ export default {
         "text": "in_re.ge_pi.in_la.text"
       },
       "terms_and_condition_label": {
-        "text": "in_re.ge_pi.te_an_co_la{{first_link}} and {{second_link}}"
+        "text": "in_re.ge_pi.te_an_co_la {{first_link}} and {{second_link}}"
       },
       "placeholders": {
         "first_link": {
@@ -134,7 +134,7 @@ export default {
         "text": "ab_re.ge_pi.in_la.text"
       },
       "terms_and_condition_label": {
-        "text": "ab_re.ge_pi.te_an_co_la{{first_link}} and {{second_link}}"
+        "text": "ab_re.ge_pi.te_an_co_la {{first_link}} and {{second_link}}"
       },
       "placeholders": {
         "first_link": {
@@ -175,7 +175,7 @@ export default {
         "text": "re_de.ge_pi.in_la.text"
       },
       "terms_and_condition_label": {
-        "text": "re_de.ge_pi.te_an_co_la{{first_link}} and {{second_link}}"
+        "text": "re_de.ge_pi.te_an_co_la {{first_link}} and {{second_link}}"
       },
       "placeholders": {
         "first_link": {
@@ -203,7 +203,7 @@ export default {
         "text": "bi_pr.ge_pi.in_la.text"
       },
       "terms_and_condition_label": {
-        "text": "bi_pr.ge_pi.te_an_co_la{{first_link}} and {{second_link}}"
+        "text": "bi_pr.ge_pi.te_an_co_la {{first_link}} and {{second_link}}"
       },
       "placeholders": {
         "first_link": {
@@ -231,7 +231,7 @@ export default {
         "text": "re_pi.ge_pi.in_la.text"
       },
       "terms_and_condition_label": {
-        "text": "re_pi.ge_pi.te_an_co_la{{first_link}} and {{second_link}}"
+        "text": "re_pi.ge_pi.te_an_co_la {{first_link}} and {{second_link}}"
       },
       "placeholders": {
         "first_link": {
@@ -257,7 +257,7 @@ export default {
         "text": "re_pi.se_ne_pi.in_la.text"
       },
       "terms_and_condition_label": {
-        "text": "re_pi.se_ne_pi.te_an_co_la{{first_link}} and {{second_link}}"
+        "text": "re_pi.se_ne_pi.te_an_co_la {{first_link}} and {{second_link}}"
       },
       "placeholders": {
         "first_link": {
@@ -283,7 +283,7 @@ export default {
         "text": "re_pi.co_ne_pi.in_la.text"
       },
       "terms_and_condition_label": {
-        "text": "re_pi.co_ne_pi.te_an_co_la{{first_link}} and {{second_link}}"
+        "text": "re_pi.co_ne_pi.te_an_co_la {{first_link}} and {{second_link}}"
       },
       "placeholders": {
         "first_link": {
@@ -311,7 +311,7 @@ export default {
         "text": "vi_mn.ge_pi.in_la.text"
       },
       "terms_and_condition_label": {
-        "text": "vi_mn.ge_pi.te_an_co_la{{first_link}} and {{second_link}}"
+        "text": "vi_mn.ge_pi.te_an_co_la {{first_link}} and {{second_link}}"
       },
       "placeholders": {
         "first_link": {
@@ -350,7 +350,7 @@ export default {
         "text": "ad_cu_de_wi_mn.ge_pi.in_la.text"
       },
       "terms_and_condition_label": {
-        "text": "ad_cu_de_wi_mn.ge_pi.te_an_co_la{{first_link}} and {{second_link}}"
+        "text": "ad_cu_de_wi_mn.ge_pi.te_an_co_la {{first_link}} and {{second_link}}"
       },
       "placeholders": {
         "first_link": {
