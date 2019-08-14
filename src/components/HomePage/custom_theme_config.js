@@ -4,50 +4,51 @@ export default {
   },
   "h1": {
     "size": 20,
-    "font": "SFProDisplay",
-    "color": "#438bad",
+    "font": "Lato-Bold",
+    "color": "#ff0000",
     "system_font_weight": "semi_bold"
   },
   "h2": {
     "size": 17,
-    "font": "SFProDisplay",
-    "color": "#666666",
+    "font": "Lato-BoldItalic",
+    "color": "#00FF00",
     "system_font_weight": "medium"
   },
   "h3": {
     "size": 15,
-    "font": "SFProDisplay",
-    "color": "#888888",
+    "font": "Lato-Italic",
+    "color": "#0000FF",
     "system_font_weight": "regular"
   },
   "h4": {
     "size": 12,
     "font": "SFProDisplay",
-    "color": "#888888",
+    "color": "#0FF0FF",
     "system_font_weight": "regular"
   },
   "c1": {
     "size": 14,
-    "font": "SFProDisplay",
-    "color": "#484848",
+    "font": "Lato-Regular",
+    "color": "#ff0000",
     "system_font_weight": "bold"
   },
   "c2": {
     "size": 12,
-    "font": "SFProDisplay",
-    "color": "#6F6F6F",
+    "font": "Lato-Hairline",
+    "color": "#000000",
     "system_font_weight": "regular"
   },
   "b1": {
     "size": 17,
-    "color": "#ffffff",
-    "background_color": "#438bad",
+    "color": "#FF0000",
+    "font": "Lato-Black",
+    "background_color": "#0000FF",
     "system_font_weight": "medium"
   },
   "b2": {
     "size": 17,
-    "color": "#438bad",
-    "background_color": "#ffffff",
+    "color": "#000000",
+    "background_color": "#00FF00",
     "system_font_weight": "semi_bold"
   },
   "b3": {
@@ -67,14 +68,28 @@ export default {
   },
   "icons": {
     "close": {
-      "tint_color": "#438bad"
+      "tint_color": "#FF0000"
     },
     "back": {
-      "tint_color": "#438bad"
+      "tint_color": "#0000FF"
     }
   },
   "pin_input": {
-    "empty_color": "#c7c7cc",
-    "filled_color": "#438bad"
+    "empty_color": "#7c7c7c",
+    "filled_color": "#bad438"
+  },
+  "fonts": {
+    "Lato-Italic"         : "fonts/Lato-Italic.ttf",
+    "Lato-LightItalic"    : "fonts/Lato-LightItalic.ttf",
+    "Lato-Bold"           : "fonts/Lato-Bold.ttf",
+    "Lato-Black"          : "fonts/Lato-Black.ttf",
+    "Lato-HairlineItalic" : "fonts/Lato-HairlineItalic.ttf",
+    "Lato-Regular"        : "fonts/Lato-Regular.ttf",
+    "Lato-Hairline"       : "fonts/Lato-Hairline.ttf",
+    "Lato-BlackItalic"    : "fonts/Lato-BlackItalic.ttf",
+    "Lato-BoldItalic"     : "fonts/Lato-BoldItalic.ttf",
+    "Lato-Light"          : "fonts/Lato-Light.ttf"
   }
 };
+
+//fonts/Lato-Black.ttf
