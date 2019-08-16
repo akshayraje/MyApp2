@@ -31,13 +31,16 @@ class OstWalletSdkUICallbackImplementation extends OstWalletUIWorkflowCallback {
     this.eventLogs = "";
     console.log("OstWalletSdkUI.activateUser workflowId:", workflowId);
 
-    OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.requestAcknowledged, (workflowId, ostWorkflowContext , ostContextEntity) => {
+    OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.requestAcknowledged, (ostWorkflowContext , ostContextEntity) => {
+      let workflowId = ostWorkflowContext.WORKFLOW_ID;
       this.logEvent("requestAcknowledged event received", "workflowId: " + workflowId, "ostWorkflowContext:", ostWorkflowContext, "ostContextEntity", ostContextEntity);
     });
-    OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.flowComplete, (workflowId, ostWorkflowContext , ostContextEntity) => {
+    OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.flowComplete, (ostWorkflowContext , ostContextEntity) => {
+      let workflowId = ostWorkflowContext.WORKFLOW_ID;
       this.logEvent("flowComplete event received", "workflowId: " + workflowId, "ostWorkflowContext:", ostWorkflowContext, "ostContextEntity", ostContextEntity);
     });
-    OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.flowInterrupt, (workflowId, ostWorkflowContext , ostError) => {
+    OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.flowInterrupt, (ostWorkflowContext , ostError) => {
+      let workflowId = ostWorkflowContext.WORKFLOW_ID;
       this.logEvent("flowInterrupt event received", 
         "workflowId: " + workflowId, 
         "ostWorkflowContext:", 
@@ -116,7 +119,8 @@ class OstWalletSdkUICallbackImplementation extends OstWalletUIWorkflowCallback {
     console.log("New event log:\n", newLog);
   }
 
-  requestAcknowledged(workflowId, ostWorkflowContext , ostContextEntity ) {
+  requestAcknowledged(ostWorkflowContext , ostContextEntity ) {
+    let workflowId = ostWorkflowContext.WORKFLOW_ID;
     this.logCallback("requestAcknowledged callback received", "workflowId: " + workflowId, "ostWorkflowContext:", ostWorkflowContext, "ostContextEntity", ostContextEntity);
   }
 
@@ -127,7 +131,8 @@ class OstWalletSdkUICallbackImplementation extends OstWalletUIWorkflowCallback {
    * @param ostContextEntity -  status of the flow
    * @override
    */
-  flowComplete(workflowId, ostWorkflowContext , ostContextEntity ) {
+  flowComplete(ostWorkflowContext , ostContextEntity ) {
+    let workflowId = ostWorkflowContext.WORKFLOW_ID;
     this.logCallback("flowComplete callback received", "workflowId: " + workflowId, "ostWorkflowContext:", ostWorkflowContext, "ostContextEntity", ostContextEntity);
     store.dispatch(setLoading(false));
   }
@@ -139,7 +144,8 @@ class OstWalletSdkUICallbackImplementation extends OstWalletUIWorkflowCallback {
    * @param ostError reason of interruption
    * @override
    */
-  flowInterrupt(workflowId, ostWorkflowContext , ostError)  {
+  flowInterrupt(ostWorkflowContext , ostError)  {
+    let workflowId = ostWorkflowContext.WORKFLOW_ID;
     this.logCallback("flowInterrupt callback received", 
         "workflowId: " + workflowId, 
         "ostWorkflowContext:", 

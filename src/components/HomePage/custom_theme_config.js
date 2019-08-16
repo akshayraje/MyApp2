@@ -6,40 +6,46 @@ export default {
     "size": 20,
     "font": "Lato-Bold",
     "color": "#ff0000",
-    "system_font_weight": "semi_bold"
+    "system_font_weight": "semi_bold",
+    "alignment": "left"
   },
   "h2": {
     "size": 17,
     "font": "Lato-BoldItalic",
     "color": "#00FF00",
-    "system_font_weight": "medium"
+    "system_font_weight": "medium",
+    "alignment": "left"
   },
   "h3": {
     "size": 15,
     "font": "Lato-Italic",
     "color": "#0000FF",
-    "system_font_weight": "regular"
+    "system_font_weight": "regular",
+    "alignment": "left"
   },
   "h4": {
     "size": 12,
     "font": "SFProDisplay",
     "color": "#0FF0FF",
-    "system_font_weight": "regular"
+    "system_font_weight": "regular",
+    "alignment": "left"
   },
   "c1": {
     "size": 14,
     "font": "Lato-Regular",
     "color": "#ff0000",
-    "system_font_weight": "bold"
+    "system_font_weight": "bold",
+    "alignment": "center"
   },
   "c2": {
     "size": 12,
     "font": "Lato-Hairline",
     "color": "#000000",
-    "system_font_weight": "regular"
+    "system_font_weight": "regular",
+    "alignment": "center"
   },
   "b1": {
-    "size": 17,
+    "size": 10,
     "color": "#FF0000",
     "font": "Lato-Black",
     "background_color": "#0000FF",
