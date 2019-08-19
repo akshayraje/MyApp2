@@ -24,7 +24,7 @@ export default {
           "text": "Link2",
           "color": "#FF0000"
         }
-      }
+      },
     },
     "confirm_pin": {
       "title_label": {
@@ -51,6 +51,12 @@ export default {
           "color": "#FF0000"
         }
       }
+    },
+    "loader": {
+      "text": "ac_us.lo.text"
+    },
+    "initial_loader": {
+      "text": "ac_us.ln_lo.text"
     }
   },
   "add_session": {
@@ -79,6 +85,12 @@ export default {
           "color": "#FF0000"
         }
       }
+    },
+    "loader": {
+      "text": "ad_se.lo.text"
+    },
+    "initial_loader": {
+      "text": "ad_se.ln_lo.text"
     }
   },
   "initiate_recovery": {
@@ -120,6 +132,12 @@ export default {
           "color": "#FF0000"
         }
       }
+    },
+    "loader": {
+      "text": "in_re.lo.text"
+    },
+    "initial_loader": {
+      "text": "in_re.ln_lo.text"
     }
   },
   "abort_recovery": {
@@ -148,6 +166,12 @@ export default {
           "color": "#FF0000"
         }
       }
+    },
+    "loader": {
+      "text": "ab_re.lo.text"
+    },
+    "initial_loader": {
+      "text": "ab_re.ln_lo.text"
     }
   },
   "revoke_device": {
@@ -189,6 +213,12 @@ export default {
           "color": "#FF0000"
         }
       }
+    },
+    "loader": {
+      "text": "re_de.lo.text"
+    },
+    "initial_loader": {
+      "text": "re_de.ln_lo.text"
     }
   },
   "biometric_preference": {
@@ -217,6 +247,12 @@ export default {
           "color": "#FF0000"
         }
       }
+    },
+    "loader": {
+      "text": "bi_pr.lo.text"
+    },
+    "initial_loader": {
+      "text": "bi_pr.ln_lo.text"
     }
   },
   "reset_pin": {
@@ -244,6 +280,12 @@ export default {
           "text": "Link2",
           "color": "#FF0000"
         }
+      },
+      "loader": {
+        "text": "re_pi.lo.text"
+      },
+      "initial_loader": {
+        "text": "re_pi.ln_lo.text"
       }
     },
     "set_new_pin": {
@@ -297,6 +339,12 @@ export default {
           "color": "#FF0000"
         }
       }
+    },
+    "loader": {
+      "text": "re_pi.lo.text"
+    },
+    "initial_loader": {
+      "text": "re_pi.ln_lo.text"
     }
   },
   "view_mnemonics": {
@@ -336,6 +384,12 @@ export default {
       "bottom_label": {
         "text": "vi_mn.sh_mn.bo_la.text"
       }
+    },
+    "loader": {
+      "text": "vi_mn.lo.text"
+    },
+    "initial_loader": {
+      "text": "vi_mn.ln_lo.text"
     }
   },
   "add_current_device_with_mnemonics": {
@@ -378,6 +432,12 @@ export default {
       "action_button": {
         "text": "ad_cu_de_wi_mn.pr_mn.ac_bu.text"
       }
+    },
+    "loader": {
+      "text": "ad_cu_de_wi_mn.lo.text"
+    },
+    "initial_loader": {
+      "text": "ad_cu_de_wi_mn.ln_lo.text"
     }
   }
 };

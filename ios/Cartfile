@@ -1,1 +1,1 @@
-github "ostdotcom/ost-wallet-sdk-ios" == 2.3.0-beta.2
+github "ostdotcom/ost-wallet-sdk-ios" "dev/ost-wallet-ui"

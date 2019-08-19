@@ -96,6 +96,19 @@ export default {
     "Lato-BlackItalic"    : "fonts/Lato-BlackItalic.ttf",
     "Lato-BoldItalic"     : "fonts/Lato-BoldItalic.ttf",
     "Lato-Light"          : "fonts/Lato-Light.ttf"
+  },
+  "edit_text": {
+    "size": 15,
+    "color": "#101010",
+    "background_color": "#ffffff",
+    "alignment": "left",
+    "system_font_weight": "regular",
+    "placeholder": {
+      "size": 15,
+      "color": "#888888",
+      "alignment": "left",
+      "system_font_weight": "regular"
+    }
   }
 };
 
