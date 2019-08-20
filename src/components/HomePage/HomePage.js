@@ -51,7 +51,14 @@ class HomePage extends Component {
         });
         this.props.dispatchLoadingState(false);
 
-
+     AsyncStorage.getItem('user').then((user) => {
+       user = JSON.parse(user);
+       OstWalletSdk.isBiometricEnabled(user.user_details.user_id, (isEnabled) => {
+         this.setState({
+           enableBiometric: isEnabled
+         });
+       })
+     })
     }
 
     setupDevice() {
@@ -149,9 +156,16 @@ class HomePage extends Component {
     }
 
     onGetAddDeviceQRCode() {
+      let delegate = new OstWalletSdkUICallbackImplementation( this.wsModel );
         AsyncStorage.getItem('user').then((user) => {
             user = JSON.parse(user);
-            OstWalletSdk.getAddDeviceQRCode(user.user_details.user_id, this.onGetAddDeviceQRCodeSuccess , console.warn);
+          let workflowId = OstWalletSdkUI.getAddDeviceQRCode(
+              user.user_details.user_id,
+              delegate
+            );
+          delegate.setWorkflowInfo(workflowId, "onGetAddDeviceQRCode");
+          console.log("OstWalletSdkUI.onGetAddDeviceQRCode workflowId:", workflowId);
+            // OstWalletSdk.getAddDeviceQRCode(user.user_details.user_id, this.onGetAddDeviceQRCodeSuccess , console.warn);
         });
     }
 
