@@ -35,6 +35,20 @@ export default class GetMethodsModel extends Component {
     this.getCurrentDevice();
     this.getActiveSessions();
     this.getActiveSessionsWithLimit();
+    this.isBiometricEnabled();
+  }
+
+  isBiometricEnabled = () => {
+    this.setState({
+      is_biometric_enabled_response: "Waiting for response"
+    });
+    let userId = this.props.userId;
+
+    OstWalletSdk.isBiometricEnabled(userId, (response) => {
+      this.setState({
+        "is_biometric_enabled_response": String(response)
+      });
+    });
   }
 
   getActiveSessionsWithLimit = () => {
@@ -128,6 +142,16 @@ export default class GetMethodsModel extends Component {
               </View>
               <View style={styles.logs}> 
                 <Text>{this.state.get_user_response || "waiting"}</Text>
+              </View>
+
+              <View style={styles.infoWrap}>
+                <Text style={styles.infoText}>isBiometricEnabled('{this.props.userId}')</Text>
+                <TouchableOpacity onPress={this.isBiometricEnabled} style={styles.buttonRetryWrapper}>
+                  <Text style={styles.buttonRetryText}>Retry</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.logs}> 
+                <Text>{this.state.is_biometric_enabled_response || "waiting"}</Text>
               </View>
               
               <View style={styles.infoWrap}>
