@@ -17,7 +17,7 @@ import theme_config from "./custom_theme_config";
 const Logo = require("../../assets/ostLogoBlue.png");
 
 const useCustomThemeConfig = true;
-const useCustomContentConfig = false;
+const useCustomContentConfig = true;
 
 class HomePage extends Component {
     constructor(props) {
