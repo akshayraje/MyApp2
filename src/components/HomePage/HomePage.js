@@ -11,6 +11,7 @@ import OstWalletSdkUICallbackImplementation from '../../services/OstWalletSdkUIC
 import DeviceMnemonicsCallbackImplementation from '../../services/DeviceMnemonicsCallbackImplementation';
 import ActivateUserCallback from "../../services/ActivateUserCallbackImplementation";
 import WorkflowStatusModel from "../WorkflowStatus";
+import GetMethodsModel from "../GetMethodsModel";
 import content_config from "./custom_content_config";
 import theme_config from "./custom_theme_config";
 const Logo = require("../../assets/ostLogoBlue.png");
@@ -27,8 +28,6 @@ class HomePage extends Component {
             (key) => (this[key] = this[key].bind(this))
         );
 
-        this.initializeSetupDevice();
-
         this.state = {
           qrCode : null,
           showQR : false,
@@ -36,6 +35,8 @@ class HomePage extends Component {
         };
         this.wsModel = null;
     }
+
+
 
    initializeSetupDevice() {
     
@@ -165,18 +166,18 @@ class HomePage extends Component {
     this.setState({showQR : false})
   }
 
-    onPerformQRAction( data ) {
-      this.props.dispatchLoadingState(true);
-        AsyncStorage.getItem('user').then((user) => {
-            user = JSON.parse(user);
-            OstWalletSdk.performQRAction(
-                user.user_details.user_id,
-                data,
-                new OstWalletWorkflowCallback(),
-                console.warn
-            );
-        });
-    }
+  onPerformQRAction( data ) {
+    this.props.dispatchLoadingState(true);
+      AsyncStorage.getItem('user').then((user) => {
+          user = JSON.parse(user);
+          OstWalletSdk.performQRAction(
+              user.user_details.user_id,
+              data,
+              new OstWalletWorkflowCallback(),
+              console.warn
+          );
+      });
+  }
 
   onAbortDeviceRecovery() {
     AsyncStorage.getItem('user').then((user) => {
@@ -356,11 +357,36 @@ class HomePage extends Component {
             onRight: this.userLogout,
             rightTitle: 'Log out'
         });
+        AsyncStorage.getItem('user').then((user) => { 
+          if ( this.isUnMounted || !user ) {
+            return;
+          }
+          if ( typeof user === 'string' ) {
+            user = JSON.parse(user);  
+          }
+          user && user.user_details && this.setState({
+            userId: user.user_details.user_id
+          }, () => {
+            this.initializeSetupDevice();
+          })
+        });
     }
+
+    componentWillUnmount() {
+      this.isUnMounted = true;
+    }
+
+
 
     OnCompoentSheetPress() {
       useCustomThemeConfig && OstWalletSdkUI.setThemeConfig(theme_config);
       OstWalletSdkUI.showComponentSheet();
+    }
+
+    onTestGetterMethods() {
+      if ( this.getMethodsModel ) {
+        this.getMethodsModel.showModal();
+      }
     }
 
     render() {
@@ -375,12 +401,16 @@ class HomePage extends Component {
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 <View style={styles.form}>
                     <TouchableOpacity
-                      style={styles.buttonWrapper}
+                      style={styles.buttonInfoWrapper}
                       onPress={() =>
                         this.OnCompoentSheetPress()
                       }
                     >
                       <Text style={styles.buttonText}>Component Sheet</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.buttonInfoWrapper} onPress={() => this.onTestGetterMethods()}>
+                        <Text style={styles.buttonText}>Test Getter Methods</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
@@ -481,9 +511,9 @@ class HomePage extends Component {
                     <Text style={styles.buttonText}>Get Add Device QR Code</Text>
                   </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.buttonWrapper} onPress={() => this.onLogoutAllSessions()}>
-                        <Text style={styles.buttonText}>Logout All</Text>
-                    </TouchableOpacity>
+                  <TouchableOpacity style={styles.buttonWrapper} onPress={() => this.onLogoutAllSessions()}>
+                      <Text style={styles.buttonText}>Logout All</Text>
+                  </TouchableOpacity>
 
                   <View style = {styles.container}>
                     <Text>Update Biometric Preference</Text>
@@ -496,6 +526,10 @@ class HomePage extends Component {
               <WorkflowStatusModel ref={(wsModel) => {
                 this.wsModel = wsModel;
               }}></WorkflowStatusModel>
+
+              <GetMethodsModel userId={this.state.userId} ref={( gmm ) => {
+                this.getMethodsModel = gmm;
+              }}></GetMethodsModel>
             </ScrollView>
         );
     }
