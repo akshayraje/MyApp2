@@ -28,6 +28,7 @@ class Authentication extends Component {
         } catch (error) {
             Alert.alert('in try catch : AsyncStorage error ' +  error.message );
             console.warn('AsyncStorage error: ' + error.message);
+            Promise.reject('AsyncStorage error: ' + error.message);
         }
     }
   
@@ -91,9 +92,9 @@ class Authentication extends Component {
                 this.saveItem('user', JSON.stringify({
                   'user_details':userData,
                   'user_pin_salt': userSalt
-                }));
-                
-                Actions.HomePage();
+                })).then(() => {
+                    Actions.HomePage();    
+                });
               });
             
           }).catch( e => {

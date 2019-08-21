@@ -38,8 +38,7 @@ class HomePage extends Component {
 
 
 
-   initializeSetupDevice() {
-    
+   initializeSetupDevice() {    
         this.props.dispatchLoadingState(true);
         useCustomThemeConfig && OstWalletSdkUI.setThemeConfig(theme_config);
         useCustomContentConfig && OstWalletSdkUI.setContentConfig(content_config);
@@ -47,26 +46,28 @@ class HomePage extends Component {
             console.log(err , success);
             if( success ){
               this.setupDevice();
-            }
-        });
-        this.props.dispatchLoadingState(false);
 
-     AsyncStorage.getItem('user').then((user) => {
-       user = JSON.parse(user);
-       OstWalletSdk.isBiometricEnabled(user.user_details.user_id, (isEnabled) => {
-         this.setState({
-           enableBiometric: isEnabled
-         });
-       })
-     })
+              AsyncStorage.getItem('user').then((user) => {
+                user = JSON.parse(user);
+                OstWalletSdk.isBiometricEnabled(user.user_details.user_id, (isEnabled) => {
+                  this.setState({
+                    enableBiometric: isEnabled
+                  }, () => {
+                    this.props.dispatchLoadingState(false);
+                  });
+                });
+              });
+            }
+            
+        });
     }
 
     setupDevice() {
-        this.props.dispatchLoadingState(true);
-        AsyncStorage.getItem('user').then((user) => {
-            user = JSON.parse(user);
-            OstWalletSdk.setupDevice(user.user_details.user_id, AppData.TOKEN_ID, new OstWalletWorkflowCallback(), console.warn);
-        });
+      this.props.dispatchLoadingState(true);
+      AsyncStorage.getItem('user').then((user) => {
+        user = JSON.parse(user);
+        OstWalletSdk.setupDevice(user.user_details.user_id, AppData.TOKEN_ID, new OstWalletWorkflowCallback(), console.warn);
+      });
     }
 
     revokeDevice(  ) {
@@ -366,6 +367,7 @@ class HomePage extends Component {
     }
 
     componentDidMount() {
+        this.props.dispatchLoadingState(true);
         this.props.navigation.setParams({
             key: 'HomePage',
             onRight: this.userLogout,
