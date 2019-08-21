@@ -431,7 +431,8 @@ export default {
       },
       "action_button": {
         "text": "ad_cu_de_wi_mn.pr_mn.ac_bu.text"
-      }
+      },
+
     },
     "loader": {
       "text": "ad_cu_de_wi_mn.lo.text"
@@ -439,5 +440,32 @@ export default {
     "initial_loader": {
       "text": "ad_cu_de_wi_mn.ln_lo.text"
     }
-  }
+  },
+  "show_add_device_qr": {
+    "show_qr": {
+      "title_label": {
+        "text": "sh_ad_de_qr.sh_qr.ti_la.text"
+      },
+      "lead_label": {
+        "text": "sh_ad_de_qr.sh_qr.le_la.text"
+      },
+      "action_button": {
+        "text": "sh_ad_de_qr.sh_qr.ac_bu.text"
+      },
+      "api_failure_alert": {
+        "title": "sh_ad_de_qr.sh_qr.ap_fa_al.title",
+        "message": "sh_ad_de_qr.sh_qr.ap_fa_al.message"
+      },
+      "unauthorized_alert": {
+        "title": "sh_ad_de_qr.sh_qr.un_al.title",
+        "message": "sh_ad_de_qr.sh_qr.un_al.message"
+      }
+    },
+    "loader": {
+      "text": "sh_ad_de_qr.lo.text"
+    },
+    "initial_loader": {
+      "text": "sh_ad_de_qr.in_lo.text"
+    }
+  },
 };
