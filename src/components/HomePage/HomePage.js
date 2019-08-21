@@ -177,6 +177,20 @@ class HomePage extends Component {
       });
     }
 
+    onScanDeviceQRCode() {
+      let delegate = new OstWalletSdkUICallbackImplementation( this.wsModel );
+      AsyncStorage.getItem('user').then((user) => {
+        user = JSON.parse(user);
+        let workflowId = OstWalletSdkUI.authorizeDeviceViaQR(
+          user.user_details.user_id,
+          delegate
+        );
+        delegate.setWorkflowInfo(workflowId, "onGetAddDeviceQRCode");
+        console.log("OstWalletSdkUI.onGetAddDeviceQRCode workflowId:", workflowId);
+
+      });
+    }
+
   resetShowQR() {
     this.setState({showQR : false})
   }
@@ -525,6 +539,13 @@ class HomePage extends Component {
                     onPress={() =>this.onGetAddDeviceQRCode()}
                   >
                     <Text style={styles.buttonText}>Get Add Device QR Code</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    style={styles.buttonWrapper}
+                    onPress={() =>this.onScanDeviceQRCode()}
+                  >
+                    <Text style={styles.buttonText}>Scan Add Device QR Code</Text>
                   </TouchableOpacity>
 
                   <TouchableOpacity style={styles.buttonWrapper} onPress={() => this.onLogoutAllSessions()}>
