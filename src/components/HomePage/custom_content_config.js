@@ -468,4 +468,60 @@ export default {
       "text": "sh_ad_de_qr.in_lo.text"
     }
   },
+  "authorize_device_via_qr": {
+    "verify_device": {
+      "lead_label": {
+        "text": "au_de_qr.ve_de.le_la.text"
+      },
+      "accept_button": {
+        "text": "au_de_qr.ve_de.ac_bu.text"
+      },
+      "reject_button": {
+        "text": "au_de_qr.ve_de.re_bu.text"
+      }
+    },
+    "get_pin": {
+      "title_label": {
+        "text": "au_de_qr.ge_pi.ti_la.text"
+      },
+      "lead_label": {
+        "text": "au_de_qr.ge_pi.le_la.text"
+      },
+      "info_label":{
+        "text":  ""
+      },
+      "terms_and_condition_label": {
+        "text": ""
+      }
+    },
+    "loader": {
+      "text": "au_de_qr.lo.text"
+    },
+    "initial_loader": {
+      "text": "au_de_qr.in_lo.text"
+    }
+  },
+
+  "execute_transaction_via_qr": {
+    "verify_transaction": {
+      "lead_label": {
+        "text": "ex_tx_qr.ve_tx.le_la.text"
+      },
+      "info_label": {
+        "text": "ex_tx_qr.ve_tx.in_la.text"
+      },
+      "accept_button": {
+        "text": "ex_tx_qr.ve_tx.ac_bu.text"
+      },
+      "reject_button": {
+        "text": "ex_tx_qr.ve_tx.re_bu.text"
+      }
+    },
+    "loader": {
+      "text": "ex_tx_qr.lo.text"
+    },
+    "initial_loader": {
+      "text": "ex_tx_qr.in_lo.text"
+    }
+  }
 };
