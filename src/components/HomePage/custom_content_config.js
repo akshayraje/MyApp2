@@ -24,7 +24,7 @@ export default {
           "text": "Link2",
           "color": "#FF0000"
         }
-      },
+      }
     },
     "confirm_pin": {
       "title_label": {
@@ -56,7 +56,7 @@ export default {
       "text": "ac_us.lo.text"
     },
     "initial_loader": {
-      "text": "ac_us.ln_lo.text"
+      "text": "ac_us.in_lo.text"
     }
   },
   "add_session": {
@@ -90,7 +90,7 @@ export default {
       "text": "ad_se.lo.text"
     },
     "initial_loader": {
-      "text": "ad_se.ln_lo.text"
+      "text": "ad_se.in_lo.text"
     }
   },
   "initiate_recovery": {
@@ -137,7 +137,7 @@ export default {
       "text": "in_re.lo.text"
     },
     "initial_loader": {
-      "text": "in_re.ln_lo.text"
+      "text": "in_re.in_lo.text"
     }
   },
   "abort_recovery": {
@@ -171,7 +171,7 @@ export default {
       "text": "ab_re.lo.text"
     },
     "initial_loader": {
-      "text": "ab_re.ln_lo.text"
+      "text": "ab_re.in_lo.text"
     }
   },
   "revoke_device": {
@@ -218,7 +218,7 @@ export default {
       "text": "re_de.lo.text"
     },
     "initial_loader": {
-      "text": "re_de.ln_lo.text"
+      "text": "re_de.in_lo.text"
     }
   },
   "biometric_preference": {
@@ -252,7 +252,7 @@ export default {
       "text": "bi_pr.lo.text"
     },
     "initial_loader": {
-      "text": "bi_pr.ln_lo.text"
+      "text": "bi_pr.in_lo.text"
     }
   },
   "reset_pin": {
@@ -280,12 +280,6 @@ export default {
           "text": "Link2",
           "color": "#FF0000"
         }
-      },
-      "loader": {
-        "text": "re_pi.lo.text"
-      },
-      "initial_loader": {
-        "text": "re_pi.ln_lo.text"
       }
     },
     "set_new_pin": {
@@ -344,7 +338,7 @@ export default {
       "text": "re_pi.lo.text"
     },
     "initial_loader": {
-      "text": "re_pi.ln_lo.text"
+      "text": "re_pi.in_lo.text"
     }
   },
   "view_mnemonics": {
@@ -389,7 +383,7 @@ export default {
       "text": "vi_mn.lo.text"
     },
     "initial_loader": {
-      "text": "vi_mn.ln_lo.text"
+      "text": "vi_mn.in_lo.text"
     }
   },
   "add_current_device_with_mnemonics": {
@@ -432,13 +426,15 @@ export default {
       "action_button": {
         "text": "ad_cu_de_wi_mn.pr_mn.ac_bu.text"
       },
-
+      "placeholder": {
+        "text": "ad_cu_de_wi_mn.pr_mn.pl.text"
+      }
     },
     "loader": {
       "text": "ad_cu_de_wi_mn.lo.text"
     },
     "initial_loader": {
-      "text": "ad_cu_de_wi_mn.ln_lo.text"
+      "text": "ad_cu_de_wi_mn.in_lo.text"
     }
   },
   "show_add_device_qr": {
@@ -453,12 +449,12 @@ export default {
         "text": "sh_ad_de_qr.sh_qr.ac_bu.text"
       },
       "api_failure_alert": {
-        "title": "sh_ad_de_qr.sh_qr.ap_fa_al.title",
-        "message": "sh_ad_de_qr.sh_qr.ap_fa_al.message"
+        "title": "Unable to Fetch Device",
+        "message": "Unable to fetch device. Please try again."
       },
       "unauthorized_alert": {
-        "title": "sh_ad_de_qr.sh_qr.un_al.title",
-        "message": "sh_ad_de_qr.sh_qr.un_al.message"
+        "title": "Device not Authorized",
+        "message": "Please scan device QR-Code from authorized device and verify device status"
       }
     },
     "loader": {
@@ -469,59 +465,80 @@ export default {
     }
   },
   "authorize_device_via_qr": {
+    "scan_qr": {
+      "title_label": {
+        "text": "au_de_vi_qr.sc_qr.ti_la.text"
+      }
+    },
     "verify_device": {
       "lead_label": {
-        "text": "au_de_qr.ve_de.le_la.text"
+        "text": "au_de_vi_qr.ve_de.le_la.text"
       },
       "accept_button": {
-        "text": "au_de_qr.ve_de.ac_bu.text"
+        "text": "au_de_vi_qr.ve_de.ac_bu.text"
       },
       "reject_button": {
-        "text": "au_de_qr.ve_de.re_bu.text"
+        "text": "au_de_vi_qr.ve_de.re_bu.text"
       }
     },
     "get_pin": {
       "title_label": {
-        "text": "au_de_qr.ge_pi.ti_la.text"
+        "text": "au_de_vi_qr.ge_pi.ti_la.text"
       },
       "lead_label": {
-        "text": "au_de_qr.ge_pi.le_la.text"
-      },
-      "info_label":{
-        "text":  ""
-      },
-      "terms_and_condition_label": {
-        "text": ""
-      }
-    },
-    "loader": {
-      "text": "au_de_qr.lo.text"
-    },
-    "initial_loader": {
-      "text": "au_de_qr.in_lo.text"
-    }
-  },
-
-  "execute_transaction_via_qr": {
-    "verify_transaction": {
-      "lead_label": {
-        "text": "ex_tx_qr.ve_tx.le_la.text"
+        "text": "au_de_vi_qr.ge_pi.le_la.text"
       },
       "info_label": {
-        "text": "ex_tx_qr.ve_tx.in_la.text"
+        "text": "au_de_vi_qr.ge_pi.in_la.text"
       },
-      "accept_button": {
-        "text": "ex_tx_qr.ve_tx.ac_bu.text"
+      "terms_and_condition_label": {
+        "text": "au_de_vi_qr.ge_pi.te_an_co_la {{first_link}} and {{second_link}}"
       },
-      "reject_button": {
-        "text": "ex_tx_qr.ve_tx.re_bu.text"
+      "placeholders": {
+        "first_link": {
+          "url": "https://ost.com/terms",
+          "text": "Link1",
+          "color": "#0000FF"
+        },
+        "second_link": {
+          "url": "https://ost.com/terms",
+          "text": "Link2",
+          "color": "#FF0000"
+        }
       }
     },
     "loader": {
-      "text": "ex_tx_qr.lo.text"
+      "text": "au_de_vi_qr.lo.text"
     },
     "initial_loader": {
-      "text": "ex_tx_qr.in_lo.text"
+      "text": "au_de_vi_qr.in_lo.text"
+    }
+  },
+  "execute_transaction_via_qr": {
+    "scan_qr": {
+      "title_label": {
+        "text": "ex_tr_vi_qr.sc_qr.ti_la.text"
+      }
+    },
+    "verify_transaction": {
+      "lead_label": {
+        "text": "ex_tr_vi_qr.ve_tr.le_la.text"
+      },
+      "info_label": {
+        "text": "ex_tr_vi_qr.ve_tr.in_la.text"
+      },
+      "accept_button": {
+        "text": "ex_tr_vi_qr.ve_tr.ac_bu.text"
+      },
+      "reject_button": {
+        "text": "ex_tr_vi_qr.ve_tr.re_bu.text"
+      }
+    },
+    "loader": {
+      "text": "ex_tr_vi_qr.lo.text"
+    },
+    "initial_loader": {
+      "text": "ex_tr_vi_qr.in_lo.text"
     }
   }
 };
