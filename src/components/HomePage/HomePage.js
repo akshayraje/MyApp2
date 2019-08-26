@@ -12,6 +12,8 @@ import DeviceMnemonicsCallbackImplementation from '../../services/DeviceMnemonic
 import ActivateUserCallback from "../../services/ActivateUserCallbackImplementation";
 import WorkflowStatusModel from "../WorkflowStatus";
 import GetMethodsModel from "../GetMethodsModel";
+import JSONMethodsModel from "../JSONMethodsModel";
+
 import content_config from "./custom_content_config";
 import theme_config from "./custom_theme_config";
 const Logo = require("../../assets/ostLogoBlue.png");
@@ -432,6 +434,12 @@ class HomePage extends Component {
       }
     }
 
+    onTestJSONMethods() {
+      if ( this.JSONMethodsModel ) {
+        this.JSONMethodsModel.showModal();
+      }
+    }
+
     render() {
         if (this.props.isLoading)
             return (
@@ -455,6 +463,10 @@ class HomePage extends Component {
 
                     <TouchableOpacity style={styles.buttonInfoWrapper} onPress={() => this.onTestGetterMethods()}>
                         <Text style={styles.buttonText}>Test Getter Methods</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.buttonInfoWrapper} onPress={() => this.onTestJSONMethods()}>
+                        <Text style={styles.buttonText}>Test JSON API</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
@@ -588,6 +600,11 @@ class HomePage extends Component {
               <GetMethodsModel userId={this.state.userId} ref={( gmm ) => {
                 this.getMethodsModel = gmm;
               }}></GetMethodsModel>
+
+              <JSONMethodsModel userId={this.state.userId} ref={( jmm ) => {
+                this.JSONMethodsModel = jmm;
+              }}></JSONMethodsModel>
+
             </ScrollView>
           </SafeAreaView>
         );
