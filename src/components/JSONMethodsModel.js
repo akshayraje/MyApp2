@@ -128,22 +128,68 @@ export default class JSONMethodsModel extends Component {
   }
 
 
+  getTransactionsNextPage = (prevPageMeta, nextPagePayload) => {
+    let userId = this.props.userId;
+
+    OstJsonApi.getTransactionsForUserId(userId, nextPagePayload, (response) => {
+      let strPrevPageMeta = prevPageMeta ? JSON.stringify(prevPageMeta) : "null";
+      let statePageMeta = this.state.txPrevPageMeta ? JSON.stringify(this.state.txPrevPageMeta): "null";
+      if ( strPrevPageMeta != statePageMeta ) {
+        // Ignore this response. The user retryed the Api call.
+        return;
+      }
+
+      let pageMeta = null;
+      let newNextPagePayload = {};
+      if (response 
+        && response.meta 
+      ) {
+        pageMeta = response.meta;
+        newNextPagePayload = pageMeta.next_page_payload || {};
+      }
+
+      let logText = this.state.getTransactionsForUserId;
+      if ( null == prevPageMeta ) {
+        // First Page.
+        logText = "";
+      } else {
+        // Some page.
+        logText = logText + "\n--- Next Page ---\n";
+      }
+
+      //Parse response.
+      logText = logText + this.parseJson(response);
+
+
+      if ( Object.keys(newNextPagePayload).length > 0 ) {
+        logText = logText + "\n--- Fetching Next Page---\n";
+        // Make the next page API call.
+        this.getTransactionsNextPage(pageMeta, newNextPagePayload);
+      } else {
+        logText = logText + "\n--- No More Pages ---\n";
+      }
+
+      this.setState({
+        getTransactionsForUserId: logText,
+        txPrevPageMeta: pageMeta
+      });
+
+    }, (error) => {
+      this.setState({
+        getTransactionsForUserId: this.parseJson(error),
+        txPrevPageMeta: {gotError: 1}
+      })
+    });
+
+  };
+
   getTransactionsForUserId = () => {
     //getTransactionsForUserId
     this.setState({
-      getTransactionsForUserId: "\n\n\nWaiting for response\n\n\n"
+      getTransactionsForUserId: "\n\n\nWaiting for response\n\n\n",
+      "txPrevPageMeta": null
     });
-    let userId = this.props.userId;
-
-    OstJsonApi.getTransactionsForUserId(userId, null, (response) => {
-      this.setState({
-        getTransactionsForUserId: this.parseJson(response)
-      })
-    }, (error) => {
-      this.setState({
-        getTransactionsForUserId: this.parseJson(error)
-      })
-    });
+    this.getTransactionsNextPage(null, null);
   }
 
   getDeviceListForUserId = () => {
@@ -164,7 +210,9 @@ export default class JSONMethodsModel extends Component {
   }
 
   parseJson = (response) => {
-    return response ? JSON.stringify(response, null, 2) : "null";
+    let parsedJson = response ? JSON.stringify(response, null, 2) : "null";
+    console.log("JSONMethodsModel: parsedJson\n", parsedJson);
+    return parsedJson;
   }
 
 
