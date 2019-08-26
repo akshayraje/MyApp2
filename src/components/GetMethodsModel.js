@@ -116,7 +116,9 @@ export default class GetMethodsModel extends Component {
   }
 
   parseJson = (response) => {
-    return response ? JSON.stringify(response, null, 2) : "null";
+    let parsedJson = response ? JSON.stringify(response, null, 2) : "null";
+    console.log("GetMethodsModel: parsedJson\n", parsedJson);
+    return parsedJson;
   }
 
 
