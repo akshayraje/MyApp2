@@ -15,6 +15,7 @@ import GetMethodsModel from "../GetMethodsModel";
 import content_config from "./custom_content_config";
 import theme_config from "./custom_theme_config";
 const Logo = require("../../assets/ostLogoBlue.png");
+import ost_wallet_sdk_config from "./OstWalletSdkConfig";
 
 const useCustomThemeConfig = true;
 const useCustomContentConfig = true;
@@ -36,13 +37,11 @@ class HomePage extends Component {
         this.wsModel = null;
     }
 
-
-
    initializeSetupDevice() {    
         this.props.dispatchLoadingState(true);
         useCustomThemeConfig && OstWalletSdkUI.setThemeConfig(theme_config);
         useCustomContentConfig && OstWalletSdkUI.setContentConfig(content_config);
-        OstWalletSdk.initialize('https://api.stagingost.com/testnet/v2', (err , success ) => {
+        OstWalletSdk.initialize('https://api.stagingost.com/testnet/v2', ost_wallet_sdk_config, (err , success ) => {
             console.log(err , success);
             if( success ){
               this.setupDevice();
