@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, TouchableOpacity, View, ScrollView, ActivityIndicator, Image, Switch} from 'react-native';
+import { SafeAreaView, Text, TouchableOpacity, View, ScrollView, ActivityIndicator, Image, Switch} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Actions } from 'react-native-router-flux';
 import {OstWalletSdk, OstWalletSdkUI} from '@ostdotcom/ost-wallet-sdk-react-native';
@@ -441,6 +441,7 @@ class HomePage extends Component {
                 </View>
             );
         return (
+          <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 <View style={styles.form}>
                     <TouchableOpacity
@@ -588,6 +589,7 @@ class HomePage extends Component {
                 this.getMethodsModel = gmm;
               }}></GetMethodsModel>
             </ScrollView>
+          </SafeAreaView>
         );
     }
 }
