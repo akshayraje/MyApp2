@@ -42,7 +42,6 @@
 		48CBB02AAB12486CAC34C133 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83DED2E0C5F147D593430081 /* Lato-Black.ttf */; };
 		4B70E90822AFFAB3009A2CDE /* OstWalletSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7793075B229C46B900CBE47F /* OstWalletSdk.framework */; };
 		50D1FF9F57844BF6877CC005 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 946758C0F80247F9969485F1 /* Lato-Light.ttf */; };
-		7793075A229C446F00CBE47F /* OstWalletSdk.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77930759229C446F00CBE47F /* OstWalletSdk.plist */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8ED5C4F0B30F458E84EC80AE /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BDCD58D03C54A50AA933AE8 /* Lato-BlackItalic.ttf */; };
 		90BC5EF8307C4627947A2056 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC420AD7DF8448499707DDDB /* libRNCAsyncStorage.a */; };
@@ -379,7 +378,6 @@
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		60B17F03631C4786B0380C50 /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-BoldItalic.ttf"; path = "../src/assets/fonts/Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
 		71F7B8EF0BDC49C2A58D646D /* Lato-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Italic.ttf"; path = "../src/assets/fonts/Lato-Italic.ttf"; sourceTree = "<group>"; };
-		77930759229C446F00CBE47F /* OstWalletSdk.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = OstWalletSdk.plist; sourceTree = "<group>"; };
 		7793075B229C46B900CBE47F /* OstWalletSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OstWalletSdk.framework; path = Carthage/Build/iOS/OstWalletSdk.framework; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -566,7 +564,6 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				77930759229C446F00CBE47F /* OstWalletSdk.plist */,
 			);
 			name = MyApp2;
 			sourceTree = "<group>";
@@ -1102,7 +1099,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7793075A229C446F00CBE47F /* OstWalletSdk.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				48CBB02AAB12486CAC34C133 /* Lato-Black.ttf in Resources */,
