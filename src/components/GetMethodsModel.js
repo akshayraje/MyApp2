@@ -3,6 +3,14 @@ import {SafeAreaView, View, Modal, Text, ScrollView,TouchableOpacity, Image} fro
 import AppData from '../../app.json';
 import {OstWalletSdk, OstWalletSdkUI} from '@ostdotcom/ost-wallet-sdk-react-native';
 import styles from '../Styles';
+import JSONTree from 'react-native-json-tree'
+import successResponseTheme from '../themes/bright';
+import errorResponseTheme from '../themes/marrakesh';
+const invertThemeOnSuccess = true;
+const invertThemeOnError = true;
+const keyPrefix = "JMM";
+let keyCnt =1;
+
 
 export default class GetMethodsModel extends Component {
   constructor(props){
@@ -59,7 +67,7 @@ export default class GetMethodsModel extends Component {
       }, 
       (error) => {
         this.setState({
-          getAddDeviceQRCode: this.parseJson(error),
+          getAddDeviceQRCode: this.processData(error),
           isFetchingQr : false,
           failedToFetchQr: true
         })
@@ -88,7 +96,7 @@ export default class GetMethodsModel extends Component {
     let minLimit = "1000000000000000000";
     OstWalletSdk.getActiveSessionsForUserId(userId, minLimit, (response) => {
       this.setState({
-        "get_active_sessions_with_limit_response": this.parseJson(response)
+        "get_active_sessions_with_limit_response": this.processData(response)
       });
     });
   }
@@ -101,7 +109,7 @@ export default class GetMethodsModel extends Component {
 
     OstWalletSdk.getActiveSessionsForUserId(userId, (response) => {
       this.setState({
-        "get_active_sessions_response": this.parseJson(response)
+        "get_active_sessions_response": this.processData(response)
       });
     });
   }
@@ -114,7 +122,7 @@ export default class GetMethodsModel extends Component {
 
     OstWalletSdk.getCurrentDeviceForUserId(userId, (response) => {
       this.setState({
-        get_current_device_response: this.parseJson(response)
+        get_current_device_response: this.processData(response)
       })
     });
   }
@@ -126,7 +134,7 @@ export default class GetMethodsModel extends Component {
 
     OstWalletSdk.getUser(this.props.userId, (response) => {
       this.setState({
-        get_user_response: this.parseJson(response)
+        get_user_response: this.processData(response)
       })
     });
   }
@@ -138,15 +146,14 @@ export default class GetMethodsModel extends Component {
 
     OstWalletSdk.getToken(this.tokenId, (response) => {
       this.setState({
-        get_token_response: this.parseJson(response)
+        get_token_response: this.processData(response)
       })
     });
   }
 
-  parseJson = (response) => {
-    let parsedJson = response ? JSON.stringify(response, null, 2) : "null";
-    console.log("GetMethodsModel: parsedJson\n", parsedJson);
-    return parsedJson;
+  processData = (response) => {
+    console.log("GetMethodsModel: processData\n", JSON.stringify(response,null, 2) );
+    return response;
   }
 
   renderQR() {
@@ -169,7 +176,64 @@ export default class GetMethodsModel extends Component {
     />);
   }
 
+  _expandNode = () => {
+    return true;
+  }
+
+  renderResponse( response ) {
+    if ( response instanceof Array ) {
+      return this.renderObjectResponse(response );
+      // Do not use renderArrayResponse here. 
+      // Lets also display empty arrays.
+    } else if (typeof response === 'object') {
+      return this.renderObjectResponse( response );
+    } else {
+      return this.renderTextResponse( response );
+    }
+  }
+
+  renderObjectResponse( obj ) {
+      let treeTheme = successResponseTheme;
+      let invertTheme = invertThemeOnSuccess;
+      let keyId = keyPrefix + "_txt_" + keyCnt++;
+      if ( typeof obj.is_api_error != 'undefined' ) {
+        treeTheme = errorResponseTheme;
+        invertTheme = invertThemeOnError;
+      } else {
+
+      }
+      // Its an Object.
+      return(<ScrollView style={styles.jsonTreeWrap} key={keyId} horizontal={true}>
+          <JSONTree style={styles.jsonTree} 
+            data={obj}  shouldExpandNode={this._expandNode}
+            invertTheme={invertTheme} theme={treeTheme} 
+          />
+        </ScrollView>);
+  }
+
+
+  renderTextResponse( text  ) {
+    let textToDisplay = String( text );
+    let keyId = keyPrefix + "_txt_" + keyCnt++;
+    return(<View key={keyId} style={styles.secondaryInfoWrap}>
+      <Text style={styles.secondaryInfoText}>{textToDisplay}</Text>
+    </View>);
+  }
+
+  renderArrayResponse( arrayOfResponses ) {
+      // Render multiple components.
+      let subViews = [];
+      let len = arrayOfResponses.length;
+      for(let cnt =0; cnt < len; cnt++ ) {
+        subViews.push(this.renderResponse( arrayOfResponses[cnt]) );
+      }
+      return(subViews);
+  }
+
   render(){
+    // reset key cnt
+    keyCnt = 1;
+
     return(
       <Modal
         animationType="slide"
@@ -184,77 +248,67 @@ export default class GetMethodsModel extends Component {
             <ScrollView style={{marginTop: 50, borderWidth:1, padding:0,  backgroundColor: '#ffffff'}}>
               <View style={{flexDirection:'column',padding:10,flex:1,justifyContent: 'space-between'}}>
 
+                <View style={styles.secondaryInfoWrap}>
+                  <Text style={styles.secondaryInfoText}>userId: {this.props.userId}</Text>
+                </View>
+
                 <View style={styles.infoWrap}>
-                  <Text style={styles.infoText}>getUser('{this.props.userId}')</Text>
+                  <Text style={styles.infoHead}>getUser</Text>
                   <TouchableOpacity onPress={this.getUser} style={styles.buttonRetryWrapper}>
                     <Text style={styles.buttonRetryText}>Retry</Text>
                   </TouchableOpacity>
                 </View>
-                <View style={styles.logs}> 
-                  <Text>{this.state.get_user_response || "waiting"}</Text>
-                </View>
+                {this.renderResponse(this.state.get_user_response)}
 
                 <View style={styles.infoWrap}>
-                  <Text style={styles.infoText}>isBiometricEnabled('{this.props.userId}')</Text>
+                  <Text style={styles.infoHead}>isBiometricEnabled</Text>
                   <TouchableOpacity onPress={this.isBiometricEnabled} style={styles.buttonRetryWrapper}>
                     <Text style={styles.buttonRetryText}>Retry</Text>
                   </TouchableOpacity>
                 </View>
-                <View style={styles.logs}> 
-                  <Text>{this.state.is_biometric_enabled_response || "waiting"}</Text>
-                </View>
+                {this.renderResponse(this.state.is_biometric_enabled_response)}
                 
                 <View style={styles.infoWrap}>
-                  <Text style={styles.infoText}>getCurrentDeviceForUserId('{this.props.userId}')</Text>
+                  <Text style={styles.infoHead}>getCurrentDeviceForUserId</Text>
                   <TouchableOpacity onPress={this.getCurrentDevice} style={styles.buttonRetryWrapper}>
                     <Text style={styles.buttonRetryText}>Retry</Text>
                   </TouchableOpacity>
                 </View>
-                <View style={styles.logs}> 
-                  <Text>{this.state.get_current_device_response || "waiting"}</Text>
-                </View>
+                {this.renderResponse(this.state.get_current_device_response)}
 
-                {this.renderQR()}
+                
                 <View style={styles.infoWrap}>
-                  <Text style={styles.infoText}>getAddDeviceQRCode('{this.props.userId}')</Text>
+                  <Text style={styles.infoHead}>getAddDeviceQRCode</Text>
                   <TouchableOpacity onPress={this.getAddDeviceQRCode} style={styles.buttonRetryWrapper}>
                     <Text style={styles.buttonRetryText}>Retry</Text>
                   </TouchableOpacity>
                 </View>
-                <View style={styles.logs}> 
-                  <Text>{this.state.getAddDeviceQRCode || "waiting"}</Text>
-                </View>
-                
+                {this.renderResponse(this.state.getAddDeviceQRCode)}
+                {this.renderQR()}
                 
                 <View style={styles.infoWrap}>
-                  <Text style={styles.infoText}>getActiveSessionsForUserId('{this.props.userId}')</Text>
+                  <Text style={styles.infoHead}>getActiveSessionsForUserId</Text>
                   <TouchableOpacity onPress={this.getActiveSessions} style={styles.buttonRetryWrapper}>
                     <Text style={styles.buttonRetryText}>Retry</Text>
                   </TouchableOpacity>
                 </View>
-                <View style={styles.logs}> 
-                  <Text>{this.state.get_active_sessions_response || "waiting"}</Text>
-                </View>
+                {this.renderResponse(this.state.get_active_sessions_response)}
 
                 <View style={styles.infoWrap}>
-                  <Text style={styles.infoText}>getActiveSessionsForUserId('{this.props.userId}', '1000000000000000000') (1 ETH) </Text>
+                  <Text style={styles.infoHead}>getActiveSessionsForUserId (1 ETH) </Text>
                   <TouchableOpacity onPress={this.getActiveSessionsWithLimit} style={styles.buttonRetryWrapper}>
                     <Text style={styles.buttonRetryText}>Retry</Text>
                   </TouchableOpacity>
                 </View>
-                <View style={styles.logs}> 
-                  <Text>{this.state.get_active_sessions_with_limit_response || "waiting"}</Text>
-                </View>
+                {this.renderResponse(this.state.get_active_sessions_with_limit_response)}
 
                 <View style={styles.infoWrap}>
-                  <Text style={{fontSize:14}}>getToken('{this.tokenId}')</Text>
+                  <Text style={styles.infoHead}>getToken('{this.tokenId}')</Text>
                   <TouchableOpacity onPress={this.getToken} style={styles.buttonRetryWrapper}>
                     <Text style={styles.buttonRetryText}>Retry</Text>
                   </TouchableOpacity>
                 </View>
-                <View style={styles.logs}>
-                  <Text>{this.state.get_token_response || "waiting"}</Text>
-                </View>
+                {this.renderResponse(this.state.get_token_response)}
               </View>
             </ScrollView>
           </View>

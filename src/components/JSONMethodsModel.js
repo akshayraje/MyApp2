@@ -3,6 +3,13 @@ import {SafeAreaView, View, Modal, Text, ScrollView,TouchableOpacity} from 'reac
 import AppData from '../../app.json';
 import {OstJsonApi, OstWalletSdkUI} from '@ostdotcom/ost-wallet-sdk-react-native';
 import styles from '../Styles';
+import JSONTree from 'react-native-json-tree'
+import successResponseTheme from '../themes/bright';
+import errorResponseTheme from '../themes/marrakesh';
+const invertThemeOnSuccess = true;
+const invertThemeOnError = true;
+const keyPrefix = "JMM";
+let keyCnt =1;
 
 export default class JSONMethodsModel extends Component {
   constructor(props){
@@ -47,11 +54,11 @@ export default class JSONMethodsModel extends Component {
 
     OstJsonApi.getCurrentDeviceForUserId(userId, (response) => {
       this.setState({
-        getCurrentDeviceForUserId: this.parseJson(response)
+        getCurrentDeviceForUserId: response
       })
     }, (error) => {
       this.setState({
-        getCurrentDeviceForUserId: this.parseJson(error)
+        getCurrentDeviceForUserId: this.processData(error)
       })
     });
   }
@@ -65,11 +72,11 @@ export default class JSONMethodsModel extends Component {
 
     OstJsonApi.getBalanceWithPricePointForUserId(userId, (response) => {
       this.setState({
-        getBalanceWithPricePointForUserId: this.parseJson(response)
+        getBalanceWithPricePointForUserId: this.processData(response)
       })
     }, (error) => {
       this.setState({
-        getBalanceWithPricePointForUserId: this.parseJson(error)
+        getBalanceWithPricePointForUserId: this.processData(error)
       })
     });
   }
@@ -83,11 +90,11 @@ export default class JSONMethodsModel extends Component {
 
     OstJsonApi.getBalanceForUserId(userId, (response) => {
       this.setState({
-        getBalanceForUserId: this.parseJson(response)
+        getBalanceForUserId: this.processData(response)
       })
     }, (error) => {
       this.setState({
-        getBalanceForUserId: this.parseJson(error)
+        getBalanceForUserId: this.processData(error)
       })
     });
   }
@@ -99,12 +106,14 @@ export default class JSONMethodsModel extends Component {
     let userId = this.props.userId;
 
     OstJsonApi.getPendingRecoveryForUserId(userId, (response) => {
+      console.log("getPendingRecoveryForUserId response", response);
       this.setState({
-        getPendingRecoveryForUserId: this.parseJson(response)
+        getPendingRecoveryForUserId: this.processData(response)
       })
     }, (error) => {
+      console.log("getPendingRecoveryForUserId error", error);
       this.setState({
-        getPendingRecoveryForUserId: this.parseJson(error)
+        getPendingRecoveryForUserId: this.processData(error)
       })
     });
   }
@@ -118,11 +127,11 @@ export default class JSONMethodsModel extends Component {
 
     OstJsonApi.getPricePointForUserId(userId, (response) => {
       this.setState({
-        getPricePointForUserId: this.parseJson(response)
+        getPricePointForUserId: this.processData(response)
       })
     }, (error) => {
       this.setState({
-        getPricePointForUserId: this.parseJson(error)
+        getPricePointForUserId: this.processData(error)
       })
     });
   }
@@ -148,35 +157,34 @@ export default class JSONMethodsModel extends Component {
         newNextPagePayload = pageMeta.next_page_payload || {};
       }
 
-      let logText = this.state.getTransactionsForUserId;
+      let allResponses = this.state.getTransactionsForUserId || [];
       if ( null == prevPageMeta ) {
         // First Page.
-        logText = "";
-      } else {
-        // Some page.
-        logText = logText + "\n--- Next Page ---\n";
+        allResponses = ["Frist Page"];
       }
 
       //Parse response.
-      logText = logText + this.parseJson(response);
+      allResponses.push(this.processData(response));
 
 
       if ( Object.keys(newNextPagePayload).length > 0 ) {
-        logText = logText + "\n--- Fetching Next Page---\n";
+        allResponses.push("Next Page");
         // Make the next page API call.
         this.getTransactionsNextPage(pageMeta, newNextPagePayload);
       } else {
-        logText = logText + "\n--- No More Pages ---\n";
+        allResponses.push("No More Pages");
       }
 
       this.setState({
-        getTransactionsForUserId: logText,
+        getTransactionsForUserId: allResponses,
         txPrevPageMeta: pageMeta
       });
 
     }, (error) => {
+      let allResponses = this.state.getTransactionsForUserId || [];
+      allResponses.push( this.processData(error) );
       this.setState({
-        getTransactionsForUserId: this.parseJson(error),
+        getTransactionsForUserId: allResponses,
         txPrevPageMeta: {gotError: 1}
       })
     });
@@ -200,23 +208,77 @@ export default class JSONMethodsModel extends Component {
 
     OstJsonApi.getDeviceListForUserId(userId, null, (response) => {
       this.setState({
-        getDeviceListForUserId: this.parseJson(response)
+        getDeviceListForUserId: this.processData(response)
       })
     }, (error) => {
       this.setState({
-        getDeviceListForUserId: this.parseJson(error)
+        getDeviceListForUserId: this.processData(error)
       })
     });
   }
 
-  parseJson = (response) => {
-    let parsedJson = response ? JSON.stringify(response, null, 2) : "null";
-    console.log("JSONMethodsModel: parsedJson\n", parsedJson);
-    return parsedJson;
+  processData = (response) => {
+    console.log("JSONMethodsModel: processData\n", JSON.stringify(response, null, 2) );
+    return response;
+  }
+
+  _expandNode = () => {
+    return true;
+  }
+
+  renderResponse( response ) {
+    if ( response instanceof Array ) {
+      return this.renderArrayResponse(response );
+    } else if (typeof response === 'object') {
+      return this.renderObjectResponse( response );
+    } else {
+      return this.renderTextResponse( response );
+    }
+  }
+
+  renderObjectResponse( obj ) {
+      let treeTheme = successResponseTheme;
+      let invertTheme = invertThemeOnSuccess;
+      let keyId = keyPrefix + "_txt_" + keyCnt++;
+      if ( typeof obj.is_api_error != 'undefined' ) {
+        treeTheme = errorResponseTheme;
+        invertTheme = invertThemeOnError;
+      } else {
+
+      }
+      // Its an Object.
+      return(<ScrollView style={styles.jsonTreeWrap} key={keyId} horizontal={true}>
+          <JSONTree style={styles.jsonTree} 
+            data={obj}  shouldExpandNode={this._expandNode}
+            invertTheme={invertTheme} theme={treeTheme} 
+          />
+        </ScrollView>);
+  }
+
+
+  renderTextResponse( text  ) {
+    let textToDisplay = String( text );
+    let keyId = keyPrefix + "_txt_" + keyCnt++;
+    return(<View key={keyId} style={styles.secondaryInfoWrap}>
+      <Text style={styles.secondaryInfoText}>{textToDisplay}</Text>
+    </View>);
+  }
+
+  renderArrayResponse( arrayOfResponses ) {
+      // Render multiple components.
+      let subViews = [];
+      let len = arrayOfResponses.length;
+      for(let cnt =0; cnt < len; cnt++ ) {
+        subViews.push(this.renderResponse( arrayOfResponses[cnt]) );
+      }
+      return(subViews);
   }
 
 
   render(){
+    // reset key cnt
+    keyCnt =1;
+
     return(
       <Modal
         animationType="slide"
@@ -229,79 +291,66 @@ export default class JSONMethodsModel extends Component {
               <Text style={{color:'#007bff'}}>Close</Text>
             </TouchableOpacity>
             <ScrollView style={{marginTop: 50, borderWidth:1, padding:0,  backgroundColor: '#ffffff'}}>
-              <View style={{flexDirection:'column',padding:10,flex:1,justifyContent: 'space-between'}}>
+              <View style={{flexDirection:'column', marginBottom:10, flex:1,justifyContent: 'space-between'}}>
+                <View style={styles.secondaryInfoWrap}>
+                  <Text style={styles.secondaryInfoText}>userId: {this.props.userId}</Text>
+                </View>
 
                 <View style={styles.infoWrap}>
-                  <Text style={styles.infoText}>getCurrentDeviceForUserId('{this.props.userId}')</Text>
+                  <Text style={styles.infoHead}>getCurrentDeviceForUserId</Text>
                   <TouchableOpacity onPress={this.getCurrentDeviceForUserId} style={styles.buttonRetryWrapper}>
                     <Text style={styles.buttonRetryText}>Retry</Text>
                   </TouchableOpacity>
                 </View>
-                <View style={styles.logs}> 
-                  <Text>{this.state.getCurrentDeviceForUserId || "waiting"}</Text>
-                </View>
+                {this.renderResponse(this.state.getCurrentDeviceForUserId )}
 
                 <View style={styles.infoWrap}>
-                  <Text style={styles.infoText}>getBalanceWithPricePointForUserId('{this.props.userId}')</Text>
+                  <Text style={styles.infoHead}>getBalanceWithPricePointForUserId</Text>
                   <TouchableOpacity onPress={this.getBalanceWithPricePointForUserId} style={styles.buttonRetryWrapper}>
                     <Text style={styles.buttonRetryText}>Retry</Text>
                   </TouchableOpacity>
                 </View>
-                <View style={styles.logs}> 
-                  <Text>{this.state.getBalanceWithPricePointForUserId || "waiting"}</Text>
-                </View>
+                {this.renderResponse(this.state.getBalanceWithPricePointForUserId ) }
 
                 <View style={styles.infoWrap}>
-                  <Text style={styles.infoText}>getBalanceForUserId('{this.props.userId}')</Text>
+                  <Text style={styles.infoHead}>getBalanceForUserId</Text>
                   <TouchableOpacity onPress={this.getBalanceForUserId} style={styles.buttonRetryWrapper}>
                     <Text style={styles.buttonRetryText}>Retry</Text>
                   </TouchableOpacity>
                 </View>
-                <View style={styles.logs}> 
-                  <Text>{this.state.getBalanceForUserId || "waiting"}</Text>
-                </View>
+                {this.renderResponse(this.state.getBalanceForUserId ) }
 
                 <View style={styles.infoWrap}>
-                  <Text style={styles.infoText}>getPricePointForUserId('{this.props.userId}')</Text>
+                  <Text style={styles.infoHead}>getPricePointForUserId</Text>
                   <TouchableOpacity onPress={this.getPricePointForUserId} style={styles.buttonRetryWrapper}>
                     <Text style={styles.buttonRetryText}>Retry</Text>
                   </TouchableOpacity>
                 </View>
-                <View style={styles.logs}> 
-                  <Text>{this.state.getPricePointForUserId || "waiting"}</Text>
-                </View>
+                {this.renderResponse(this.state.getPricePointForUserId ) }
 
                 <View style={styles.infoWrap}>
-                  <Text style={styles.infoText}>getPendingRecoveryForUserId('{this.props.userId}')</Text>
+                  <Text style={styles.infoHead}>getPendingRecoveryForUserId</Text>
                   <TouchableOpacity onPress={this.getPendingRecoveryForUserId} style={styles.buttonRetryWrapper}>
                     <Text style={styles.buttonRetryText}>Retry</Text>
                   </TouchableOpacity>
                 </View>
-                <View style={styles.logs}> 
-                  <Text>{this.state.getPendingRecoveryForUserId || "waiting"}</Text>
-                </View>
+                {this.renderResponse(this.state.getPendingRecoveryForUserId ) }
 
                 <View style={styles.infoWrap}>
-                  <Text style={styles.infoText}>getDeviceListForUserId('{this.props.userId}', null)</Text>
+                  <Text style={styles.infoHead}>getDeviceListForUserId</Text>
                   <TouchableOpacity onPress={this.getDeviceListForUserId} style={styles.buttonRetryWrapper}>
                     <Text style={styles.buttonRetryText}>Retry</Text>
                   </TouchableOpacity>
                 </View>
-                <View style={styles.logs}> 
-                  <Text>{this.state.getDeviceListForUserId || "waiting"}</Text>
-                </View>
+                {this.renderResponse(this.state.getDeviceListForUserId ) }
 
                 <View style={styles.infoWrap}>
-                  <Text style={styles.infoText}>getTransactionsForUserId('{this.props.userId}', null)</Text>
+                  <Text style={styles.infoHead}>getTransactionsForUserId</Text>
                   <TouchableOpacity onPress={this.getTransactionsForUserId} style={styles.buttonRetryWrapper}>
                     <Text style={styles.buttonRetryText}>Retry</Text>
                   </TouchableOpacity>
                 </View>
-                <View style={styles.logs}>
-                  <Text>{this.state.getTransactionsForUserId || "waiting"}</Text>
-                </View>
-
-
+                {this.renderResponse(this.state.getTransactionsForUserId)}
               </View>
             </ScrollView>
           </View>

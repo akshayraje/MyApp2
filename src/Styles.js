@@ -85,29 +85,59 @@ export default styles = StyleSheet.create({
     width: "100%",
     aspectRatio: 1
   },
-  buttonRetryText: {
-    color:'#eeeeee', 
-    fontSize: 12
-  },
-  buttonRetryWrapper: {
-    justifyContent:'center',
-    alignItems:'center', 
-    padding: 10, 
-    backgroundColor:'#007bff', 
-    borderBottomWidth: 1, 
-    position:'absolute', 
-    bottom:-50, 
-    right:0, 
-    zIndex:1
-  },
   infoWrap: {
-    flexDirection:'row', 
-    marginTop:10, 
-    position:'relative'
+    flexDirection:'row',
+    position:'relative',
+    backgroundColor:'#d1ecf1',
+    minHeight: 30,
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    marginTop: 5
+  },
+  infoHead: {
+    flex: 4,
+    padding: 10,
+    fontSize:14,
+    fontWeight: 'bold',
+    color: "#0c5460",
+    marginRight: 80
   },
   infoText: {
     fontSize:12, 
-    marginRight: 10
+    marginLeft: 10,
+    marginRight: 80,
+    color: "#0c5460",
+  },
+  buttonRetryText: {
+    color: "#ffffff", 
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  buttonRetryWrapper: {
+    justifyContent:'center',
+    alignItems:'center',
+    backgroundColor:'#007bff',
+    width: 70,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    bottom: 0,
+    paddingLeft: 10,
+    paddingRight: 10 
+  },
+  secondaryInfoWrap: {
+    flexDirection:'row',
+    position:'relative',
+    backgroundColor:'#e2e3e5',
+    minHeight: 30,
+    alignItems: 'flex-end',
+    justifyContent: 'center'
+  },
+  secondaryInfoText: {
+    color: "#383d41",
+    flex: 4,
+    padding: 10,
+    fontSize:14
   },
   logs: {
     flexDirection:'row', 
@@ -116,6 +146,9 @@ export default styles = StyleSheet.create({
     backgroundColor: '#eeeeee',
     borderWidth: 1,
     borderColor: "#333333"
+  },
+  jsonTreeWrap: {
+    flexDirection:'row'
   }
 
 });
