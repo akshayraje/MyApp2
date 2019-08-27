@@ -464,7 +464,7 @@ export default {
       "text": "sh_ad_de_qr.in_lo.text"
     }
   },
-  "authorize_device_via_qr": {
+  "scan_qr_to_authorize_device": {
     "scan_qr": {
       "title_label": {
         "text": "au_de_vi_qr.sc_qr.ti_la.text"
@@ -514,7 +514,7 @@ export default {
       "text": "au_de_vi_qr.in_lo.text"
     }
   },
-  "execute_transaction_via_qr": {
+  "scan_qr_to_execute_transaction": {
     "scan_qr": {
       "title_label": {
         "text": "ex_tr_vi_qr.sc_qr.ti_la.text"
