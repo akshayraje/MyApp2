@@ -80,6 +80,11 @@ export default styles = StyleSheet.create({
     height: 150,
     margin: 20
   },
+  getAddDeviceQRCode: {
+    padding: 10,
+    width: "100%",
+    aspectRatio: 1
+  },
   buttonRetryText: {
     color:'#eeeeee', 
     fontSize: 12
