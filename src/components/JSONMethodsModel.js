@@ -35,8 +35,8 @@ export default class JSONMethodsModel extends Component {
     this.getBalanceForUserId();
     this.getPricePointForUserId();
     this.getPendingRecoveryForUserId();
-    this.getTransactionsForUserId();
     this.getDeviceListForUserId();
+    this.getTransactionsForUserId();
   }
 
   getCurrentDeviceForUserId = () => {
@@ -281,18 +281,6 @@ export default class JSONMethodsModel extends Component {
                   <Text>{this.state.getPendingRecoveryForUserId || "waiting"}</Text>
                 </View>
 
-
-
-                <View style={styles.infoWrap}>
-                  <Text style={styles.infoText}>getTransactionsForUserId('{this.props.userId}', null)</Text>
-                  <TouchableOpacity onPress={this.getTransactionsForUserId} style={styles.buttonRetryWrapper}>
-                    <Text style={styles.buttonRetryText}>Retry</Text>
-                  </TouchableOpacity>
-                </View>
-                <View style={styles.logs}> 
-                  <Text>{this.state.getTransactionsForUserId || "waiting"}</Text>
-                </View>
-
                 <View style={styles.infoWrap}>
                   <Text style={styles.infoText}>getDeviceListForUserId('{this.props.userId}', null)</Text>
                   <TouchableOpacity onPress={this.getDeviceListForUserId} style={styles.buttonRetryWrapper}>
@@ -302,6 +290,17 @@ export default class JSONMethodsModel extends Component {
                 <View style={styles.logs}> 
                   <Text>{this.state.getDeviceListForUserId || "waiting"}</Text>
                 </View>
+
+                <View style={styles.infoWrap}>
+                  <Text style={styles.infoText}>getTransactionsForUserId('{this.props.userId}', null)</Text>
+                  <TouchableOpacity onPress={this.getTransactionsForUserId} style={styles.buttonRetryWrapper}>
+                    <Text style={styles.buttonRetryText}>Retry</Text>
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.logs}>
+                  <Text>{this.state.getTransactionsForUserId || "waiting"}</Text>
+                </View>
+
 
               </View>
             </ScrollView>

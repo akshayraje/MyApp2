@@ -19,8 +19,8 @@ import theme_config from "./custom_theme_config";
 const Logo = require("../../assets/ostLogoBlue.png");
 import ost_wallet_sdk_config from "./OstWalletSdkConfig";
 
-const useCustomThemeConfig = true;
-const useCustomContentConfig = true;
+const useCustomThemeConfig = false;
+const useCustomContentConfig = false;
 
 class HomePage extends Component {
     constructor(props) {
@@ -182,7 +182,7 @@ class HomePage extends Component {
     let delegate = new OstWalletSdkUICallbackImplementation( this.wsModel );
     AsyncStorage.getItem('user').then((user) => {
       user = JSON.parse(user);
-      let workflowId = OstWalletSdkUI.authorizeDeviceViaQR(
+      let workflowId = OstWalletSdkUI.scanQRCodeToAuthorizeDevice(
         user.user_details.user_id,
         delegate
       );
@@ -196,7 +196,7 @@ class HomePage extends Component {
     let delegate = new OstWalletSdkUICallbackImplementation( this.wsModel );
     AsyncStorage.getItem('user').then((user) => {
       user = JSON.parse(user);
-      let workflowId = OstWalletSdkUI.executeTransactionViaQR(
+      let workflowId = OstWalletSdkUI.scanQRCodeToExecuteTransaction(
         user.user_details.user_id,
         delegate
       );
