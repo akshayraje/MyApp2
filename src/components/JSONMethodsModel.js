@@ -182,6 +182,9 @@ export default class JSONMethodsModel extends Component {
 
     }, (error) => {
       let allResponses = this.state.getTransactionsForUserId || [];
+      if ( null == prevPageMeta ) {
+        allResponses = [];
+      }
       allResponses.push( this.processData(error) );
       this.setState({
         getTransactionsForUserId: allResponses,
@@ -192,9 +195,8 @@ export default class JSONMethodsModel extends Component {
   };
 
   getTransactionsForUserId = () => {
-    //getTransactionsForUserId
     this.setState({
-      getTransactionsForUserId: "\n\n\nWaiting for response\n\n\n",
+      getTransactionsForUserId: ["\n\n\nWaiting for response\n\n\n"],
       "txPrevPageMeta": null
     });
     this.getTransactionsNextPage(null, null);
