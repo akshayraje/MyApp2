@@ -103,13 +103,13 @@ export default styles = StyleSheet.create({
     marginRight: 80
   },
   infoText: {
-    fontSize:12, 
+    fontSize:12,
     marginLeft: 10,
     marginRight: 80,
     color: "#0c5460",
   },
   buttonRetryText: {
-    color: "#ffffff", 
+    color: "#ffffff",
     fontSize: 14,
     fontWeight: 'bold',
   },
@@ -123,7 +123,7 @@ export default styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     paddingLeft: 10,
-    paddingRight: 10 
+    paddingRight: 10
   },
   secondaryInfoWrap: {
     flexDirection:'row',
@@ -140,15 +140,23 @@ export default styles = StyleSheet.create({
     fontSize:14
   },
   logs: {
-    flexDirection:'row', 
-    marginTop:10, 
-    padding: 10, 
+    flexDirection:'row',
+    marginTop:10,
+    padding: 10,
     backgroundColor: '#eeeeee',
     borderWidth: 1,
     borderColor: "#333333"
   },
   jsonTreeWrap: {
     flexDirection:'row'
+  },
+  whiteInfoWrap: {
+    flexDirection:'row',
+     position:'relative',
+     backgroundColor:'#ffffff',
+     minHeight: 30,
+     alignItems: 'flex-end',
+     justifyContent: 'center'
   }
 
 });

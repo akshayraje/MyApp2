@@ -41,12 +41,12 @@ class OstWalletSdkUICallbackImplementation extends OstWalletUIWorkflowCallback {
     });
     OstWalletSdkUI.subscribe(workflowId, OstWalletSdkUI.EVENTS.flowInterrupt, (ostWorkflowContext , ostError) => {
       let workflowId = ostWorkflowContext.WORKFLOW_ID;
-      this.logEvent("flowInterrupt event received", 
-        "workflowId: " + workflowId, 
-        "ostWorkflowContext:", 
-        ostWorkflowContext, 
-        "ostError", 
-        this.formatOstError(ostError) 
+      this.logEvent("flowInterrupt event received",
+        "workflowId: " + workflowId,
+        "ostWorkflowContext:",
+        ostWorkflowContext,
+        "ostError",
+        this.formatOstError(ostError)
       );
     });
   }
@@ -60,15 +60,11 @@ class OstWalletSdkUICallbackImplementation extends OstWalletUIWorkflowCallback {
     let cnt = 0, len = args.length;
     for(cnt = 0; cnt < len; cnt++) {
       let val = args[ cnt ];
-      if ( typeof val === 'object') {
-        logTextArray.push( JSON.stringify(val, null ,1) );
-      } else {
-        logTextArray.push(val);
-      }
+      logTextArray.push( val );
     }
-    let newLog = logTextArray.join(newLine);
+    let newLog = logTextArray;
     if ( this.callbackLogs ) {
-      this.callbackLogs = this.callbackLogs + newLine + newLog;
+      this.callbackLogs = this.callbackLogs.concat(newLog);
     } else {
       this.callbackLogs = newLog;
     }
@@ -94,19 +90,15 @@ class OstWalletSdkUICallbackImplementation extends OstWalletUIWorkflowCallback {
     let cnt = 0, len = args.length;
     for(cnt = 0; cnt < len; cnt++) {
       let val = args[ cnt ];
-      if ( typeof val === 'object') {
-        logTextArray.push( JSON.stringify(val, null ,1) );
-      } else {
-        logTextArray.push(val);
-      }
+      logTextArray.push(val);
     }
-    let newLog = logTextArray.join(newLine);
+    let newLog = logTextArray;
     if ( this.eventLogs ) {
-      this.eventLogs = this.eventLogs + newLine + newLog;
+      this.eventLogs = this.eventLogs.concat(newLog);
     } else {
       this.eventLogs = newLog;
     }
-    
+
     if ( this.wsModel ) {
       this.wsModel.setState({
         callbackLogs: this.callbackLogs,
@@ -146,11 +138,11 @@ class OstWalletSdkUICallbackImplementation extends OstWalletUIWorkflowCallback {
    */
   flowInterrupt(ostWorkflowContext , ostError)  {
     let workflowId = ostWorkflowContext.WORKFLOW_ID;
-    this.logCallback("flowInterrupt callback received", 
-        "workflowId: " + workflowId, 
-        "ostWorkflowContext:", 
-        ostWorkflowContext, 
-        "ostError", 
+    this.logCallback("flowInterrupt callback received",
+        "workflowId: " + workflowId,
+        "ostWorkflowContext:",
+        ostWorkflowContext,
+        "ostError",
         this.formatOstError(ostError)
     );
     if(Actions.currentScene !== "HomePage"){
@@ -161,20 +153,26 @@ class OstWalletSdkUICallbackImplementation extends OstWalletUIWorkflowCallback {
 
   formatOstError(ostError) {
     let displayError = ostError.getErrorMessage(), apiError, errorData;
-    if(ostError.isApiError()){
+    if(ostError.isApiError()) {
+
       apiError = ostError.getApiErrorMessage();
+        console.log("ost c1 apiError", apiError);
       if(apiError && apiError.includes('err.error_data')){
+          console.log("ost c1.t");
         apiError = '';
       }
       errorData = ostError.getApiErrorData();
+        console.log("ost c2", errorData);
       if(errorData && errorData.length > 0){
+          console.log("ost c2.T");
         for(let i=0; i<errorData.length;i++){
           apiError = apiError + errorData[i].msg;
         }
       }
+        console.log("c3");
       displayError = displayError+apiError;
     }
-    return displayError + "\n OstError Object: \n" + JSON.stringify(ostError, null, 2);
+    return [displayError, "OstError Object:", ostError.error];
   }
 
 

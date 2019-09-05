@@ -39,7 +39,7 @@ export default class GetMethodsModel extends Component {
   fetchAllResponses = () => {
     this.setState({
       isShowing : true
-    });    
+    });
     this.getToken();
     this.getUser();
     this.getCurrentDevice();
@@ -56,7 +56,7 @@ export default class GetMethodsModel extends Component {
       failedToFetchQr: false
     })
     let userId = this.props.userId;
-    OstWalletSdk.getAddDeviceQRCode(userId, 
+    OstWalletSdk.getAddDeviceQRCode(userId,
       (response) => {
         console.log('qrCode:\n', response);
         this.setState({
@@ -64,7 +64,7 @@ export default class GetMethodsModel extends Component {
           isFetchingQr : false,
           failedToFetchQr: false
         })
-      }, 
+      },
       (error) => {
         this.setState({
           getAddDeviceQRCode: this.processData(error),
@@ -165,7 +165,7 @@ export default class GetMethodsModel extends Component {
     if ( isFetchingQr ) {
       qrBase64 = qrFetching;
     } else if (failedToFetchQr) {
-      qrBase64 = qrError;
+      return this.renderResponse(this.state.getAddDeviceQRCode);
     } else {
       qrBase64 = this.state.getAddDeviceQRCode;
     }
@@ -183,7 +183,7 @@ export default class GetMethodsModel extends Component {
   renderResponse( response ) {
     if ( response instanceof Array ) {
       return this.renderObjectResponse(response );
-      // Do not use renderArrayResponse here. 
+      // Do not use renderArrayResponse here.
       // Lets also display empty arrays.
     } else if (typeof response === 'object') {
       return this.renderObjectResponse( response );
@@ -204,9 +204,9 @@ export default class GetMethodsModel extends Component {
       }
       // Its an Object.
       return(<ScrollView style={styles.jsonTreeWrap} key={keyId} horizontal={true}>
-          <JSONTree style={styles.jsonTree} 
+          <JSONTree style={styles.jsonTree}
             data={obj}  shouldExpandNode={this._expandNode}
-            invertTheme={invertTheme} theme={treeTheme} 
+            invertTheme={invertTheme} theme={treeTheme}
           />
         </ScrollView>);
   }
@@ -267,7 +267,7 @@ export default class GetMethodsModel extends Component {
                   </TouchableOpacity>
                 </View>
                 {this.renderResponse(this.state.is_biometric_enabled_response)}
-                
+
                 <View style={styles.infoWrap}>
                   <Text style={styles.infoHead}>getCurrentDeviceForUserId</Text>
                   <TouchableOpacity onPress={this.getCurrentDevice} style={styles.buttonRetryWrapper}>
@@ -276,16 +276,15 @@ export default class GetMethodsModel extends Component {
                 </View>
                 {this.renderResponse(this.state.get_current_device_response)}
 
-                
+
                 <View style={styles.infoWrap}>
                   <Text style={styles.infoHead}>getAddDeviceQRCode</Text>
                   <TouchableOpacity onPress={this.getAddDeviceQRCode} style={styles.buttonRetryWrapper}>
                     <Text style={styles.buttonRetryText}>Retry</Text>
                   </TouchableOpacity>
                 </View>
-                {this.renderResponse(this.state.getAddDeviceQRCode)}
                 {this.renderQR()}
-                
+
                 <View style={styles.infoWrap}>
                   <Text style={styles.infoHead}>getActiveSessionsForUserId</Text>
                   <TouchableOpacity onPress={this.getActiveSessions} style={styles.buttonRetryWrapper}>
