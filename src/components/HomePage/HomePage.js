@@ -39,7 +39,7 @@ class HomePage extends Component {
         this.wsModel = null;
     }
 
-   initializeSetupDevice() {    
+   initializeSetupDevice() {
         this.props.dispatchLoadingState(true);
         useCustomThemeConfig && OstWalletSdkUI.setThemeConfig(theme_config);
         useCustomContentConfig && OstWalletSdkUI.setContentConfig(content_config);
@@ -59,7 +59,7 @@ class HomePage extends Component {
                 });
               });
             }
-            
+
         });
     }
 
@@ -402,12 +402,12 @@ class HomePage extends Component {
             onRight: this.userLogout,
             rightTitle: 'Log out'
         });
-        AsyncStorage.getItem('user').then((user) => { 
+        AsyncStorage.getItem('user').then((user) => {
           if ( this.isUnMounted || !user ) {
             return;
           }
           if ( typeof user === 'string' ) {
-            user = JSON.parse(user);  
+            user = JSON.parse(user);
           }
           user && user.user_details && this.setState({
             userId: user.user_details.user_id
@@ -517,7 +517,7 @@ class HomePage extends Component {
                             this.onInitiateDeviceRecovery()
                         }
                     >
-                        <Text style={styles.buttonText}>Device recovery</Text>
+                        <Text style={styles.buttonText}>Initiate Device Recovery</Text>
                     </TouchableOpacity>
 
                   <TouchableOpacity
@@ -526,7 +526,7 @@ class HomePage extends Component {
                        this.onAbortDeviceRecovery()
                     }
                   >
-                    <Text style={styles.buttonText}>Abort Device recovery</Text>
+                    <Text style={styles.buttonText}>Abort Device Recovery</Text>
                   </TouchableOpacity>
 
                   <TouchableOpacity
