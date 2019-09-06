@@ -10,7 +10,6 @@ import React, { Component } from 'react';
 import { ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Router, Scene, ActionConst } from 'react-native-router-flux';
-import {OstWalletSdkEvents, OstWalletSdk} from '@ostdotcom/ost-wallet-sdk-react-native';
 
 import Authentication from './src/components/authentication/Authentication';
 import HomePage from './src/components/HomePage';
@@ -25,17 +24,36 @@ import AuthorizeDevice from './src/components/AuthorizeDevice';
 import PerformQRAction from "./src/components/PerformQRAction";
 import RevokeDevice from "./src/components/RevokeDevice/RevokeDevice";
 
+const OST_PLATFROM_ENDPOINT = 'https://api.stagingost.com/testnet/v2';
+
+// OstWalletSdk Imports
+import {OstWalletSdkEvents, OstWalletSdk} from '@ostdotcom/ost-wallet-sdk-react-native';
+import ost_wallet_sdk_config from "./src/configs/ost_wallet_sdk_config";
+
+
 class App extends Component {
   constructor() {
     super();
     this.state = { hasUserId: false };
+    console.log("ost_wallet_sdk_config", ost_wallet_sdk_config);
+    OstWalletSdk.initialize(OST_PLATFROM_ENDPOINT, ost_wallet_sdk_config, (err , success ) => {
+      if ( err ) {
+        console.log("OstWalletSdk.initialize err", err);
+        // Most likely config is invalid.
+        // Crash the app for dev purposes.
+        throw err;
+      }
+      console.log("OstWalletSdk has been initialized.");
+    });
   }
 
   componentDidMount() {
+    OstWalletSdkEvents.subscribeEvent();
+
+    console.log("OstWalletSdkEvents has been subscribed.");
     AsyncStorage.getItem('user').then((user) => {
       this.setState({ hasUserId: user !== null, isLoaded: true });
     });
-    OstWalletSdkEvents.subscribeEvent();
   }
 
   componentWillUnmount() {
