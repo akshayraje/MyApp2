@@ -475,7 +475,7 @@
                               this.onInitiateDeviceRecovery()
                           }
                       >
-                          <Text style={styles.buttonText}>Device recovery</Text>
+                          <Text style={styles.buttonText}>Initiate Device Recovery</Text>
                       </TouchableOpacity>
 
                     <TouchableOpacity
@@ -484,7 +484,7 @@
                          this.onAbortDeviceRecovery()
                       }
                     >
-                      <Text style={styles.buttonText}>Abort Device recovery</Text>
+                      <Text style={styles.buttonText}>Abort Device Recovery</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
